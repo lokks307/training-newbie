@@ -1,21 +1,6 @@
-<div style="text-align: center;" >
-<img src="../image/jjanggu.jpg" width="360"/>
-<br>
-<p>나도... 개발자로 일할 수 있을까?</p>
-</div>
+# 👻👻 javascript 코스에 오신 것을 환영합니다! 👻👻
 
-# 개발자의 피, ~~땀,~~ 눈물
-
-- 모험하는 예비 개발자님 안녕하세요! 학원에서 이론 배우시느라 고생 많으셨습니다. 👏
-- 여기는 실무에 필요한 javascript 문법을 훈련하는 곳입니다.
-- 메일로 안내받으신 분들은 훈련에 참여하고 피드백을 받을 수 있습니다.
-- 훈련 기간은 3주(15일) 입니다.
-  - 일찍 끝내도 돼요 🙆
-  - 늦게 끝내는 건 안 돼요 🙅‍♂️
-
-<br>
-
-# 무엇을 배우나요?
+### 무엇을 배우나요?
 
 - github로 동료에게 코드를 공유하는 방법을 자연스럽게 배웁니다.
 - 프론트엔드 개발을 위한 필수 문법을 빠르게 익힙니다.
@@ -23,6 +8,7 @@
 - 이 과정을 마치면 적어도 문법을 몰라서 고통받는 일은 없을지도 모릅니다.
   - 푸는 모든 과정을 리뷰할 거예요.
   - 어떻게든 되기만 하는 코드를 만드는게 목적이 아닙니다.
+  - 함께 일할 수 있는 수준의 코드를 작성할 수 있도록 개종됩니다.
 
 <br>
 
@@ -62,7 +48,7 @@
 - 각 문제를 풀 때마다 commit을 남기세요.
 - 첫번째 commit을 만들었다면 가장 먼저 PR을 등록하세요.
   - 아직 작업중이라면 머릿말에 WIP를 붙이세요
-  - [wip branch가 뭐죠?](https://stackoverflow.com/questions/15763059/github-what-is-a-wip-branch)
+    - [wip branch가 뭐죠?](https://stackoverflow.com/questions/15763059/github-what-is-a-wip-branch)
   - lokks307/training-newbie repository로 PR을 요청하시면 됩니다.
   
 <br>
