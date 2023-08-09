@@ -205,3 +205,23 @@ function ex16(num, n) {
 function ex17(number, n, m) {
   return number % n === 0 && number % m === 0 ? 1 : 0;
 }
+
+function ex18(n) {
+  let arr = [];
+  for (let i = 1; i < 101; i++) {
+    arr.push(i);
+  }
+  if (n % 2 === 1) {
+    arr = arr.filter((el) => el <= n && el % 2 === 1);
+    const result = arr.reduce(function add(sum, currValue) {
+      return sum + currValue;
+    }, 0);
+    return result;
+  } else {
+    arr = arr.filter((el) => el <= n && el % 2 === 0);
+    const result = arr.reduce(function add(sum, currValue) {
+      return sum + currValue ** 2;
+    }, 0);
+    return result;
+  }
+}
