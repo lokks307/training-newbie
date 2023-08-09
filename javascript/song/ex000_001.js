@@ -73,3 +73,15 @@ function ex4() {
     console.log(arr.join(""));
   });
 }
+
+function ex5() {
+  const readline = require("readline");
+  const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+  });
+
+  rl.on("close", function () {
+    console.log(`!@#$%^&*(\\'"<>?:;`);
+  });
+}
