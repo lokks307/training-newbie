@@ -201,3 +201,7 @@ function ex15(a, b) {
 function ex16(num, n) {
   return num % n === 0 ? 1 : 0;
 }
+
+function ex17(number, n, m) {
+  return number % n === 0 && number % m === 0 ? 1 : 0;
+}
