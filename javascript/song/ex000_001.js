@@ -159,3 +159,9 @@ function ex9() {
     n % 2 === 0 ? console.log(`${n} is even`) : console.log(`${n} is odd`);
   });
 }
+
+function ex9(my_string, overwrite_string, s) {
+  let arr = my_string.split("");
+  arr.splice(s, overwrite_string.length, overwrite_string);
+  return arr.join("");
+}
