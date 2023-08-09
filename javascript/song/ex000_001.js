@@ -177,3 +177,7 @@ function ex11(str1, str2) {
 function ex12(arr) {
   return arr.join("");
 }
+
+function ex13(my_string, k) {
+  return my_string.repeat(k);
+}
