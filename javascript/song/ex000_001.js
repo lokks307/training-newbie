@@ -197,3 +197,7 @@ function ex15(a, b) {
 
   return fnum > snum || fnum === snum ? fnum : snum;
 }
+
+function ex16(num, n) {
+  return num % n === 0 ? 1 : 0;
+}
