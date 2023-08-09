@@ -156,7 +156,10 @@ function ex9() {
     input = line.split(" ");
   }).on("close", function () {
     n = Number(input[0]);
-    n % 2 === 0 ? console.log(`${n} is even`) : console.log(`${n} is odd`);
+    // n % 2 === 0 ? console.log(`${n} is even`) : console.log(`${n} is odd`);   // 연산과 출력을 같이 하는 못된 습관이 복잡한 로직을 구현할 때 드러날 수 있어요.
+    if (n % 2 === 0) {
+      console.log(`${n} is even`);
+    } else console.log(`${n} is odd`);
   });
 }
 
