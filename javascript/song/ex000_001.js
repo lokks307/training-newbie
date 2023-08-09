@@ -181,3 +181,12 @@ function ex12(arr) {
 function ex13(my_string, k) {
   return my_string.repeat(k);
 }
+
+function ex14(a, b) {
+  let fnum = Number(String(a) + String(b));
+  let snum = Number(String(b) + String(a));
+
+  if (fnum > snum || fnum === snum) {
+    return fnum;
+  } else return snum;
+}
