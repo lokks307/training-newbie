@@ -20,13 +20,12 @@
 - `javascript/${nickname}` 폴더를 만드세요.
 
 
-### 백준 가입하기
+### 프로그래머스 가입하기
 
-- [백준](https://www.acmicpc.net/register)에 가입합니다.
-- [설정](https://www.acmicpc.net/modify) 으로 이동합니다.
-  - 설정 > 언어 > 볼 언어 > node.js (기본언어) 로 설정
-  - 나머지 모든 언어 숨김
-  - 저장
+- [프로그래머스](https://programmers.co.kr/account/sign_in?referer=https%3A%2F%2Fprogrammers.co.kr%2F)에 가입합니다.
+- 진단 문제를 풀어봅니다.
+
+<img src="../image/진단문제.jpg" width="720"/>
 
 
 ### Slack 가입하기
@@ -37,10 +36,13 @@
 
 ### 문제 풀기
 
-- [단계별로 풀어보기](https://www.acmicpc.net/step)로 이동해요.
-- 하루에 1단계의 모든 문제를 풀어요.
-- 문제마다 파일을 만들기 보다는, 함수 이름을 지어주세요.
+- [코딩테스트 연습](https://school.programmers.co.kr/learn/challenges?order=recent&page=1&levels=0) 으로 이동합니다
+  - 레벨은 0부터 5단계까지 있어요. 그중 레벨 0 문제 224개를 풉니다.
+  - 문제 자체가 이해가 되지 않을 수 있어요. 그럴 땐 메모를 남기고 넘어가도 괜찮아요.
+- 하루에 최소 15개의 문제를 풀어요
+- 문제마다 파일을 만들지 마세요. 함수 이름으로 구분지어 지어주세요.
   - [👀 C#을 훈련 받았던 인턴의 첫 코드 살펴보기  ](https://github.com/EdenKwon/BackJoon/blob/develop/ConsoleApp1/Level1.cs)
+- 파일 이름은 ex001_015.js 형식으로 지어주세요.
 
 
 ### PR 요청하기
