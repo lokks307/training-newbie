@@ -228,3 +228,25 @@ function ex18(n) {
     return result;
   }
 }
+
+function ex19(ineq, eq, n, m) {
+  const op = ineq + eq;
+
+  if (op === ">=") {
+    if (n >= m) {
+      return 1;
+    } else return 0;
+  } else if (op === "<=") {
+    if (n <= m) {
+      return 1;
+    } else return 0;
+  } else if (op === ">!") {
+    if (n > m) {
+      return 1;
+    } else return 0;
+  } else if (op === "<!") {
+    if (n < m) {
+      return 1;
+    } else return 0;
+  }
+}
