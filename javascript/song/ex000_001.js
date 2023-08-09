@@ -160,8 +160,16 @@ function ex9() {
   });
 }
 
-function ex9(my_string, overwrite_string, s) {
+function ex10(my_string, overwrite_string, s) {
   let arr = my_string.split("");
   arr.splice(s, overwrite_string.length, overwrite_string);
+  return arr.join("");
+}
+
+function ex11(str1, str2) {
+  let arr = [];
+  for (let i = 0; i < str1.length; i++) {
+    arr.push(str1[i] + str2[i]);
+  }
   return arr.join("");
 }
