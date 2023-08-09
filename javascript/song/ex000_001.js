@@ -190,3 +190,10 @@ function ex14(a, b) {
     return fnum;
   } else return snum;
 }
+
+function ex15(a, b) {
+  let fnum = Number(String(a) + String(b));
+  let snum = 2 * a * b;
+
+  return fnum > snum || fnum === snum ? fnum : snum;
+}
