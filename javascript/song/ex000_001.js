@@ -149,7 +149,7 @@ function ex18(n) {
   }
   if (n % 2 === 1) {
     // n이 짝수인 경우
-    arr = arr.filter((el) => el <= n && el % 2 === 1); // arr의 요소 중 el <= n && el % 2 === 1 의 조건에 맞는 요소만 담아 재선언
+    arr = arr.filter((el) => el <= n && el % 2 === 1); // arr의 요소 중 el <= n && el % 2 === 1 의 조건에 맞는 요소만 담아 재할당
     const result = arr.reduce(function add(sum, currValue) {
       // 새로 담은 arr 배열의 합을 result에 담는다.
       return sum + currValue;
@@ -157,7 +157,7 @@ function ex18(n) {
     return result;
   } else {
     // n이 홀수인 경우
-    arr = arr.filter((el) => el <= n && el % 2 === 0); // arr의 요소 중 el <= n && el % 2 === 0 의 조건에 맞는 요소만 담아 재선언
+    arr = arr.filter((el) => el <= n && el % 2 === 0); // arr의 요소 중 el <= n && el % 2 === 0 의 조건에 맞는 요소만 담아 재할당
     const result = arr.reduce(function add(sum, currValue) {
       // arr 배열 요소들의 제곱의 합을 result로 선언
       return sum + currValue ** 2;
@@ -175,11 +175,11 @@ function ex18Solution(n) {
 
   if (n % 2 === 1) {
     // n이 짝수인 경우
-    arr = arr.filter((el) => el % 2 === 1); // arr의 요소 중 el % 2 === 1 의 조건에 맞는 요소만 담아 재선언
+    arr = arr.filter((el) => el % 2 === 1); // arr의 요소 중 el % 2 === 1 의 조건에 맞는 요소만 담아 재할당
   } else {
     // n이 홀수인 경우
-    arr = arr.filter((el) => el % 2 === 0); // arr의 요소 중 el % 2 === 0 의 조건에 맞는 요소만 담아 재선언
-    arr = arr.map((n) => n ** 2); // arr의 각 요소의 제곱을 담아 재선언한다.
+    arr = arr.filter((el) => el % 2 === 0); // arr의 요소 중 el % 2 === 0 의 조건에 맞는 요소만 담아 재할당
+    arr = arr.map((n) => n ** 2); // arr의 각 요소의 제곱을 담아 재할당한다.
   }
 
   const result = arr.reduce(function add(sum, currValue) {
