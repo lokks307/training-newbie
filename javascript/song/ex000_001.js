@@ -285,3 +285,18 @@ function ex23(a, b, c) {
     return a + b + c;
   }
 }
+
+function ex24(num_list) {
+  let mpCount = 1;
+  let plCount = 0;
+
+  for (num of num_list) {
+    mpCount *= num;
+    plCount += num;
+  }
+
+  if (mpCount < plCount ** 2) {
+    return 1;
+  }
+  return 0;
+}
