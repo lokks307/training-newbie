@@ -271,9 +271,9 @@ function ex22(a, d, included) {
 }
 
 function ex23(a, b, c) {
-  apow = Math.pow(a, 3);
-  bpow = Math.pow(b, 3);
-  cpow = Math.pow(c, 3);
+  const apow = Math.pow(a, 3);
+  const bpow = Math.pow(b, 3);
+  const cpow = Math.pow(c, 3);
 
   if (a === b && b === c) {
     return (a + b + c) * (a ** 2 + b ** 2 + c ** 2) * (apow + bpow + cpow);
