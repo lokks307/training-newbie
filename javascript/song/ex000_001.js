@@ -407,3 +407,19 @@ function ex29(arr, queries) {
   }
   return arr;
 }
+
+function ex30(arr, queries) {
+  let answer = [];
+  for (let i = 0; i < queries.length; i++) {
+    let newArr = [];
+    for (let j = queries[i][0]; j <= queries[i][1]; j++) {
+      if (arr[j] > queries[i][2]) newArr.push(arr[j]);
+    }
+    answer.push(Math.min(...newArr));
+    if (Math.min(...newArr) === Infinity) {
+      answer.push(-1);
+    }
+  }
+  answer = answer.filter((el) => el !== Infinity);
+  return answer;
+}
