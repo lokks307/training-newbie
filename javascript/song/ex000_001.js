@@ -271,17 +271,49 @@ function ex22(a, d, included) {
 }
 
 function ex23(a, b, c) {
-  const apow = Math.pow(a, 3);
-  const bpow = Math.pow(b, 3);
-  const cpow = Math.pow(c, 3);
+  const apow = Math.pow(a, 3); // a의 세제곱
+  const bpow = Math.pow(b, 3); // b의 세제곱
+  const cpow = Math.pow(c, 3); // c의 세제곱
 
   if (a === b && b === c) {
-    return (a + b + c) * (a ** 2 + b ** 2 + c ** 2) * (apow + bpow + cpow);
+    // a, b, c가 모두 같을 때
+    return (a + b + c) * (a ** 2 + b ** 2 + c ** 2) * (apow + bpow + cpow); // (a + b + c) * (a ** 2 + b ** 2 + c ** 2) * (apow + bpow + cpow)값을 리턴
   } else if (a === b || a === c || b === c) {
-    return (a + b + c) * (a ** 2 + b ** 2 + c ** 2);
+    // a, b, c 중 두 수가 같을 때
+    return (a + b + c) * (a ** 2 + b ** 2 + c ** 2); // (a + b + c) * (a ** 2 + b ** 2 + c ** 2) 값을 리턴
   } else {
-    return a + b + c;
+    // a, b, c가 모두 다를 때
+    return a + b + c; // a + b + c를 리턴
   }
+}
+
+function ex23Solution(a, b, c) {
+  const apow = Math.pow(a, 3); // a의 세제곱
+  const bpow = Math.pow(b, 3); // b의 세제곱
+  const cpow = Math.pow(c, 3); // c의 세제곱
+
+  const sum = a + b + c; // a + b + c를 sum로 선언
+  const sumOfSquares = a ** 2 + b ** 2 + c ** 2; // a, b, c 각각의 제곱의 합을 sumOfSquares로 선언
+  const sumOfCubics = apow + bpow + cpow; //a, b, c 각각의 세제곱의 합을 sumOfCubics로 선언
+
+  if (areAllEqual(a, b, c)) {
+    // a, b, c가 같을 때
+    return sum * sumOfSquares * sumOfCubics; // sum * sumOfSquares * sumOfCubics 리턴
+  }
+  if (areAnyEqual(a, b, c)) {
+    // a, b, c 중 두 수가 같을 때
+    return sum * sumOfSquares; // sum * sumOfSquares 리턴
+  }
+
+  return sum; // a, b, c 모두 다를 때는 sum 리턴
+}
+
+function areAllEqual(...values) {
+  return values.every((v) => v === values[0]); // values의 요소가 v=== values[0]를 충족하는지
+}
+
+function areAnyEqual(...v) {
+  return v[0] === v[1] || v[0] === v[2] || v[1] === v[2]; // v의 요소가 v[0] === v[1] || v[0] === v[2] || v[1] === v[2]를 충족하는지
 }
 
 function ex24(num_list) {
