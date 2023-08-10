@@ -142,23 +142,52 @@ function ex17(number, n, m) {
 }
 
 function ex18(n) {
-  let arr = [];
+  let arr = []; // 빈 배열을 arr로 선언
   for (let i = 1; i < 101; i++) {
+    // 1~100을 arr에 담는다. (i < n 하면 되는데 왜 이렇게 썼을까..)
     arr.push(i);
   }
   if (n % 2 === 1) {
-    arr = arr.filter((el) => el <= n && el % 2 === 1);
+    // n이 짝수인 경우
+    arr = arr.filter((el) => el <= n && el % 2 === 1); // arr의 요소 중 el <= n && el % 2 === 1 의 조건에 맞는 요소만 담아 재선언
     const result = arr.reduce(function add(sum, currValue) {
+      // 새로 담은 arr 배열의 합을 result에 담는다.
       return sum + currValue;
     }, 0);
     return result;
   } else {
-    arr = arr.filter((el) => el <= n && el % 2 === 0);
+    // n이 홀수인 경우
+    arr = arr.filter((el) => el <= n && el % 2 === 0); // arr의 요소 중 el <= n && el % 2 === 0 의 조건에 맞는 요소만 담아 재선언
     const result = arr.reduce(function add(sum, currValue) {
+      // arr 배열 요소들의 제곱의 합을 result로 선언
       return sum + currValue ** 2;
     }, 0);
     return result;
   }
+}
+
+function ex18Solution(n) {
+  let arr = []; // 빈 배열을 arr로 선언
+  for (let i = 1; i <= n; i++) {
+    // 1~n을 arr에 담는다.
+    arr.push(i);
+  }
+
+  if (n % 2 === 1) {
+    // n이 짝수인 경우
+    arr = arr.filter((el) => el % 2 === 1); // arr의 요소 중 el % 2 === 1 의 조건에 맞는 요소만 담아 재선언
+  } else {
+    // n이 홀수인 경우
+    arr = arr.filter((el) => el % 2 === 0); // arr의 요소 중 el % 2 === 0 의 조건에 맞는 요소만 담아 재선언
+    arr = arr.map((n) => n ** 2); // arr의 각 요소의 제곱을 담아 재선언한다.
+  }
+
+  const result = arr.reduce(function add(sum, currValue) {
+    // arr 배열 요소들의 합을 result로 선언
+    return sum + currValue;
+  }, 0);
+
+  return result;
 }
 
 function ex19(ineq, eq, n, m) {
