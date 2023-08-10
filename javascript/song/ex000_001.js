@@ -232,21 +232,27 @@ function ex20(a, b, flag) {
 }
 
 function ex21(code) {
-  // let mode = 0;
-  // let arr = code.split('');
-  // const retCode = arr.filter((value, idx) => {
-  //   if(value === "1") {
-  //    mode = 1
-  //   } else {
-  //     mode = 0
-  //   }
-  //   if(mode === 1) {
-  //    return idx % 2 === 1
-  //   } else {
-  //     return idx % 2 === 0
-  //   }
-  // }).join('')
-  // 잘 안 풀려서 다른 문제부터 풀고 다시 풀어보겠습니다😥
+  let mode = 0;
+  let ret = "";
+
+  for (let idx = 0; idx < code.length; idx++) {
+    if (code[idx] === "1") {
+      // code[idx] === "1" 일 때 mode 바꿔주기
+      mode = 1 - mode;
+      continue; // code[idx]가 1일 때는 아래 코드 실행 X
+    }
+    if ((mode === 0 && idx % 2 === 0) || (mode === 1 && idx % 2 === 1)) {
+      ret += code[idx];
+    }
+  }
+
+  if (isEmpty(ret)) return "EMPTY";
+  return ret;
+}
+
+function isEmpty(s) {
+  if (s === "") return true;
+  return false;
 }
 
 function ex22(a, d, included) {
