@@ -423,3 +423,27 @@ function ex30(arr, queries) {
   answer = answer.filter((el) => el !== Infinity);
   return answer;
 }
+
+function ex31(arr, queries) {
+  // for of로 풀기
+  for ([s, e, k] of queries) {
+    for (let i = s; i <= e; i++) {
+      if (i % k === 0) arr[i]++;
+    }
+  }
+  return arr;
+
+  // reduce로 풀기
+  //    const result = queries.reduce((acc, cur) => {
+  //       const copyArr = [...acc]
+  //        const [s, e, k] = cur
+  //        return copyArr.map((el, idx) => {
+  //            if (idx >= s && idx <= e) {
+  //                if(idx % k === 0)
+  //                    return el+1
+  //            } return el
+
+  //        })
+  //    }, arr)
+  //    return result;
+}
