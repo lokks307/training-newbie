@@ -233,21 +233,27 @@ function ex18(n) {
 function ex19(ineq, eq, n, m) {
   const op = ineq + eq;
 
-  if (op === ">=") {
-    if (n >= m) {
-      return 1;
-    } else return 0;
-  } else if (op === "<=") {
-    if (n <= m) {
-      return 1;
-    } else return 0;
-  } else if (op === ">!") {
-    if (n > m) {
-      return 1;
-    } else return 0;
-  } else if (op === "<!") {
-    if (n < m) {
-      return 1;
-    } else return 0;
+  let result;
+  let answer;
+
+  switch (op) {
+    case ">=":
+      result = n >= m;
+      break;
+    case "<=":
+      result = n <= m;
+      break;
+    case ">!":
+      result = n > m;
+      break;
+    case "<!":
+      result = n < m;
+      break;
   }
+
+  if (result) {
+    answer = 1;
+  } else answer = 0;
+
+  return answer;
 }
