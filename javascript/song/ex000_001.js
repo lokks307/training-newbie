@@ -257,3 +257,9 @@ function ex19(ineq, eq, n, m) {
 
   return answer;
 }
+
+function ex20(a, b, flag) {
+  if (flag) {
+    return a + b;
+  } else return a - b;
+}
