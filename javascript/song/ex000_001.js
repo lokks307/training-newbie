@@ -259,9 +259,18 @@ function ex19(ineq, eq, n, m) {
 }
 
 function ex20(a, b, flag) {
+  // if (flag) {
+  //   return a + b;
+  // } else return a - b;
+
+  // 공통된 부분과 조건문으로 변경되는 부분을 나눠서 생각하면 코드를 이해하는데 더 도움이 된다!
+  // 공통되는 부분 => return a
+  // 변경되는 부분 => b 또는 -b
+  let c = -b;
   if (flag) {
-    return a + b;
-  } else return a - b;
+    c = b;
+  }
+  return a + c;
 }
 
 function ex21(code) {
