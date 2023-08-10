@@ -194,7 +194,6 @@ function ex19(ineq, eq, n, m) {
   const op = ineq + eq;
 
   let result;
-  let answer;
 
   switch (op) {
     case ">=":
@@ -212,10 +211,9 @@ function ex19(ineq, eq, n, m) {
   }
 
   if (result) {
-    answer = 1;
-  } else answer = 0;
-
-  return answer;
+    return 1;
+  }
+  return 0;
 }
 
 function ex20(a, b, flag) {
