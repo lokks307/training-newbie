@@ -281,3 +281,24 @@ function ex21(code) {
   // }).join('')
   // 잘 안 풀려서 다른 문제부터 풀고 다시 풀어보겠습니다😥
 }
+
+function ex22(a, d, included) {
+  let arr = [a];
+  let idxArr = [];
+  let count = 0;
+
+  for (let i = 0; i < included.length - 1; i++) {
+    arr.push((a += d));
+  }
+  included.map((item, idx) => {
+    if (item === true) {
+      idxArr.push(idx);
+    }
+  });
+
+  for (let i = 0; i < idxArr.length; i++) {
+    count += arr[idxArr[i]];
+  }
+
+  return count;
+}
