@@ -16,10 +16,18 @@ function ex2Output([a, b]) {
 }
 
 function ex3() {
+  ex2Output(input.split(" "));
+}
+
+function ex3Output([str, n]) {
+  console.log(str.repeat(n));
+}
+
+function ex4() {
   ex3Output(input.split(" "));
 }
 
-function ex3Output() {
+function ex4Output() {
   let arr = input.split("");
   for (let i = 0; i < arr.length; i++) {
     if (arr[i] === arr[i].toUpperCase()) {
