@@ -70,9 +70,11 @@ function ex9() {
 }
 
 function ex9Output(n) {
+  let isEven = `${n} is even`;
+  let isOdd = `${n} is odd`;
   if (n % 2 === 0) {
-    console.log(`${n} is even`);
-  } else console.log(`${n} is odd`);
+    console.log(isEven);
+  } else console.log(isOdd);
 }
 
 function solveThis(solveFunction) {
