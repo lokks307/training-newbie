@@ -370,3 +370,25 @@ function ex27(n, control) {
   }
   return n;
 }
+
+function ex28(numLog) {
+  let arr = [];
+  for (let i = 1; i < numLog.length; i++) {
+    switch (numLog[i] - numLog[i - 1]) {
+      case 1:
+        arr.push("w");
+        break;
+      case -1:
+        arr.push("s");
+        break;
+      case 10:
+        arr.push("d");
+        break;
+      case -10:
+        arr.push("a");
+        break;
+    }
+  }
+  let answer = arr.join("");
+  return answer;
+}
