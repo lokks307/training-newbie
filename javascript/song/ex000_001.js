@@ -65,6 +65,16 @@ function ex8() {
   }
 }
 
+function ex9() {
+  ex9Output(input.split(" "));
+}
+
+function ex9Output(n) {
+  if (n % 2 === 0) {
+    console.log(`${n} is even`);
+  } else console.log(`${n} is odd`);
+}
+
 function solveThis(solveFunction) {
   const readline = require("readline");
   const rl = readline.createInterface({
@@ -80,45 +90,6 @@ function solveThis(solveFunction) {
 }
 
 ////////////////////////////////////////////////////
-
-function ex8() {
-  const readline = require("readline");
-  const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout,
-  });
-
-  let input = [];
-
-  rl.on("line", function (line) {
-    input = [line];
-  }).on("close", function () {
-    str = input[0];
-    for (let i = 0; i < str.length; i++) {
-      console.log(str[i]);
-    }
-  });
-}
-
-function ex9() {
-  const readline = require("readline");
-  const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout,
-  });
-
-  let input = [];
-
-  rl.on("line", function (line) {
-    input = line.split(" ");
-  }).on("close", function () {
-    n = Number(input[0]);
-    // n % 2 === 0 ? console.log(`${n} is even`) : console.log(`${n} is odd`);   // 연산과 출력을 같이 하는 못된 습관이 복잡한 로직을 구현할 때 드러날 수 있어요.
-    if (n % 2 === 0) {
-      console.log(`${n} is even`);
-    } else console.log(`${n} is odd`);
-  });
-}
 
 function ex10(my_string, overwrite_string, s) {
   let arr = my_string.split("");
