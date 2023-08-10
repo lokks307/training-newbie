@@ -392,3 +392,12 @@ function ex28(numLog) {
   let answer = arr.join("");
   return answer;
 }
+
+function ex29(arr, queries) {
+  for (let i = 0; i < queries.length; i++) {
+    let fb = arr[queries[i][0]];
+    arr[queries[i][0]] = arr[queries[i][1]];
+    arr[queries[i][1]] = fb;
+  }
+  return arr;
+}
