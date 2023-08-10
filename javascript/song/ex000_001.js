@@ -263,3 +263,21 @@ function ex20(a, b, flag) {
     return a + b;
   } else return a - b;
 }
+
+function ex21(code) {
+  // let mode = 0;
+  // let arr = code.split('');
+  // const retCode = arr.filter((value, idx) => {
+  //   if(value === "1") {
+  //    mode = 1
+  //   } else {
+  //     mode = 0
+  //   }
+  //   if(mode === 1) {
+  //    return idx % 2 === 1
+  //   } else {
+  //     return idx % 2 === 0
+  //   }
+  // }).join('')
+  // 잘 안 풀려서 다른 문제부터 풀고 다시 풀어보겠습니다😥
+}
