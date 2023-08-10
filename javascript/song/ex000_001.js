@@ -258,7 +258,7 @@ function ex22(a, d, included) {
     arr.push((a += d));
   }
   included.map((item, idx) => {
-    if (item === true) {
+    if (item) {
       idxArr.push(idx);
     }
   });
