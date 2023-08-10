@@ -59,6 +59,12 @@ function ex7Output([str1, str2]) {
   console.log(`${str1}${str2}`);
 }
 
+function ex8() {
+  for (let i = 0; i < input.length; i++) {
+    console.log(input[i]);
+  }
+}
+
 function solveThis(solveFunction) {
   const readline = require("readline");
   const rl = readline.createInterface({
