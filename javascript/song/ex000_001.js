@@ -15,6 +15,22 @@ function ex2Output([a, b]) {
   console.log(`b = ${b}`);
 }
 
+function ex3() {
+  ex3Output(input.split(" "));
+}
+
+function ex3Output() {
+  let arr = input.split("");
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === arr[i].toUpperCase()) {
+      arr[i] = arr[i].toLowerCase();
+    } else {
+      arr[i] = arr[i].toUpperCase();
+    }
+  }
+  console.log(arr.join(""));
+}
+
 function solveThis(solveFunction) {
   const readline = require("readline");
   const rl = readline.createInterface({
@@ -64,23 +80,23 @@ function solveThis(solveFunction) {
 //   });
 // }
 
-function ex3() {
-  const readline = require("readline");
-  const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout,
-  });
+// function ex3() {
+//   const readline = require("readline");
+//   const rl = readline.createInterface({
+//     input: process.stdin,
+//     output: process.stdout,
+//   });
 
-  let input = [];
+//   let input = [];
 
-  rl.on("line", function (line) {
-    input = line.split(" ");
-  }).on("close", function () {
-    str = input[0];
-    n = Number(input[1]);
-    console.log(str.repeat(n));
-  });
-}
+//   rl.on("line", function (line) {
+//     input = line.split(" ");
+//   }).on("close", function () {
+//     str = input[0];
+//     n = Number(input[1]);
+//     console.log(str.repeat(n));
+//   });
+// }
 
 function ex4() {
   const readline = require("readline");
