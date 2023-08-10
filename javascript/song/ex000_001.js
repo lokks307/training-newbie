@@ -16,7 +16,7 @@ function ex2Output([a, b]) {
 }
 
 function ex3() {
-  ex2Output(input.split(" "));
+  ex3Output(input.split(" "));
 }
 
 function ex3Output([str, n]) {
@@ -24,7 +24,7 @@ function ex3Output([str, n]) {
 }
 
 function ex4() {
-  ex3Output(input.split(" "));
+  ex4Output(input.split(" "));
 }
 
 function ex4Output() {
@@ -44,7 +44,7 @@ function ex5() {
 }
 
 function ex6() {
-  ex5Output(input.split(" "));
+  ex6Output(input.split(" "));
 }
 
 function ex6Output([a, b]) {
