@@ -119,7 +119,8 @@ function ex14(a, b) {
 
   if (fnum >= snum) {
     return fnum;
-  } else return snum;
+  }
+  return snum;
 }
 
 function ex15(a, b) {
