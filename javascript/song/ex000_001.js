@@ -189,7 +189,7 @@ function ex14(a, b) {
   let fnum = Number(String(a) + String(b));
   let snum = Number(String(b) + String(a));
 
-  if (fnum > snum || fnum === snum) {
+  if (fnum >= snum) {
     return fnum;
   } else return snum;
 }
