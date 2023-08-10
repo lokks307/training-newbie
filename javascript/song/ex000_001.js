@@ -300,3 +300,12 @@ function ex24(num_list) {
   }
   return 0;
 }
+
+function ex25(num_list) {
+  let oddNum = Number(num_list.filter((el) => el % 2 === 1).join(""));
+  console.log(oddNum);
+  let evenNum = Number(num_list.filter((el) => el % 2 === 0).join(""));
+
+  let answer = oddNum + evenNum;
+  return answer;
+}
