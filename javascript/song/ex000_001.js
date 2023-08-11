@@ -1,3 +1,8 @@
+/*
+  The source code has been reviewed at
+    https://github.com/lokks307/training-newbie/pull/3
+    https://github.com/lokks307/training-newbie/pull/4
+*/
 let input;
 
 solveThis(ex1);
