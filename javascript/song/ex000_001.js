@@ -546,3 +546,15 @@ function ex32MakeArray(l, r) {
 }
 
 //
+
+// 카운트 업
+
+function ex33CountUp(start, end) {
+  const answer = [];
+  for (let i = start; i <= end; i++) {
+    answer.push(i);
+  }
+  return answer;
+}
+
+//
