@@ -598,3 +598,12 @@ function ex35MakeArray(arr) {
 }
 
 //
+
+// 간단한 논리 연산
+
+function ex36SimpleBoolean(x1, x2, x3, x4) {
+  let answer = (x1 || x2) && (x3 || x4);
+  return answer;
+}
+
+//
