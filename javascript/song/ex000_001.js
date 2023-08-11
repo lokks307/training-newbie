@@ -434,6 +434,7 @@ function ex28(numLog) {
 }
 
 // 수열과 구간 쿼리 3
+
 // function ex29(arr, queries) {
 //   for (let i = 0; i < queries.length; i++) {
 //     let fb = arr[queries[i][0]];
@@ -452,21 +453,53 @@ function ex29SwapElement(arr, queries) {
 }
 //
 
+// 수열과 구간 쿼리 2
+
 function ex30(arr, queries) {
-  let answer = [];
+  let answer = []; // 빈 배열 answer로 선언
   for (let i = 0; i < queries.length; i++) {
-    let newArr = [];
+    // queries 배열 반복
+    let newArr = []; // 빈 배열 newArr로 선언
     for (let j = queries[i][0]; j <= queries[i][1]; j++) {
-      if (arr[j] > queries[i][2]) newArr.push(arr[j]);
+      // queries[i][1] - queries[i][0]+1번 반복
+      if (arr[j] > queries[i][2]) newArr.push(arr[j]); // arr[j] > queries[i][2]면 newArr에 arr[j] push
     }
-    answer.push(Math.min(...newArr));
+    answer.push(Math.min(...newArr)); // answer 배열에 newArr에서 가장 작은 수를 push
     if (Math.min(...newArr) === Infinity) {
-      answer.push(-1);
+      // 가장 작은 수가 Infinity라면
+      answer.push(-1); // answer에 -1 push
     }
   }
-  answer = answer.filter((el) => el !== Infinity);
+  answer = answer.filter((el) => el !== Infinity); // answer 배열에서 Inifinity가 아닌 원소만 담아 answer에 재할당
   return answer;
 }
+
+function ex30FindMinValues(arr, queries) {
+  const answer = []; // 빈 배열 answer로 선언
+
+  for (const [start, end, threshold] of queries) {
+    // queries 배열 순회, 각 원소를 [start, end, threshold]로 선언
+    const filteredArr = arr
+      .slice(start, end + 1)
+      .filter((value) => value > threshold); // arr의 start index 부터 end index까지 자르고 그 상태에서 threshold 보다 큰 원소만 담아 새로운 배열을 만듦
+
+    if (filteredArr.length === 0) {
+      // 만약 filteredArr.length가 0일 때
+      answer.push(-1); // answer에 -1 push
+    } else {
+      // filteredArr.length가 0이 아닐 때
+      answer.push(Math.min(...filteredArr)); // filteredArr에서 가장 작은 수를 answer에 push
+    }
+  }
+
+  return answer;
+}
+
+// 각 코드의 차이점 : 첫번째 코드는 for문이 여러번 중첩되고 index를 사용해서 코드를 이해하기가 힘들다.
+// 반면 피드백 코드는 slice와 filter를 사용해서 스텝별로 코드를 이해하기가 쉽다!
+//
+
+// 수열과 구간 쿼리 4
 
 function ex31(arr, queries) {
   // for of로 풀기
@@ -491,3 +524,5 @@ function ex31(arr, queries) {
   //    }, arr)
   //    return result;
 }
+
+//
