@@ -558,3 +558,18 @@ function ex33CountUp(start, end) {
 }
 
 //
+
+// 콜라츠 수열 만들기
+
+function ex34MakeCollatzSeq(n) {
+  const answer = [n];
+  while (n > 1) {
+    if (n % 2 === 0) n /= 2;
+    else n = 3 * n + 1;
+
+    answer.push(n);
+  }
+  return answer;
+}
+
+//
