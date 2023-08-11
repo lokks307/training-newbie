@@ -362,24 +362,49 @@ function ex26(num_list) {
   return num_list;
 }
 
-function ex27(n, control) {
-  for (let i = 0; i < control.length; i++) {
-    switch (control[i]) {
-      case "w":
-        n += 1;
-        break;
-      case "s":
-        n -= 1;
-        break;
-      case "d":
-        n += 10;
-        break;
-      case "a":
-        n -= 10;
-        break;
+// function ex27(n, control) {
+//   for (let i = 0; i < control.length; i++) {
+//     switch (control[i]) {
+//       case "w":
+//         n += 1;
+//         break;
+//       case "s":
+//         n -= 1;
+//         break;
+//       case "d":
+//         n += 10;
+//         break;
+//       case "a":
+//         n -= 10;
+//         break;
+//       case "n":
+//         n += 100;
+//         break;
+//     }
+//   }
+//   return n;
+// }
+
+function solution(n, control) {
+  return ex27MovePosition(n, control);
+}
+
+function ex27MovePosition(position, controls) {
+  const controlMap = {
+    w: 1,
+    s: -1,
+    d: 10,
+    a: -10,
+    f: 100,
+  };
+
+  for (const control of controls) {
+    if (controlMap.hasOwnProperty(control)) {
+      position += controlMap[control];
     }
   }
-  return n;
+
+  return position;
 }
 
 function ex28(numLog) {
