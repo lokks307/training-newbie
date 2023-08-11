@@ -607,3 +607,12 @@ function ex36SimpleBoolean(x1, x2, x3, x4) {
 }
 
 //
+
+// 주사위 게임 3
+
+function ex37DiceGame(a, b, c, d) {
+  let answer = 0;
+  let dices = [a, b, c, d];
+
+  // TODO: 푸는 데 시간이 걸릴 것 같아서 다른 문제 먼저 풀고 해볼게요.
+}
