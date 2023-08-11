@@ -526,3 +526,23 @@ function ex31(arr, queries) {
 }
 
 //
+
+// 배열 만들기 2
+
+function ex32MakeArray(l, r) {
+  const answer = [];
+
+  for (let i = l; i <= r; i++) {
+    if (i % 5 !== 0) continue;
+    const item = String(i);
+    if ([...item].every((el) => el === "5" || el === "0"))
+      answer.push(Number(item));
+  }
+  console.log(answer);
+  if (answer.length === 0) {
+    return [-1];
+  }
+  return answer;
+}
+
+//
