@@ -362,6 +362,8 @@ function ex26(num_list) {
   return num_list;
 }
 
+// 수 조작하기
+
 // function ex27(n, control) {
 //   for (let i = 0; i < control.length; i++) {
 //     switch (control[i]) {
@@ -407,6 +409,8 @@ function ex27MovePosition(position, controls) {
   return position;
 }
 
+//
+
 function ex28(numLog) {
   let arr = [];
   for (let i = 1; i < numLog.length; i++) {
@@ -429,14 +433,24 @@ function ex28(numLog) {
   return answer;
 }
 
-function ex29(arr, queries) {
-  for (let i = 0; i < queries.length; i++) {
-    let fb = arr[queries[i][0]];
-    arr[queries[i][0]] = arr[queries[i][1]];
-    arr[queries[i][1]] = fb;
+// 수열과 구간 쿼리 3
+// function ex29(arr, queries) {
+//   for (let i = 0; i < queries.length; i++) {
+//     let fb = arr[queries[i][0]];
+//     arr[queries[i][0]] = arr[queries[i][1]];
+//     arr[queries[i][1]] = fb;
+//   }
+//   return arr;
+// }
+
+function ex29SwapElement(arr, queries) {
+  for (item of queries) {
+    const [x, y] = item;
+    [arr[x], arr[y]] = [arr[y], arr[x]];
   }
   return arr;
 }
+//
 
 function ex30(arr, queries) {
   let answer = [];
