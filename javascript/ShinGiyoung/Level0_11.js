@@ -51,25 +51,26 @@ function ex3Output([a, b]) {
 }
 
 function ex4() {
-  let answer;
-  for (let i = 0; i < input.length; i++) {
-    input[i] === input[i].toUpperCase()
-      ? (answer += input[i].toLowerCase())
-      : (answer += input[i].toUpperCase());
-  }
-  ex4Output(answer);
-  /* const arr = line.split("").map((char) => {  line(string) split('') 으로 배열로 바꾼 후 map
-      return char === char.toUpperCase() char = string의 한글자 의미
-        ? char.toLowerCase()
-        : char.toUpperCase();
-    });
-    arr 대문자 소문자 토글로 새로운 배열 반환 예시) ['a', 'B', 'c']
-    */
+  /*let answer;
+    for (let i = 0; i < input.length; i++) {
+      input[i] === input[i].toUpperCase()
+        ? (answer += input[i].toLowerCase())
+        : (answer += input[i].toUpperCase());
+    }
+  */
+  const arr = line.split("").map((char) => {
+    // line(string) split('') 으로 배열로 바꾼 후 map
+    return char === char.toUpperCase() //char = string의 한글자 의미
+      ? char.toLowerCase()
+      : char.toUpperCase();
+  });
+  //arr 대문자 소문자 토글로 새로운 배열 반환 예시) ['a', 'B', 'c']
+  ex4Output(arr);
 }
 
 function ex4Output(answer) {
-  console.log(answer);
-  //console.log(arr.join(""));  배열의 모든 요소를 문자열로 반환 'aBc'
+  // console.log(answer);
+  console.log(answer.join("")); //배열의 모든 요소를 문자열로 반환 'aBc'
 }
 
 function ex5() {
@@ -78,19 +79,20 @@ function ex5() {
 
 function ex6() {
   input = line.split(" ");
-  /*     
-  const [num1, num2] = input.map(Number); 
-  (input 배열 map 으로 type 숫자로 변환 input.map((string) => Number(string))를 
-  input.map(Number); 축약 )
-   */
-  ex6Output(input);
+
+  const [num1, num2] = input.map(Number);
+  //(input 배열 map 으로 type 숫자로 변환 input.map((string) => Number(string))를
+  //input.map(Number); 축약 )
+
+  const sum = num1 + num2;
+
+  ex6Output(num1, num2, sum);
 }
 
-function ex6Output([a, b]) {
-  console.log(`${Number(a)} + ${Number(b)} = ${Number(a) + Number(b)}`);
+function ex6Output(num1, num2, sum) {
+  //console.log(`${Number(a)} + ${Number(b)} = ${Number(a) + Number(b)}`);
 
-  /*  const sum = num1 + num2; 변수로 의미전달
-    console.log(`${num1} + ${num2} = ${sum}`); */
+  console.log(`${num1} + ${num2} = ${sum}`);
 }
 
 function ex7() {
@@ -103,43 +105,45 @@ function ex7Output([a, b]) {
 }
 
 function ex8() {
-  /*  const arr = [...str]; ( 전개연산자로 펼쳐서 배열 생성 ) */
-  ex8Output(input);
+  const arr = [...input]; //( 전개연산자로 펼쳐서 배열 생성 )
+  ex8Output(arr);
 }
 
 function ex8Output(answer) {
-  for (let i = 0; i < answer.length; i++) {
-    console.log(answer[i]);
-  }
-  //arr.map((ch) => console.log(ch)); ( 맵으로 처리해서 각 배열 요소 콘솔로 출력)
+  /* for (let i = 0; i < answer.length; i++) {
+    console.log(answer[i]);}*/
+  answer.map((ch) => console.log(ch)); //( 맵으로 처리해서 각 배열 요소 콘솔로 출력)
 }
 
 function ex9() {
-  ex9Output(input);
+  const n = Number(input);
+  var outString = n % 2 === 0 ? `${n} is even` : `${n} is odd`;
+  ex9Output(outString);
 }
 
 function ex9Output(answer) {
-  n = Number(answer);
-  n % 2 === 0 ? console.log(`${n} is even`) : console.log(`${n} is odd`);
-  /* var outString = n % 2 === 0 ? `${n} is even` : `${n} is odd`; (판단)
+  /*
+    n % 2 === 0 ? console.log(`${n} is even`) : console.log(`${n} is odd`);
     (한 코드에 판단과 출력 금지...)
-    console.log(outString); (출력) 
-    판단 후 출력 포멧을을 만들고, 출력 구분할것 코드가 읽기쉬워진다.  
   */
+  console.log(answer); //(출력)
+  //판단 후 출력 포멧을을 만들고, 출력 구분할것 코드가 읽기쉬워진다.
 }
 
 function ex10(my_string, overwrite_string, s) {
-  var answer = "";
-  answer =
-    my_string.substr(0, s) +
-    overwrite_string +
-    my_string.substr(s + overwrite_string.length);
-  /*  let arr = [...my_string] (전개연산자 펼친 후 배열생성)
-      arr.splice(s, overwrite_string.length, overwrite_string);
-      (arr의 s번쨰 인덱스부터 overwrite_string.length 인덱스 갯수만큼 삭제 후 그 인덱스 자리에 overwrite_string 넣기)
+  /*  var answer = "";
+      answer =
+        my_string.substr(0, s) +
+        overwrite_string +
+        my_string.substr(s + overwrite_string.length);  
+
+        return answer;  
   */
-  return answer;
-  //  return arr.join(""); 배열 join으로 string 변환후 값 리턴
+
+  let arr = [...my_string]; //(전개연산자 펼친 후 배열생성)
+  arr.splice(s, overwrite_string.length, overwrite_string);
+  //  (arr의 s번쨰 인덱스부터 overwrite_string.length 인덱스 갯수만큼 삭제 후 그 인덱스 자리에 overwrite_string 넣기)
+  return arr.join(""); // 배열 join으로 string 변환후 값 리턴
 }
 
 function ex11(str1, str2) {
@@ -151,62 +155,67 @@ function ex11(str1, str2) {
 }
 
 function ex12(arr) {
-  var answer = "";
+  /* var answer = "";
+    arr.forEach((str) => (answer += str)); 
+    return answer;
+    */
 
-  arr.forEach((str) => (answer += str));
-  /*  return arr.join(""); 배열.join('') string 으로 붙이기 .. 
-    예)  let arr = ['a', 'b', 'c' ];
-    arr.join('') // 출력 abc
-  */
-  return answer;
+  return arr.join(""); //배열.join('') string 으로 붙이기 ..
+  /*  예)  let arr = ['a', 'b', 'c' ];
+    arr.join('') // 출력 abc */
 }
 
 function ex13(my_string, k) {
-  var answer = "";
+  /*  var answer = "";
 
   for (let i = 0; i < k; i++) {
     answer += my_string;
   }
-  return answer;
+  return answer; */
 
-  // return my_string.repeat(k)
+  return my_string.repeat(k);
 }
 
 function ex14(a, b) {
-  var answer = 0;
+  /* var answer = 0;
   const ab = a.toString() + b.toString();
-  const ba = b.toString() + a.toString();
-  /* const ab = Number(Stinrg(a) + String(b));
-    const ba = Number(String(b) + String(a));
-  */
+  const ba = b.toString() + a.toString(); 
+  
   if (ab < ba) {
     answer = ba;
   } else {
     answer = ab;
   }
-  /*  if (ab >= ba) return ab;
-      return ba;
-
-      (ab가 ba 보다 크거나 같으면 ab 리턴 다른 사람이 읽을때 한번에 이해할 수 있도록 코드작성
-      앞에 조건을 쓰고, 뒤에 쓰지 않는다면 남은 조건이 간결해야함)
- */
 
   return Number(answer);
+
+*/
+  const ab = Number(Stinrg(a) + String(b));
+  const ba = Number(String(b) + String(a));
+
+  if (ab >= ba) return ab;
+  return ba;
+
+  //(ab가 ba 보다 크거나 같으면 ab 리턴 다른 사람이 읽을때 한번에 이해할 수 있도록 코드작성
+  //앞에 조건을 쓰고, 뒤에 쓰지 않는다면 남은 조건이 간결해야함)
 }
 
 function ex15(a, b) {
-  const plus = a.toString() + b.toString();
-  // const plus = Number((String(a) + String(b));
-  const multiply = 2 * a * b;
-  var answer = 0;
-  if (plus < multiply) {
-    answer = multiply;
-  } else {
-    answer = plus;
-  }
+  /*  
+    const plus = a.toString() + b.toString();
+    const multiply = 2 * a * b;
+    var answer = 0;
+    if (plus < multiply) {
+      answer = multiply;
+    } else {
+      answer = plus;
+    }
 
-  return Number(answer);
-  /* if(plus >= multiply) return plus;
-      return multiply 
+    return Number(answer);
   */
+
+  const plus = Number(String(a) + String(b));
+  const multiply = 2 * a * b;
+  if (plus >= multiply) return plus;
+  return multiply;
 }
