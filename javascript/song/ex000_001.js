@@ -705,3 +705,11 @@ function ex42BuildString(my_strings, parts) {
 }
 
 //
+
+// 문자열 뒤의 n글자
+
+function ex43SliceString(my_string, n) {
+  return my_string.slice(my_string.length - n);
+}
+
+//
