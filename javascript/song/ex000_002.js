@@ -26,3 +26,14 @@ function ex48ReverseString(my_string, s, e) {
 
   return my_string.slice(0, s) + revStr + my_string.slice(e + 1);
 }
+
+// 세로 읽기
+
+function ex49ExtStr(my_string, m, c) {
+  let answer = "";
+
+  for (let i = 0; i < my_string.length; i += m) {
+    answer += my_string[i + c - 1];
+  }
+  return answer;
+}
