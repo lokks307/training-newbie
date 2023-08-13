@@ -486,3 +486,214 @@ function ex30(arr, queries) {
   }
   return answer; // answer 값 리턴
 }
+
+function ex31(arr, queries) {
+  for (const query of queries) {
+    //배열 queries 의 길이만큼 반복 query는 각 queries요소
+    const [s, e, k] = query; // query를 구조분해할당으로 각 s,e,k에 선언
+    for (let i = s; i <= e; i++) {
+      if (i % k === 0) {
+        //i 가 k의 배수가 아니면
+        arr[i] += 1; //arr[i] 에 +1
+      }
+    }
+  }
+
+  return arr; //arr 반환
+}
+
+function ex32(l, r) {
+  var answer = [];
+
+  for (let num = l; num <= r; num++) {
+    // l <= num <= r, 해당 조건만큼 반복
+    const chgStr = String(num); // num을 Strimg 타입으로 변환한다음
+    if (/^[05]+$/.test(chgStr)) {
+      //test() 메서드를 이용하여 0과 5로 만 이루어진 값을 찾는다
+      //test() 는 0과 5로 이루어져 있다면 true를 반환 아니라면 false 를 반환한다.
+      answer.push(num); // 0과 5로 이루어진 num 값을 answer 배열 맨 뒤에 push()메서드로 추가한다.
+    }
+  }
+  return answer.length > 0 ? answer : [-1]; //answer 배열의 길이가 0 이라면 [-1]울 반환 아니라면
+  //  answer를 반환한다
+}
+
+function ex33(start, end) {
+  var answer = [];
+  for (let i = start; i <= end; i++) {
+    // end - start + 1 번 반복하면서 i 는 1씩 증가한다
+    answer.push(i); //answer에 push 메서드를 이용하면 마지막 자리에 i를 추가한다.
+  }
+  return answer;
+}
+
+function ex34(n) {
+  var answer = [n]; // answer 초기값을 [n] 으로 설정
+  while (n !== 1) {
+    // n이 1이 아닐떄까지 반복한다.
+    n % 2 === 0 ? (n = n / 2) : (n = 3 * n + 1); // n을 2로 나누었을떄, 나머지가 0 이면
+    // n / 2 값을 n에 할당하고 나머지가 0이 아니라면 3 * n +1 을 n 에 할당한다.
+    answer.push(n); //n 값을 answer push() 메서드를 이용하여, 마지막 자리에 계산된 n 값을 추가한다
+  }
+  return answer; // answer 값 리턴
+}
+
+function ex35(arr) {
+  var stk = [];
+  var i = 0;
+  while (i < arr.length) {
+    // i가 arr.length 보다 작을뗴 true면 계속 반복한다.
+    if (stk.length !== 0 && stk.at(-1) >= arr[i]) {
+      stk.pop();
+      // stk.length가 빈배열이 아니고, stk 마지박 요소가 arr[i] 보다 크거나 같을때 pop()메소드를 이용하여
+      //stk의 마지막요소를 제거한다.
+    } else {
+      stk.push(arr[i]);
+      i++;
+      //stk.length가 빈배열이거나 stk.length가 빈배열이 아니고, stk 마지막 요소가
+      // arr[i] 보다 작을때, stk 마지막 요소에 arr[i]를 추가하고 i 를 1 증가시킨다.
+    }
+  }
+
+  return stk; //stk 값 리턴
+}
+
+function ex36(x1, x2, x3, x4) {
+  return (x1 || x2) && (x3 || x4);
+}
+
+function ex37(a, b, c, d) {
+  const dice = [a, b, c, d];
+  dice.sort((x, y) => x - y); // sort()메서드로 오름차순으로 정렬
+
+  if (dice[0] == dice[3]) {
+    // dice[0] == dice[3] 가같으면 ,: 모든 요소가 같다면
+    return 1111 * dice[0]; //1111* 아무 요소 하나 곱해서 리턴
+  }
+
+  if (dice[1] == dice[3] || dice[0] == dice[2]) {
+    let p = dice[2]; // dice[1] == dice[3] 가 거나  dice[0] == dice[2] 같다면
+    // 세개의 요소가 같고 하나의 요소가 다르다면 sort 했기 때문에 어떤 조건에도
+    //dice[2] 은 항상같다 예 [1,3,3,3] or [3,3,3,5]
+    let q = dice.filter((item) => item !== dice[2])[0];
+    // filter() 메셔드를 이용해 dice[2]과 같지않은 요소만 반환하고, 가져온다
+    return (10 * p + q) ** 2;
+    // (10 * p + q) ** 2값 반환
+  }
+
+  if (dice[0] === dice[1] && dice[2] === dice[3]) {
+    //공통으로 짝지어진 요소가 2개 일때,
+    let p = dice[0];
+    let q = dice[2];
+    return (p + q) * Math.abs(dice[0] - dice[2]);
+    //(p + q) * Math.abs(dice[0] - dice[2]) 값 리턴 Math.abs메서드는 절대값을 반환
+  }
+
+  if (
+    (dice[0] === dice[1] && dice[2] !== dice[3]) ||
+    (dice[1] === dice[2] && dice[0] !== dice[3]) ||
+    (dice[2] === dice[3] && dice[0] !== dice[1])
+    // [1,1,2,4] or [1,2,2,4] or [1,2,3,3] 일떄
+  ) {
+    if (dice[0] === dice[1] && dice[2] !== dice[3]) {
+      return dice[2] * dice[3]; // 각 위 조건중 해당하는 조건에 나머지 값 구해서 곱하기
+    }
+
+    if (dice[1] === dice[2] && dice[0] !== dice[3]) {
+      // 각 위 조건중 해당하는 조건에 나머지 값 구해서 곱하기
+      return dice[0] * dice[3];
+    }
+
+    if (dice[0] !== dice[1] && dice[2] === dice[3]) {
+      // 각 위 조건중 해당하는 조건에 나머지 값 구해서 곱하기
+      return dice[0] * dice[1];
+    }
+  }
+  //dice 배열중 중복된 값이 없다면 가장 작은값 리턴
+  return dice[0];
+}
+
+function ex38(my_string, index_list) {
+  var answer = "";
+  for (const idx of index_list) {
+    //for of 문으로 요소 가져오기
+    answer += my_string[idx]; //my_string인덱스 자리에 idx값을 넣고 answer 에 더해준다
+  }
+  return answer;
+}
+
+function ex39(number) {
+  const numArr = [...number].map(Number); //string number 를 베열로 만들고 map 을이용하여 숫자로 변환
+  const sum = numArr.reduce((a, b) => a + b, 0); //reduce 메서드를 이용하여 배열에 있는 모든 요소 합계를 구한다.
+
+  return sum % 9; // sum 을 9로 나눴을때 나머지값 리턴
+}
+
+function ex40(my_string, queries) {
+  let strArr = my_string.split(""); // 문자열을 배열로 변환
+  for (const query of queries) {
+    // for of 문 사용해서 queries의 요소 하나씩 가져오기
+    const [s, e] = query; // query 구조분해 할당
+    var reverseStr = strArr.slice(s, e + 1).reverse();
+    //slice 로strArr[s]부터 strArr[e]까지 가져와서 reverse() 메서드로 뒤집어주고 reverseStr 값 넣어죽;
+    strArr.splice(s, e - s + 1, ...reverseStr);
+    // splice 메서드로 strArr 배열의 s 인덱스 부터 e-s+1(갯수) 만큼 자르고 그 인덱스 자리에 reverseStr 값 넣어죽;
+  }
+
+  return strArr.join(""); // strArr.join()메서드로 배열을 string 뱐환 후 리턴
+}
+
+function ex41(intStrs, k, s, l) {
+  var answer = [];
+  for (const intStr of intStrs) {
+    //for of 문으로 요소 하나씩 가져오기
+    Number(intStr.substr(s, l)) > k && answer.push(Number(intStr.substr(s, l)));
+    // substr 메서드로 s번 인덱스부터 길이 l 까지자르고 숫자로 변환
+    // Number(intStr.substr(s, l)) 값이 k 보다 크다면
+    // push()로 answer배열 맨끝에 넣고 아니라면 아무것도 하지 않는다
+  }
+  return answer;
+}
+
+function ex42(my_strings, parts) {
+  var answer = "";
+  parts.forEach((part, idx) => {
+    // forEach 문으로 parts길이만큼 반복
+    const [s, e] = part; // parts 요소를 전개연산자로 s,e 할당
+    answer += my_strings[idx].substr(s, e - s + 1);
+    // my_strings 요소를 인덱스 번호 s 번부터 e-s+1 길이 만큼 자르고 answer에 붙인다
+  });
+
+  return answer;
+}
+
+function ex43(my_string, n) {
+  var answer = my_string.slice(-n);
+  // slice 메서드로 뒤에서부터 n 만큼 자르고 answer 에 할당
+  // ex 'apple'.slice(-3) -> 'ple'
+
+  return answer;
+}
+
+function ex44(my_string) {
+  var answer = [];
+  for (let i = 0; i < my_string.length; i++) {
+    answer.push(my_string.slice(i));
+    // for 문으로 my_string 길이만큼 반복
+    // my_string를 slice 메서드를 이용해서 인덱스 번호 I부터 마지막 인덱스 자른 후 answer 배열 맨 뒤에 넣어준다 push
+  }
+  return answer.sort(); // sort() 메서드를 이용하여 사전순으로 정렬 후 리턴
+}
+
+function ex45(my_string, is_suffix) {
+  for (let i = 0; i < my_string.length; i++) {
+    //my_string 길이만큼 반복
+    if (my_string.slice(i) === is_suffix) {
+      //접미사가('baa' 라면 접미사 'b', 'ba' ,'baa...') is_suffix와 같다면 1리턴
+      // slice 메서드를 이용해서 인덱스 번호 i부터 마지막 인덱스 자른 후까지의 string 반환
+      // my_string.slice(i)가  is_suffix와 같다면 1리턴
+      return 1;
+    }
+  }
+  return 0; // 위 조건을 만족하지 않는다면 0 리렅
+}
