@@ -658,3 +658,18 @@ function ex39DivideByNine(number) {
 }
 
 //
+
+// 문자열 여러 번 뒤집기
+
+function ex40ReverseString(my_string, queries) {
+  let answer = "";
+  queries.map((el) => {
+    let arr = [...my_string];
+    const target = arr.slice(el[0], el[1] + 1).reverse();
+    my_string =
+      my_string.slice(0, el[0]) + target.join("") + my_string.slice(el[1] + 1);
+  });
+  return my_string;
+}
+
+//
