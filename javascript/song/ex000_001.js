@@ -411,6 +411,8 @@ function ex27MovePosition(position, controls) {
 
 //
 
+// 수 조작하기 2
+
 function ex28(numLog) {
   let arr = [];
   for (let i = 1; i < numLog.length; i++) {
@@ -432,6 +434,27 @@ function ex28(numLog) {
   let answer = arr.join("");
   return answer;
 }
+
+// 28번 hasOwnProperty 사용
+
+function ex28ManipNum(numLog) {
+  let answer = "";
+  const numMap = {
+    1: "w",
+    "-1": "s",
+    10: "d",
+    "-10": "a",
+  };
+
+  for (let i = 0; i < numLog.length; i++) {
+    if (numMap.hasOwnProperty(numLog[i] - numLog[i - 1])) {
+      answer += numMap[numLog[i] - numLog[i - 1]];
+    }
+  }
+  return answer;
+}
+
+//
 
 // 수열과 구간 쿼리 3
 
