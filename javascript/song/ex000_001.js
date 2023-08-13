@@ -686,3 +686,22 @@ function ex41BuildArray(intStrs, k, s, l) {
 }
 
 //
+
+// 부분 문자열 이어 붙여 문자열 만들기
+
+function ex42BuildString(my_strings, parts) {
+  // let answer = '';
+  // for(let i = 0; i < parts.length; i++){
+  //     const target = my_strings[i].slice(parts[i][0], parts[i][1]+1)
+  //     answer += target
+  // }
+  // return answer
+
+  let answer = "";
+  parts.map(([s, e], i) => {
+    answer += my_strings[i].slice(s, e + 1);
+  });
+  return answer;
+}
+
+//
