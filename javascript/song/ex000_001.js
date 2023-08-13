@@ -556,7 +556,6 @@ function ex32MakeArray(l, r) {
   const answer = [];
 
   for (let i = l; i <= r; i++) {
-    if (i % 5 !== 0) continue;
     const item = String(i);
     if ([...item].every((el) => el === "5" || el === "0"))
       answer.push(Number(item));
