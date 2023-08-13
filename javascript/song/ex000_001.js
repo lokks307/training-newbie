@@ -645,3 +645,16 @@ function ex38MakeString(my_string, index_list) {
 }
 
 //
+
+// 9로 나눈 나머지
+
+function ex39DivideByNine(number) {
+  let sum = 0;
+  let numArr = [...number];
+  for (num of numArr) {
+    sum += Number(num);
+  }
+  return sum % 9;
+}
+
+//
