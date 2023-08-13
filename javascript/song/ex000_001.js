@@ -637,3 +637,11 @@ function ex37DiceGame(a, b, c, d) {
 
   // TODO: 푸는 데 시간이 걸릴 것 같아서 다른 문제 먼저 풀고 해볼게요.
 }
+
+// 글자 이어 붙여 문자열 만들기
+
+function ex38MakeString(my_string, index_list) {
+  return index_list.map((el) => my_string[el]).join("");
+}
+
+//
