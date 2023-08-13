@@ -673,3 +673,16 @@ function ex40ReverseString(my_string, queries) {
 }
 
 //
+
+// 배열 만들기 5
+
+function ex41BuildArray(intStrs, k, s, l) {
+  let answer = [];
+  for (num of intStrs) {
+    const newNum = Number(num.slice(s, s + l));
+    if (newNum > k) answer.push(newNum);
+  }
+  return answer;
+}
+
+//
