@@ -725,3 +725,16 @@ function ex44SuffixArray(my_string) {
 }
 
 //
+
+// 접미사인지 확인하기
+
+function ex45IsSuffix(my_string, is_suffix) {
+  let arr = [];
+  for (let i = 0; i < my_string.length; i++) {
+    arr.push(my_string.substr(i, my_string.length));
+  }
+  if (arr.includes(is_suffix)) return 1;
+  return 0;
+}
+
+//
