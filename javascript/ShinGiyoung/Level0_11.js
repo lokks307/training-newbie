@@ -224,7 +224,7 @@ function ex14(a, b) {
 
   return Number(answer); // 스트링 answer를 넘버로 변환후 출력
   // 2.
-  const ab = Number(Stinrg(a) + String(b)); //각 a와 b를 스트링타입으로 변환 후 더한값을 타입 넘버로 재변환
+  const ab = Number(String(a) + String(b)); //각 a와 b를 스트링타입으로 변환 후 더한값을 타입 넘버로 재변환
   const ba = Number(String(b) + String(a)); //각 b와 a를 스트링타입으로 변환 후 더한값을 타입 넘버로 재변환
 
   if (ab >= ba) return ab; //
@@ -257,4 +257,232 @@ function ex15(a, b) {
   // plus값이 multiply 보다 크거나 같다면 plus 리턴
   return multiply;
   //if 문 조건( plus값이 multiply 보다 크거나 같다면)에 걸리지 않으면 ( multiply 리턴)
+}
+
+function ex16(num, n) {
+  var answer = 0;
+  answer = num % n === 0 ? 1 : 0; // num % n을 나눴을때 나머지가 0 이라면 1을 아니라면 0 을 answer에 할당
+  return answer;
+}
+
+function ex17(number, n, m) {
+  if (number % n !== 0) return 0;
+  // number를 n 으로 나눴을때 나머지가 0이 아니라면 0 리턴
+  if (number % m !== 0) return 0;
+  // number를 m 으로 나눴을때 나머지가 0이 아니라면 0 리턴
+  return 1;
+}
+
+function ex18(n) {
+  var answer = 0;
+  if (n % 2 === 1) {
+    // n을 2로 나누었을 때 나머지가 1이라면 즉,홀수라면
+    for (let num = 1; num <= n; num++) {
+      // n번만큼 반복한다
+      if (num % 2 === 1) {
+        //num이 2로 나누었을 때 나머지가 1이라면 즉,홀수라면
+        answer += num; // answer에 num을 더한다
+      }
+    }
+    return answer; // answer 값 리턴
+  }
+  // n을 2로 나누었을 때 나머지가 1이아니라면 즉,짝수라면
+  for (let num = 1; num <= n; num++) {
+    // n번 만큼 반복한다
+    if (num % 2 === 0) {
+      //num이 2로 나누었을 때 나머지가 1이아니라면 즉,짝수라면
+      answer += num * num; //num제곱 값을 answer에 더한다
+    }
+  }
+  return answer; // answer 값 리턴
+}
+
+function ex19(ineq, eq, n, m) {
+  var answer = 0;
+  const operation = {
+    ">=": n >= m,
+    "<=": n <= m,
+    ">!": n > m,
+    "<!": n < m,
+  };
+  // 객체값 설정
+
+  answer = operation[ineq + eq] ? 1 : 0; // 객체 값 가져오기
+  //만약 ineq + eq가 '>=' 이라면 n>=m 리턴
+  // operation[ineq + eq]값이 true 라면 1을 answer에 할당 아니라면 0 할당
+  return answer;
+}
+
+function ex20(a, b, flag) {
+  var answer = 0;
+  answer = flag ? a + b : a - b; // flag 기 true 라면 a+b 아니라면 a-b 값을 answer 에 할당
+
+  return answer;
+}
+
+function ex21(code) {
+  var mode = 0;
+  var ret = [];
+  const arr = code.split(""); //code 값을 split('')으로 펼쳐서 배열로 변환
+
+  arr.forEach((char, idx) => {
+    //arr length 만큼 반복
+    if (char == 1) {
+      // 각 arr 의 요소가 1이고
+      mode = mode == 0 ? 1 : 0; //mode 값이 0이면 1을 할당하고 아니라면 0을할당
+    } else {
+      //각 arr 의 요소가 1이 아니rh
+      idx % 2 === mode && ret.push(char); // idx 값을 2 로 나누었을떄 나머지가 mode 와 같다면
+      // ret 배열 맨뒤에 char 값을 추가한다
+    }
+  });
+
+  if (ret.join("") === "") {
+    // ret 배열을 join('')해서 string 타입으로 바꿨을 떄, 빈값이이라면
+    return "EMPTY"; //'EMPTY' 를 반환하고
+  }
+
+  return ret.join(""); // 아니라면 ret 배열을 join('')해서 string 값을 바꾼 후 리턴한다
+}
+
+function ex22(a, d, included) {
+  var answer = 0;
+
+  for (let i = 0; i < included.length; i++) {
+    // included.length 길이만큼 반복
+    if (included[i]) answer += a + i * d;
+    //included[i] 값이 true일때 answer에 a + i * d 더한다.
+    //a + i * d; 이유는 등차수열의 일반항 구하는 공식이 sum = 초항(a) +(n-1)d(공차) 이기때문이다
+    // 여기서 n 값은 i + 1 이기 때문에, sum은 a + i * d이다
+  }
+
+  return answer;
+}
+
+function ex23(a, b, c) {
+  var answer = 0;
+
+  if (a === b && b === c) {
+    // a와 b와 c가 같다면
+    answer =
+      (a + b + c) * (a ** 2 + b ** 2 + c ** 2) * (a ** 3 + b ** 3 + c ** 3);
+    // answer에 (a + b + c) * (a ** 2 + b ** 2 + c ** 2) * (a ** 3 + b ** 3 + c ** 3)을 할당
+  } else if (a === b || b === c || a === c) {
+    // 세개의 파마리터중 두개가 같다면
+    answer = (a + b + c) * (a ** 2 + b ** 2 + c ** 2);
+    //  (a + b + c) * (a ** 2 + b ** 2 + c ** 2)을 answer에 할당
+  } else {
+    // 모두 값이 다르다면
+    answer = a + b + c;
+    // a+b+c 값을 answer에 할당
+  }
+
+  return answer;
+}
+
+function ex24(num_list) {
+  let multiply = 1;
+  let plus = 0;
+  var answer;
+  for (let i = 0; i < num_list.length; i++) {
+    // num_list 길이만큼 반복
+    multiply *= num_list[i]; // 모든 요소의 곱
+    plus += num_list[i]; // 모든 요소의 합
+  }
+  answer = multiply < plus ** 2 ? 1 : 0;
+  // multiply 값이 plus의 제곱보다 작으면 1을 answer 할당 아니라면 0 할당
+  return answer; // answer 값 리턴
+}
+
+function ex25(num_list) {
+  var answer = 0;
+  const even = num_list.filter((num) => num % 2 === 0).join("");
+  /* num_list 배열을 filter 를 사용해 num 값이 짝수인 요소만 리턴하여 새로운 배열 생성 후 
+  모든 요소를 연결 */
+  const odd = num_list.filter((num) => num % 2 === 1).join("");
+  /* num_list 배열을 filter 를 사용해 num 값이 홀수인 요소만 리턴하여 새로운 배열 생성 후 
+  모든 요소를 연결 */
+  answer = Number(odd) + Number(even);
+  //문자열 odd 와 even을 숫자 타입으로 각 변경 후 answer에 할당
+  return answer;
+}
+
+function ex26(num_list) {
+  var answer =
+    num_list.at(-1) > num_list.at(-2)
+      ? // at() 을 이용하여 마지막 값과 마지막으로부터 -1 인덱스 값 구하기
+        // num_list 의 마지막 요소 값이 그 전 요소 값보다 크다면
+        num_list.at(-1) - num_list.at(-2) // 마지막 요소 값 - 그 전 요소값을 answer 에 할당
+      : num_list.at(-1) * 2; // 머자먹 요소값이 그 전 요소값보다 작거나 같다면 마지막요소값 * 2 값을 answer 에 할당
+  num_list.push(answer); // answer 값을 맨 끝에 추가
+  return num_list;
+}
+
+function ex27(n, control) {
+  const operation = {
+    w: +1,
+    s: -1,
+    d: +10,
+    a: -10,
+  };
+
+  for (let i = 0; i < control.length; i++) {
+    //control length 만큼 반복
+    n += operation[control[i]];
+    //control 각 문자열을값으로  operation 객체 값을 찾아 n 값에 더해준다
+  }
+
+  return n; // n 값 출력
+}
+
+function ex28(numLog) {
+  const operation = {
+    1: "w",
+    "-1": "s",
+    10: "d",
+    "-10": "a",
+  };
+  var answer = "";
+
+  for (let i = 1; i < numLog.length; i++) {
+    // i 가 1부터  numLog.length -1 까지 반복
+    const key = numLog[i] - numLog[i - 1];
+    // numLog[i] - numLog[i - 1] 값을 구하고
+    answer += operation[key];
+    //operation객체에서 key 값으로 기록 찾기
+  }
+
+  return answer;
+}
+
+function ex29(arr, queries) {
+  for (let i = 0; i < queries.length; i++) {
+    //queries 길이만큼 반복
+    const [a, b] = queries[i];
+    // 구조분해 할당으로 a와 b 값 차례대로 구하고
+    [arr[a], arr[b]] = [arr[b], arr[a]];
+    // 구조분해 할당으로 서로 값 바꾸기
+    //arr[a] = arr[b], arr[b]= arr[a] 한번에 맞교환한다
+  }
+
+  return arr;
+}
+
+function ex30(arr, queries) {
+  var answer = [];
+
+  for (const query of queries) {
+    //for in 문으로 queries 의 요소들을 가져온다
+    const [s, e, k] = query; // 구조분해 할당으로 query를 각 s,e,k 에 정의하고
+    const sum = arr.slice(s, e + 1).filter((sum) => sum > k);
+    // slice 를 이용하여  arr[s] 부터 arr[e]까지 가져와 새로운 배열 생성
+    // 새로운 배열에 filter 를 사용하여 각 요소 들이 k 보다 큰 것들만 추출해서 sum 배열을 생성
+    if (sum.length !== 0) {
+      // sum배열의 크기가 0 이상일때,
+      answer.push(Math.min(...sum)); //sum 배열요소중 가장 작은 값을 answer배열 맨뒤에 push로 넣고
+    } else {
+      answer.push(-1); // sum 배열이 빈 값일때, -1값을 answer배열 맨 뒤에 push로 넣는다
+    }
+  }
+  return answer; // answer 값 리턴
 }
