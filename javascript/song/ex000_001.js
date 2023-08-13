@@ -632,11 +632,28 @@ function ex36SimpleBoolean(x1, x2, x3, x4) {
 // 주사위 게임 3
 
 function ex37DiceGame(a, b, c, d) {
-  let answer = 0;
-  let dices = [a, b, c, d];
+  if (a === b && a === c && a === d) return 1111 * a;
 
-  // TODO: 푸는 데 시간이 걸릴 것 같아서 다른 문제 먼저 풀고 해볼게요.
+  if (a === b && a === c) return (10 * a + d) ** 2;
+  if (a === b && a === d) return (10 * a + c) ** 2;
+  if (a === c && a === d) return (10 * a + b) ** 2;
+  if (b === c && b === d) return (10 * b + a) ** 2;
+
+  if (a === b && c === d) return (a + c) * Math.abs(a - c); // 절댓값 구하기
+  if (a === c && b === d) return (a + b) * Math.abs(a - b);
+  if (a === d && b === c) return (a + b) * Math.abs(a - b);
+
+  if (a === b) return c * d;
+  if (a === c) return b * d;
+  if (a === d) return b * c;
+  if (b === c) return a * d;
+  if (b === d) return a * c;
+  if (c === d) return a * b;
+
+  return Math.min(a, b, c, d);
 }
+
+//
 
 // 글자 이어 붙여 문자열 만들기
 
