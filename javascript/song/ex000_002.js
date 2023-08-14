@@ -132,3 +132,15 @@ function ex54CountDown(start, end) {
 }
 
 //
+
+// 가까운 1 찾기
+
+function ex55FindIndex(arr, idx) {
+  let answer;
+  for (item of arr) {
+    answer = arr.findIndex((el, i) => el === 1 && i >= idx);
+  }
+  return answer;
+}
+
+//
