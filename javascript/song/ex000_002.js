@@ -169,3 +169,11 @@ function ex56SliceArray(n, slicer, num_list) {
 }
 
 //
+
+// 첫 번째로 나오는 음수
+
+function ex57FindIndex(num_list) {
+  return num_list.findIndex((el) => el < 0);
+}
+
+//
