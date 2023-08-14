@@ -849,24 +849,46 @@ function ex43SliceString(my_string, n) {
 
 // 접미사 배열
 
+// function ex44SuffixArray(my_string) {
+//   let answer = [];
+//   for (let i = 0; i < my_string.length; i++) {
+//     answer.push(my_string.substr(i, my_string.length));
+//   }
+//   return answer.sort();
+// }
+
+// Extract Method, Replace Loop with Map, Extract Variable 순서로 푼 방식
 function ex44SuffixArray(my_string) {
-  let answer = [];
-  for (let i = 0; i < my_string.length; i++) {
-    answer.push(my_string.substr(i, my_string.length));
-  }
-  return answer.sort();
+  const generateSuffix = (str, start) => str.slice(start);
+
+  const suffixes = [...my_string].map((_, i) => generateSuffix(my_string, i));
+  const sortedSuffixes = suffixes.sort();
+
+  return sortedSuffixes;
 }
 
 //
 
 // 접미사인지 확인하기
 
+// function ex45IsSuffix(my_string, is_suffix) {
+//   let arr = [];
+//   for (let i = 0; i < my_string.length; i++) {
+//     arr.push(my_string.substr(i, my_string.length));
+//   }
+//   if (arr.includes(is_suffix)) return 1;
+//   return 0;
+// }
+
+// generateSuffixes 함수 분리
+
+function generateSuffix(str, start) {
+  return str.slice(start);
+}
 function ex45IsSuffix(my_string, is_suffix) {
-  let arr = [];
-  for (let i = 0; i < my_string.length; i++) {
-    arr.push(my_string.substr(i, my_string.length));
-  }
-  if (arr.includes(is_suffix)) return 1;
+  const suffixes = [...my_string].map((_, i) => generateSuffix(my_string, i));
+  console.log(suffixes);
+  if (suffixes.includes(is_suffix)) return 1;
   return 0;
 }
 
