@@ -108,3 +108,15 @@ function ex52BuildArray(n, k) {
 }
 
 //
+
+// 글자 지우기
+
+function ex53DeleteCharacter(my_string, indices) {
+  let arr = [...my_string];
+  for (idx of indices) {
+    delete arr[idx];
+  }
+  return arr.join("");
+}
+
+//
