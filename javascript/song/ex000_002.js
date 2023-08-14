@@ -177,3 +177,15 @@ function ex57FindIndex(num_list) {
 }
 
 //
+
+// 배열 만들기 3
+
+function ex58BuildArray(arr, intervals) {
+  const [[a, b], [c, d]] = intervals;
+
+  const res = arr.slice(a, b + 1);
+  const res2 = arr.slice(c, d + 1);
+  return [...res, ...res2];
+}
+
+//
