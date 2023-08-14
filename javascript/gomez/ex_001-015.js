@@ -138,6 +138,9 @@ function solution(a, b) {
     b = b.toString();
     let ab = a + b;
     var answer = ab;
+    if(ab.length > ba.length) return Number(ab);
+    else if (ab.length < ba.length) return Number(ba);
+    
     for (let i =0 ; i< ab.length; i++){
         if (ab[i] > ba[i]){
             answer = ab;
