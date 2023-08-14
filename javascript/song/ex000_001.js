@@ -738,12 +738,22 @@ function ex38MakeString(my_string, index_list) {
 
 // 9로 나눈 나머지
 
+// function ex39DivideByNine(number) {
+//   let sum = 0;
+//   let numArr = [...number];
+//   for (num of numArr) {
+//     sum += Number(num);
+//   }
+//   return sum % 9;
+// }
+
+// reduce 사용
 function ex39DivideByNine(number) {
-  let sum = 0;
   let numArr = [...number];
-  for (num of numArr) {
-    sum += Number(num);
-  }
+  const sum = numArr.reduce((acc, cur) => {
+    return (acc += Number(cur));
+  }, 0);
+
   return sum % 9;
 }
 
