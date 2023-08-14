@@ -815,6 +815,28 @@ function ex42BuildString(my_strings, parts) {
   return answer;
 }
 
+// Extract Method
+function ex42BuildString(my_strings, parts) {
+  let answer = "";
+
+  const getSubstring = (str, start, end) => str.slice(start, end + 1);
+
+  parts.forEach(([start, end], i) => {
+    answer += getSubstring(my_strings[i], start, end);
+  });
+
+  return answer;
+}
+
+// Replace Loop with Pipeline
+function ex42BuildString(my_strings, parts) {
+  const getSubstring = (str, start, end) => str.slice(start, end + 1);
+
+  return parts
+    .map(([start, end], i) => getSubstring(my_strings[i], start, end))
+    .join("");
+}
+
 //
 
 // 문자열 뒤의 n글자
