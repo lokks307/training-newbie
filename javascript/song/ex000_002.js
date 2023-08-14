@@ -120,3 +120,15 @@ function ex53DeleteCharacter(my_string, indices) {
 }
 
 //
+
+// 카운트 다운
+
+function ex54CountDown(start, end) {
+  let answer = [];
+  for (let i = start; i >= end; i--) {
+    answer.push(i);
+  }
+  return answer;
+}
+
+//
