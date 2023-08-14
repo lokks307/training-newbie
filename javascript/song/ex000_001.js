@@ -598,25 +598,36 @@ function ex34MakeCollatzSeq(n) {
 
 // 배열 만들기 4
 
-function ex35MakeArray(arr) {
-  let stk = [];
-  let i = 0;
+// function ex35MakeArray(arr) {
+//   let stk = [];
+//   let i = 0;
 
-  while (i < arr.length) {
-    if (stk.length === 0) {
-      stk.push(arr[i]);
-      i++;
-    } else if (stk.length !== 0) {
-      if (stk[stk.length - 1] < arr[i]) {
-        stk.push(arr[i]);
-        i++;
-      } else {
-        stk.pop();
-      }
+//   while (i < arr.length) {
+//     if (stk.length === 0) {
+//       stk.push(arr[i]);
+//       i++;
+//     } else if (stk.length !== 0) {
+//       if (stk[stk.length - 1] < arr[i]) {
+//         stk.push(arr[i]);
+//         i++;
+//       } else {
+//         stk.pop();
+//       }
+//     }
+//   }
+
+//   return stk;
+// }
+
+function ex35BuildArray4(arr) {
+  const stack = [];
+  for (const num of arr) {
+    while (stack.length && stack[stack.length - 1] >= num) {
+      stack.pop(); // stk의 마지막 원소 제거
     }
+    stack.push(num); // stk에 num 추가
   }
-
-  return stk;
+  return stack; // 최종적으로 생성된 stk 반환
 }
 
 //
