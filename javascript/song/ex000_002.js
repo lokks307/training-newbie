@@ -39,11 +39,26 @@ function ex48ReverseString(my_string, s, e) {
 
 // 세로 읽기
 
-function ex49ExtStr(my_string, m, c) {
-  let answer = "";
+// function ex49ExtStr(my_string, m, c) {
+//   let answer = "";
 
-  for (let i = 0; i < my_string.length; i += m) {
-    answer += my_string[i + c - 1];
-  }
+//   for (let i = 0; i < my_string.length; i += m) {
+//     answer += my_string[i + c - 1];
+//   }
+//   return answer;
+// }
+
+function ex49ExtStr(my_string, m, c) {
+  const extractedCharacters = extractCharacters(my_string, m, c);
+  const answer = extractedCharacters.join("");
   return answer;
 }
+
+function extractCharacters(str, interval, offset) {
+  return str
+    .split("")
+    .slice(offset - 1)
+    .filter((_, index) => index % interval === 0);
+}
+
+//
