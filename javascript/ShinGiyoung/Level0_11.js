@@ -697,3 +697,164 @@ function ex45(my_string, is_suffix) {
   }
   return 0; // 위 조건을 만족하지 않는다면 0 리렅
 }
+
+function ex46(my_string, n) {
+  return my_string.substr(0, n); //substr 메서드를 사용하여 문자열 앞에서부터 n길이 만큼 자르고 반환
+}
+function ex47(my_string, is_prefix) {
+  let sum = "";
+  let stringArr = [];
+  let answer;
+  for (let i = 0; i < my_string.length; i++) {
+    //for문을 사용해서 my_string.length 만큼 반복
+    sum += my_string[i]; //문자열 인덱스값을 sum에 더해준다.
+    stringArr.push(sum); //sum값을 stringArr에 넣어줘서 접두사 배열 만들기
+  }
+  answer = stringArr.some((string) => string === is_prefix);
+  // some 메소드를 이용하여 stringArr 요소중 is_prefix값이 하나라도 있으면 true 반환 하나라도 없으면 false
+  return answer ? 1 : 0; // answer값이 true면 1 false 0 값을 반환
+}
+
+function ex48(my_string, s, e) {
+  let string_Arr = [...my_string]; //스프레드 문법으로 string ->array 변환
+  // 예) '12345' string_Arr = ['1','2','3','4','5']
+  const reverse = [...my_string.substr(s, e - s + 1)].reverse();
+  //문자열 substr()메서드를 사용하여 s 인덱스부터, e-s +1 개수 만큼 자르고  반환 ,배열로 만든 후 reverse()메소드를 사용하여 뒤집는다.
+  string_Arr.splice(s, e - s + 1, ...reverse);
+  // splice() 메서드 사용하여 s인덱스부터  e-s +1 개수 만큼자르고 그 s인덱스 자리에 reverse 를 추가한다
+
+  return string_Arr.join(""); //배열인 string_Arr를 join('')으로 문자열로 반환 후 리턴한다
+}
+
+function ex49(my_string, m, c) {
+  var answer = "";
+
+  for (let i = c - 1; i < my_string.length; i += m) {
+    //초기값 i을 c-1 로 설정후 i < my_string.length -1 만큼 반복한다. 한 루프가 끝나고 i값에 m 를 더한다
+    answer += my_string[i];
+  }
+
+  return answer;
+}
+
+function ex50(q, r, code) {
+  var answer = "";
+
+  for (let i = 0; i < code.length; i++) {
+    // code.length 만큼 반복
+    if (i % q === r) {
+      //i를  q 로 나누었을때 나머지가 r 이라면
+      answer += code[i]; // 해당 조건을 통과한 글자열을 answer에 추가
+    }
+  }
+  return answer;
+}
+
+function ex51(my_string) {
+  let upperList = [];
+  let lowList = [];
+
+  for (let i = 65; i <= 90; i++) {
+    //65번부터 90인 이유는 A-Z 까지 아스키코드이기 떄문이다.
+    const upperChar = String.fromCharCode(i); //A-Z
+    const lowChar = String.fromCharCode(i + 32); //a-z
+
+    const upperCount = (my_string.match(new RegExp(upperChar, "g")) || [])
+      .length;
+    // match 메소드로 my_string로부터 A-Z 검색하여 배열로 반환한다.그 배열의 length값을 구하면 특정문자의 개수를
+    //구할 수 있다
+    upperList.push(upperCount);
+
+    const lowCount = (my_string.match(new RegExp(lowChar, "g")) || []).length;
+    // match 메소드로 my_string로부터 a-z 검색하여 배열로 반환한다. 그 배열의 length값을 구하면 특정문자의 개수를
+    //구할 수 있다
+    lowList.push(lowCount);
+  }
+
+  return [...upperList, ...lowList];
+}
+
+function ex52(n, k) {
+  const nArr = Array.from({ length: n }, (v, i) => i + 1);
+  //n까지 길이에 숫자 배열 만들기
+  var answer = nArr.filter((num) => num % k === 0);
+  //nArr의 요소가 k의 배수인것만 배열에 담아서 answer 넣기
+  //filter() 는 참인것만 리턴해 새로운 배열 생성
+  return answer;
+}
+function ex53(my_string, indices) {
+  let answer = "";
+  for (let i = 0; i < my_string.length; i++) {
+    if (!indices.includes(i)) {
+      //indices 배열안에 i가 없다면
+      answer += my_string[i];
+      //my_string[i] 를answer에 붙이기
+    }
+  }
+  return answer;
+}
+
+function ex54(start, end) {
+  const nArr = Array.from({ length: start - end + 1 }, (v, i) => start - i);
+
+  return nArr;
+}
+
+function ex55(arr, idx) {
+  for (let i = idx + 1; i < arr.length; i++) {
+    if (arr[i] === 1) {
+      return i;
+    }
+  }
+
+  return -1;
+}
+
+function ex56(n, slicer, num_list) {
+  const [a, b, c] = slicer; //구조분해 할당으로 a b c 값 가져오기
+  const utils = num_list.slice(a, b + 1);
+  // slice 메서드로 a부터 b인덱스 만큼의 배열 리턴
+  const operation = {
+    1: num_list.slice(0, b + 1), //slice 메서드로 0부터 b인덱스 만큼의 배열 리턴
+    2: num_list.slice(a), //slice 메서드로 a부터 num_list-1인덱스 만큼의 배열 리턴
+    3: utils,
+    4: utils.filter((num, idx) => idx % c === 0),
+    // slice 메서드로 a부터 b인덱스 만큼의 배열 리턴 후 index 값을 c로 나누었을때 0인것만 리턴
+  };
+
+  return operation[n];
+}
+
+function ex57(num_list) {
+  for (let i = 0; i < num_list.length; i++) {
+    if (num_list[i] < 0) {
+      return i; //num_list 요소가 음수면 인덱스값리턴
+    }
+  }
+  return -1; // 위조건에 해당되지 않는다면 -1 리턴
+}
+
+function ex58(arr, intervals) {
+  const [[a1, b1], [a2, b2]] = intervals; //구조분해 할당으로 a1,b1,a2,b2 가져오기
+  return [...arr.slice(a1, b1 + 1), ...arr.slice(a2, b2 + 1)];
+  // slice 메서드로 a1 인덱스 부터 b1인덱스 까지
+  // slice 메서드로 a2 인덱스 부터 b2인덱스 까지 가져온 후 배열 합치고 리턴ㅁ
+}
+
+function ex59(arr) {
+  let toIndex = arr.indexOf(2);
+  let fromIndex = arr.lastIndexOf(2);
+  if (toIndex === -1) return [-1];
+
+  return arr.slice(toIndex, fromIndex + 1);
+}
+function ex60(arr, query) {
+  for (let i = 0; i < query.length; i++) {
+    if (i % 2 === 0) {
+      arr.splice(query[i] + 1);
+    } else {
+      arr.splice(0, query[i]);
+    }
+  }
+  return arr;
+}
