@@ -94,3 +94,17 @@ function ex51CountCharacter(my_string) {
 }
 
 //
+
+// 배열 만들기 1
+
+function ex52BuildArray(n, k) {
+  let arr = [];
+  for (let i = 1; i <= n; i++) {
+    if (i % k === 0) {
+      arr.push(i);
+    }
+  }
+  return arr;
+}
+
+//
