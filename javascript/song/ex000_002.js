@@ -62,3 +62,14 @@ function extractCharacters(str, interval, offset) {
 }
 
 //
+
+// qr code
+
+function ex50QrCode(q, r, code) {
+  let arr = [...code];
+
+  const filteredArr = arr.filter((_, i) => i % q === r);
+  return filteredArr.join("");
+}
+
+//
