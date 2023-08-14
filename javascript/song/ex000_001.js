@@ -642,26 +642,88 @@ function ex36SimpleBoolean(x1, x2, x3, x4) {
 
 // 주사위 게임 3
 
-function ex37DiceGame(a, b, c, d) {
-  if (a === b && a === c && a === d) return 1111 * a;
+// function ex37DiceGame(a, b, c, d) {
+//   if (a === b && a === c && a === d) return 1111 * a;
 
-  if (a === b && a === c) return (10 * a + d) ** 2;
-  if (a === b && a === d) return (10 * a + c) ** 2;
-  if (a === c && a === d) return (10 * a + b) ** 2;
-  if (b === c && b === d) return (10 * b + a) ** 2;
+//   if (a === b && a === c) return (10 * a + d) ** 2;
+//   if (a === b && a === d) return (10 * a + c) ** 2;
+//   if (a === c && a === d) return (10 * a + b) ** 2;
+//   if (b === c && b === d) return (10 * b + a) ** 2;
 
-  if (a === b && c === d) return (a + c) * Math.abs(a - c); // 절댓값 구하기
-  if (a === c && b === d) return (a + b) * Math.abs(a - b);
-  if (a === d && b === c) return (a + b) * Math.abs(a - b);
+//   if (a === b && c === d) return (a + c) * Math.abs(a - c); // 절댓값 구하기
+//   if (a === c && b === d) return (a + b) * Math.abs(a - b);
+//   if (a === d && b === c) return (a + b) * Math.abs(a - b);
 
-  if (a === b) return c * d;
-  if (a === c) return b * d;
-  if (a === d) return b * c;
-  if (b === c) return a * d;
-  if (b === d) return a * c;
-  if (c === d) return a * b;
+//   if (a === b) return c * d;
+//   if (a === c) return b * d;
+//   if (a === d) return b * c;
+//   if (b === c) return a * d;
+//   if (b === d) return a * c;
+//   if (c === d) return a * b;
 
-  return Math.min(a, b, c, d);
+//   return Math.min(a, b, c, d);
+// }
+
+function ex37diceGame(a, b, c, d) {
+  const numbers = [a, b, c, d];
+  numbers.sort((x, y) => x - y);
+
+  const diceReport = countDuplicates(numbers);
+  const keys = Object.keys(diceReport); // diceReport의 key를 배열로 받기
+
+  switch (keys.length) {
+    case 1:
+      return sameAll(a);
+    case 4:
+      return differentAll(numbers);
+    case 3:
+      return same211(diceReport);
+    case 2:
+      if (diceReport[a] === 2) return same22(keys.map(Number));
+      return same31(diceReport, keys.map(Number));
+  }
+}
+
+function countDuplicates(arr) {
+  // 주사위로 나온 숫자가 key, 숫자 갯수를 value로 하는 객체 만들기
+  const countMap = {};
+
+  for (const num of arr) {
+    if (countMap[num] === undefined) countMap[num] = 0;
+
+    countMap[num] += 1;
+  }
+
+  return countMap;
+}
+
+function sameAll(p) {
+  // 주사위 모든 수가 다 같을 때
+  return p * 1111;
+}
+
+function same31(report, [p, q]) {
+  // 주사위 세 숫자만 같을 때
+  if (report[p] === 1) [p, q] = [q, p]; // p가 1개인 경우, swap(p ,q). 그럼 p가 3개짜리 숫자가 됩니다.
+
+  return Math.pow(10 * p + q, 2);
+}
+
+function same22([p, q]) {
+  // 주사위가 두 개씩 같은 값일 때
+  return (p + q) * Math.abs(p - q);
+}
+
+function same211(report) {
+  // 주사위 두 숫자가 같고, 나머지는 서로 다를 때
+  const [q, r] = Object.keys(report)
+    .filter((key) => report[key] === 1)
+    .map(Number);
+  return q * r;
+}
+
+function differentAll(arr) {
+  return Math.min(...arr);
 }
 
 //
