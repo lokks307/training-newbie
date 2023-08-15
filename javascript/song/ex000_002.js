@@ -472,3 +472,11 @@ function ex82GetDifference(num1, num2) {
 }
 
 //
+
+// 나머지 구하기
+
+function ex83GetRemainder(num1, num2) {
+  return num1 % num2;
+}
+
+//
