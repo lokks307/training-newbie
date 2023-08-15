@@ -480,3 +480,11 @@ function ex83GetRemainder(num1, num2) {
 }
 
 //
+
+// 나이 출력
+
+function exGetYear(age) {
+  return 2022 - age + 1;
+}
+
+//
