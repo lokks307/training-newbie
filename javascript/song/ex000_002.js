@@ -282,3 +282,11 @@ function ex66OddVersusEven(num_list) {
 }
 
 //
+
+// 5명씩
+
+function ex67FilterFirst(names) {
+  return names.filter((_, i) => i % 5 === 0);
+}
+
+//
