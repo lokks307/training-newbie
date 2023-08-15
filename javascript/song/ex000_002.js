@@ -635,3 +635,11 @@ function ex99SharePizza(slice, n) {
 }
 
 //
+
+// 배열 두 배 만들기
+
+function ex100MultiplyByTwo(numbers) {
+  return numbers.map((el) => el * 2);
+}
+
+//
