@@ -400,3 +400,12 @@ function ex74ReduceArr(num_list) {
 }
 
 //
+
+// 원하는 문자열 찾기
+
+function ex75FindString(myString, pat) {
+  if (myString.toUpperCase().includes(pat.toUpperCase())) return 1;
+  return 0;
+}
+
+//
