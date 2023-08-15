@@ -290,3 +290,11 @@ function ex67FilterFirst(names) {
 }
 
 //
+
+// 할 일 목록
+
+function ex68ToDoList(todo_list, finished) {
+  return todo_list.filter((_, i) => finished[i] === false);
+}
+
+//
