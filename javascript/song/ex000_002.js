@@ -439,3 +439,11 @@ function ex78ConvertAlp(strArr) {
 }
 
 //
+
+// 두 수의 곱
+
+function ex79Multiply(num1, num2) {
+  return num1 * num2;
+}
+
+//
