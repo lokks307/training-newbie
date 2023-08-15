@@ -341,3 +341,24 @@ function ex71ConvertSeq(arr) {
 }
 
 //
+
+function ex72ConvertSeq(arr) {
+  let count = 0;
+
+  while (
+    !arr.every((el) => (el > 50 && el % 2 !== 0) || (el < 50 && el % 2 === 0))
+  ) {
+    arr = arr.map((el) => {
+      if (el >= 50 && el % 2 === 0) {
+        return el / 2;
+      } else if (el < 50 && el % 2 !== 0) {
+        return el * 2 + 1;
+      }
+      return el;
+    });
+    count++;
+  }
+  return count;
+}
+
+//
