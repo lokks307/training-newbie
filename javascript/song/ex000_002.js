@@ -266,3 +266,19 @@ function ex65FilteredLIst(num_list, n) {
 }
 
 //
+
+// 홀수 vs 짝수
+
+function ex66OddVersusEven(num_list) {
+  const oddSum = num_list
+    .filter((_, i) => i % 2 !== 0)
+    .reduce((acc, cur) => acc + cur, 0);
+  const evenSum = num_list
+    .filter((_, i) => i % 2 === 0)
+    .reduce((acc, cur) => acc + cur, 0);
+
+  if (oddSum >= evenSum) return oddSum;
+  return evenSum;
+}
+
+//
