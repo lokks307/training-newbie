@@ -575,3 +575,11 @@ function ex93SliceArray(numbers, num1, num2) {
 }
 
 //
+
+// 배열 뒤집기
+
+function ex94ReverseArray(num_list) {
+  return num_list.reverse();
+}
+
+//
