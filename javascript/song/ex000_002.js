@@ -250,3 +250,11 @@ function ex63LeftRight(str_list) {
 }
 
 //
+
+// n 번째 원소까지
+
+function ex64ToNthElement(num_list, n) {
+  return num_list.slice(0, n);
+}
+
+//
