@@ -218,3 +218,11 @@ function ex60SliceArray(arr, query) {
 }
 
 //
+
+// n 번째 원소부터
+
+function ex61FromNthElement(num_list, n) {
+  return num_list.slice(n - 1);
+}
+
+//
