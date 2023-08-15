@@ -342,6 +342,8 @@ function ex71ConvertSeq(arr) {
 
 //
 
+// 조건에 맞게 수열 변환하기 2
+
 function ex72ConvertSeq(arr) {
   let count = 0;
 
@@ -357,6 +359,27 @@ function ex72ConvertSeq(arr) {
       return el;
     });
     count++;
+  }
+  return count;
+}
+
+//
+
+// 1로 만들기
+
+function ex73CountForOne(num_list) {
+  let count = 0;
+
+  for (el of num_list) {
+    while (el !== 1) {
+      if (el % 2 === 0) {
+        el /= 2;
+      } else {
+        el -= 1;
+        el /= 2;
+      }
+      count++;
+    }
   }
   return count;
 }
