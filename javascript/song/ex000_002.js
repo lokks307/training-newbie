@@ -583,3 +583,12 @@ function ex94ReverseArray(num_list) {
 }
 
 //
+
+// 최댓값 만들기 (1)
+
+function ex95GetMaxNum(numbers) {
+  let sortedArr = numbers.sort((a, b) => b - a);
+  return sortedArr[0] * sortedArr[1];
+}
+
+//
