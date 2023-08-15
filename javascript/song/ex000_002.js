@@ -385,3 +385,18 @@ function ex73CountForOne(num_list) {
 }
 
 //
+
+// 길이에 따른 연산
+
+function ex74ReduceArr(num_list) {
+  let sum = 0;
+  if (num_list.length >= 11) {
+    sum = num_list.reduce((acc, cur) => acc + cur, 0);
+  } else {
+    sum = num_list.reduce((acc, cur) => acc * cur, 1);
+  }
+
+  return sum;
+}
+
+//
