@@ -532,3 +532,12 @@ function ex88SumOfEvenNums(n) {
 }
 
 //
+
+// 배열의 평균값
+
+function ex89GetAverage(numbers) {
+  let sum = numbers.reduce((acc, cur) => acc + cur, 0);
+  return sum / numbers.length;
+}
+
+//
