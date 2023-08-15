@@ -313,3 +313,16 @@ function ex69AddUntilLarger(numbers, n) {
 }
 
 //
+
+// 수열과 구간 쿼리 1
+
+function ex70SeqAndQuery(arr, queries) {
+  for (const [s, e] of queries) {
+    for (let i = s; i <= e; i++) {
+      arr[i] += 1;
+    }
+  }
+  return arr;
+}
+
+//
