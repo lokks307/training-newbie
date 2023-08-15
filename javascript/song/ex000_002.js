@@ -409,3 +409,11 @@ function ex75FindString(myString, pat) {
 }
 
 //
+
+// 대문자로 바꾸기
+
+function ex76ReplaceWithCap(myString) {
+  return myString.toUpperCase();
+}
+
+//
