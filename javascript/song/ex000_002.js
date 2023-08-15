@@ -456,3 +456,11 @@ function ex80CompareNum(num1, num2) {
 }
 
 //
+
+// 몫 구하기
+
+function ex81GetQuotient(num1, num2) {
+  return Math.floor(num1 / num2);
+}
+
+//
