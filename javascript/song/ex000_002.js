@@ -417,3 +417,11 @@ function ex76ReplaceWithCap(myString) {
 }
 
 //
+
+// 소문자로 바꾸기
+
+function ex77ReplaceWithLow(myString) {
+  return myString.toLowerCase();
+}
+
+//
