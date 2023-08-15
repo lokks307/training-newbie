@@ -258,3 +258,11 @@ function ex64ToNthElement(num_list, n) {
 }
 
 //
+
+// n개 간격의 원소들
+
+function ex65FilteredLIst(num_list, n) {
+  return num_list.filter((_, i) => i % n === 0);
+}
+
+//
