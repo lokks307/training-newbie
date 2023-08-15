@@ -189,3 +189,19 @@ function ex58BuildArray(arr, intervals) {
 }
 
 //
+
+// 2의 영역
+
+function ex59AreaOfTwo(arr) {
+  const indices = arr.reduce((acc, cur, idx) => {
+    if (cur === 2) {
+      acc.push(idx);
+    }
+    return acc;
+  }, []);
+  const slicedArr = arr.slice(indices[0], indices[indices.length - 1] + 1);
+  if (slicedArr.length === 0) return [-1];
+  return slicedArr;
+}
+
+//
