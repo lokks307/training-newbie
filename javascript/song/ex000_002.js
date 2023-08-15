@@ -622,8 +622,16 @@ function ex97IsTriangle(sides) {
 
 // 문자열 뒤집기
 
-function exReverseString(my_string) {
+function ex98ReverseString(my_string) {
   return [...my_string].reverse().join("");
+}
+
+//
+
+// 피자 나눠 먹기 (3)
+
+function ex99SharePizza(slice, n) {
+  return Math.ceil(n / slice);
 }
 
 //
