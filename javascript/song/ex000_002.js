@@ -488,3 +488,11 @@ function exGetYear(age) {
 }
 
 //
+
+// 두 수의 합
+
+function ex85GetSum(num1, num2) {
+  return num1 + num2;
+}
+
+//
