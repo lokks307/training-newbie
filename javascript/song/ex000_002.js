@@ -606,3 +606,16 @@ function ex96CountDivisor(n) {
 }
 
 //
+
+// 삼각형의 완성조건 (1)
+
+function solution(sides) {
+  let sortedArr = sides.sort();
+  let MaxLength = sortedArr[2];
+  let MinLength = sortedArr[0];
+
+  if (MaxLength < MinLength + sortedArr[1]) return 1;
+  return 2;
+}
+
+//
