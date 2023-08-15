@@ -667,3 +667,21 @@ function ex101GetDiscount(price) {
 }
 
 //
+
+// 가까운 수
+
+function ex102GetCloseNum(array, n) {
+  array.sort((a, b) => a - b);
+  console.log(array);
+
+  let difArr = [];
+
+  for (let i = 0; i < array.length; i++) {
+    difArr.push(Math.abs(n - array[i]));
+  }
+  let min = Math.min(...difArr);
+  let minIdx = difArr.indexOf(min);
+  return array[minIdx];
+}
+
+//
