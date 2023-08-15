@@ -447,3 +447,12 @@ function ex79Multiply(num1, num2) {
 }
 
 //
+
+// 숫자 비교하기
+
+function ex80CompareNum(num1, num2) {
+  if (num1 === num2) return 1;
+  return -1;
+}
+
+//
