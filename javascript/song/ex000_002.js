@@ -425,3 +425,17 @@ function ex77ReplaceWithLow(myString) {
 }
 
 //
+
+// 배열에서 대소문자 변환하기
+
+function ex78ConvertAlp(strArr) {
+  return strArr.map((el, i) => {
+    if (i % 2 === 0) {
+      return el.toLowerCase();
+    } else {
+      return el.toUpperCase();
+    }
+  });
+}
+
+//
