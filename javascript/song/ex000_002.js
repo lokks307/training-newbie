@@ -549,3 +549,11 @@ function ex90GetTotalPrice(n, k) {
 }
 
 //
+
+// 편지
+
+function ex91GetLength(message) {
+  return 2 * message.length;
+}
+
+//
