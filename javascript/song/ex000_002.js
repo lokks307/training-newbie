@@ -643,3 +643,11 @@ function ex100MultiplyByTwo(numbers) {
 }
 
 //
+
+// 배열 원소의 길이
+
+function ex101GetLengthOfElement(strlist) {
+  return strlist.map((el) => el.length);
+}
+
+//
