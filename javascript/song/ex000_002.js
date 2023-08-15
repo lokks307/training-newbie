@@ -567,3 +567,11 @@ function ex92SharePizza(n) {
 }
 
 //
+
+// 배열 자르기
+
+function ex93SliceArray(numbers, num1, num2) {
+  return numbers.slice(num1, num2 + 1);
+}
+
+//
