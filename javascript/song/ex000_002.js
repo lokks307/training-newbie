@@ -609,13 +609,21 @@ function ex96CountDivisor(n) {
 
 // 삼각형의 완성조건 (1)
 
-function solution(sides) {
+function ex97IsTriangle(sides) {
   let sortedArr = sides.sort();
   let MaxLength = sortedArr[2];
   let MinLength = sortedArr[0];
 
   if (MaxLength < MinLength + sortedArr[1]) return 1;
   return 2;
+}
+
+//
+
+// 문자열 뒤집기
+
+function exReverseString(my_string) {
+  return [...my_string].reverse().join("");
 }
 
 //
