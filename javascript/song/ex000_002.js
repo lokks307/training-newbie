@@ -499,8 +499,24 @@ function ex85GetSum(num1, num2) {
 
 // 두 수의 나눗셈
 
-function solution(num1, num2) {
+function ex86Division(num1, num2) {
   return Math.floor((num1 / num2) * 1000);
+}
+
+//
+
+// 각도기
+
+function ex87Angle(angle) {
+  if (angle < 90) {
+    return 1;
+  } else if (angle === 90) {
+    return 2;
+  } else if (angle < 180) {
+    return 3;
+  } else {
+    return 4;
+  }
 }
 
 //
