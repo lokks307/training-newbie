@@ -557,3 +557,13 @@ function ex91GetLength(message) {
 }
 
 //
+
+// 피자 나눠 먹기 (1)
+
+function ex92SharePizza(n) {
+  let quotient = Math.floor(n / 7);
+  if (n % 7 >= 1) return quotient + 1;
+  return quotient;
+}
+
+//
