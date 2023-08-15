@@ -464,3 +464,11 @@ function ex81GetQuotient(num1, num2) {
 }
 
 //
+
+// 두 수의 차
+
+function ex82GetDifference(num1, num2) {
+  return num1 - num2;
+}
+
+//
