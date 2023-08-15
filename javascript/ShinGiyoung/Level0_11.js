@@ -274,6 +274,7 @@ function ex17(number, n, m) {
 }
 
 function ex18(n) {
+  //  1.
   var answer = 0;
   if (n % 2 === 1) {
     // n을 2로 나누었을 때 나머지가 1이라면 즉,홀수라면
@@ -295,6 +296,37 @@ function ex18(n) {
     }
   }
   return answer; // answer 값 리턴
+
+  //2.
+  const ODD = 1; //홀수
+  const EVEN = 0; // 짝수
+
+  let arr = [];
+  for (let i = 1; i <= n; i++) {
+    arr.push(i);
+    //n 이하의 수 모두를 arr에 넣기
+  }
+
+  if (n % 2 === 1) {
+    // n 이 홀수라면
+    arr = arr.filter((el) => el % 2 === ODD);
+    // filter 메소드를 이용해서 arr의 요소가 2로 나누었을때 나머지가 1 인것만 리턴
+    // filter 는 조건이 참인것만 리턴해서 새로운 배열 생성 즉, 홀수값만 담긴 배열 생성
+  } else {
+    // n이 짝수라면 또는 0 이라면
+    arr = arr.filter((el) => el % 2 === EVEN);
+    //filter 메소드를 이용해서 arr 요드가 2로 나누었을떄 0 인것만 리턴
+    // filter 는 조건이 참인것만 리턴해서 새로운 배열 생성 즉, 짝수값만 담긴 배열 생성
+    arr = arr.map((n) => n ** 2);
+    // n을 제곱한 값을 리턴해 새로운 배열 생성
+  }
+
+  const result = arr.reduce(function add(sum, currValue) {
+    //reduce 메서드를 이용해서 앞에서 구한 모든 배열 요소의 합을 result에 담는다.
+    return sum + currValue;
+  }, 0);
+
+  return result;
 }
 
 function ex19(ineq, eq, n, m) {
@@ -346,6 +378,7 @@ function ex21(code) {
 }
 
 function ex22(a, d, included) {
+  //1.
   var answer = 0;
 
   for (let i = 0; i < included.length; i++) {
@@ -357,9 +390,23 @@ function ex22(a, d, included) {
   }
 
   return answer;
+
+  //2.
+  return included.reduce((sum, isIncluded, i) => {
+    if (isIncluded) {
+      sum += a + i * d;
+    }
+    return sum;
+  }, 0);
+  /* reduce() 메소드를 사용하여 누적값구하기. 
+    isIncluded는 현재 반복을 돌고 있는 요소값을 의미하며 , 이 현재 요소값이 true이면 다음과 같은
+    로직을 실행한다,
+    처음 실행될때 초기값 0 = 현재요소값 + 현재 인덱스 값 * d 값으로 등차수열 일반항을 구한다.
+    일반항을 sum에 할당하고 이 값을 반환한다. reduce메소드로 구한 값을 return */
 }
 
 function ex23(a, b, c) {
+  //1.
   var answer = 0;
 
   if (a === b && b === c) {
@@ -378,20 +425,43 @@ function ex23(a, b, c) {
   }
 
   return answer;
+
+  //2.
+  const sum = a + b + c;
+  const sumOfSquares = a ** 2 + b ** 2 + c ** 2;
+  const sumOfCubes = a ** 3 + b ** 3 + c ** 3;
+  //연상량이 크지 않다면 연산을 미리 해두기 !! -> 코드를 쉽게 읽을 수 있음
+  if (a === b && b === c) {
+    return sum * sumOfSquares * sumOfCubes;
+  } else if (a === b || a === c || b === c) {
+    return sum * sumOfSquares;
+  } else {
+    return sum;
+  }
 }
 
 function ex24(num_list) {
   let multiply = 1;
   let plus = 0;
   var answer;
+  //1.
   for (let i = 0; i < num_list.length; i++) {
     // num_list 길이만큼 반복
     multiply *= num_list[i]; // 모든 요소의 곱
     plus += num_list[i]; // 모든 요소의 합
   }
+
   answer = multiply < plus ** 2 ? 1 : 0;
   // multiply 값이 plus의 제곱보다 작으면 1을 answer 할당 아니라면 0 할당
   return answer; // answer 값 리턴
+
+  //2.
+  for (const num of num_list) {
+    multiply *= num;
+    plus += num; /* for of 문으로 배열의 요소 쉽게 접근할 수 있음.*/
+  }
+  answer = multiply < plus ** 2 ? 1 : 0;
+  return answer;
 }
 
 function ex25(num_list) {
@@ -408,6 +478,7 @@ function ex25(num_list) {
 }
 
 function ex26(num_list) {
+  //1.
   var answer =
     num_list.at(-1) > num_list.at(-2)
       ? // at() 을 이용하여 마지막 값과 마지막으로부터 -1 인덱스 값 구하기
@@ -415,6 +486,20 @@ function ex26(num_list) {
         num_list.at(-1) - num_list.at(-2) // 마지막 요소 값 - 그 전 요소값을 answer 에 할당
       : num_list.at(-1) * 2; // 머자먹 요소값이 그 전 요소값보다 작거나 같다면 마지막요소값 * 2 값을 answer 에 할당
   num_list.push(answer); // answer 값을 맨 끝에 추가
+  return num_list;
+  //2
+  const backup = [...num_list]; //배열 복사
+  const lastNum =
+    backup.pop(); /* pop()메소드는 배열의 마지막 요소를 제거하고 그요소를 반환한다.
+  즉 backup의 마지막 요소를 가져옴 backup은 마지막 요소가 제거된 배열이다. */
+  const prevNum =
+    backup.pop(); /* 마지막 요소가 제거된 backup의 배열에서 pop()메소드를 사용하여 또다시 마지막 요소를
+  가져온다.  */
+  if (lastNum > prevNum) {
+    num_list.push(lastNum - prevNum); //push 로 배열의 마지막자리에 추가
+    return num_list;
+  }
+  num_list.push(lastNum * 2);
   return num_list;
 }
 
@@ -425,11 +510,27 @@ function ex27(n, control) {
     d: +10,
     a: -10,
   };
-
+  //1.
   for (let i = 0; i < control.length; i++) {
     //control length 만큼 반복
     n += operation[control[i]];
     //control 각 문자열을값으로  operation 객체 값을 찾아 n 값에 더해준다
+  }
+  //2.
+
+  const controlMap = {
+    w: +1,
+    s: -1,
+    d: +10,
+    a: -10,
+  };
+  for (const control of controls) {
+    //for of 문으로 문자열 쉽게 가져오기.. 각 인덱스의 요소를 가져옴
+    if (controlMap.hasOwnProperty(control)) {
+      /* hasOwnProperty()메서드는 이 object가 지정된 속성을 자체 속성으로 가지고 있는지 여부를 나타내는 boolean을 반환
+       controlMap 객체안 control키가 있을때 */
+      n += controlMap[control];
+    }
   }
 
   return n; // n 값 출력
@@ -443,7 +544,7 @@ function ex28(numLog) {
     "-10": "a",
   };
   var answer = "";
-
+  //1.
   for (let i = 1; i < numLog.length; i++) {
     // i 가 1부터  numLog.length -1 까지 반복
     const key = numLog[i] - numLog[i - 1];
@@ -451,11 +552,22 @@ function ex28(numLog) {
     answer += operation[key];
     //operation객체에서 key 값으로 기록 찾기
   }
+  //2.
+  let prevNum = numLog[0];
+  /* for of 문을 사용하여 배열이 요소 가져온다,
+    다만 index[0]자리에서 시작하지 않기 때문에 따로 밖에서 0번째 인덱스 요소를 구하고,
+    numLog 배열을 slice 메서드를 이용하여 [0]번쨰 인덱스를 자르고 나머지를 반환해 값을 입력. */
+  for (const num of numLog.slice(1)) {
+    const key = num - prevNum;
+    answer += operation[key];
+    prevNum = num; // 반복문이 끝나기 전에 prevNum 에 현재 요소값 할당
+  }
 
   return answer;
 }
 
 function ex29(arr, queries) {
+  //1.
   for (let i = 0; i < queries.length; i++) {
     //queries 길이만큼 반복
     const [a, b] = queries[i];
@@ -465,12 +577,22 @@ function ex29(arr, queries) {
     //arr[a] = arr[b], arr[b]= arr[a] 한번에 맞교환한다
   }
 
+  //2.
+  for (const query of queries) {
+    //queries의 요소 가져오기
+    const [a, b] = (query[
+      // 구조분해 할당으로 a와 b 값 차례대로 구하고
+      (arr[a], arr[b])
+    ] = [arr[b], arr[a]]);
+    // 구조분해 할당으로 서로 값 바꾸기
+    //arr[a] = arr[b], arr[b]= arr[a] 한번에 맞교환한다
+  }
   return arr;
 }
 
 function ex30(arr, queries) {
   var answer = [];
-
+  //1.
   for (const query of queries) {
     //for in 문으로 queries 의 요소들을 가져온다
     const [s, e, k] = query; // 구조분해 할당으로 query를 각 s,e,k 에 정의하고
@@ -483,6 +605,20 @@ function ex30(arr, queries) {
     } else {
       answer.push(-1); // sum 배열이 빈 값일때, -1값을 answer배열 맨 뒤에 push로 넣는다
     }
+  }
+  //2.
+  for (const [start, end, threshold] of queries) {
+    /* 바로 구조분해할당으로 start, end, threshold (   const [s, e, k] = query; ) 가져오기.. */
+    const filteredArr = arr
+      .slice(start, end + 1)
+      .filter((value) => value > threshold);
+    if (filteredArr.length === 0) {
+      /* filteredArr배열의 크기가 0일때(빈배열)
+      answer.push(-1);로직을 수행하고 다음을 수행하지 않고 종료 한 후  다시 반복문의 처음으로 돌아간다*/
+      answer.push(-1);
+      continue;
+    }
+    answer.push(Math.min(...filteredArr));
   }
   return answer; // answer 값 리턴
 }
@@ -504,7 +640,7 @@ function ex31(arr, queries) {
 
 function ex32(l, r) {
   var answer = [];
-
+  //1.
   for (let num = l; num <= r; num++) {
     // l <= num <= r, 해당 조건만큼 반복
     const chgStr = String(num); // num을 Strimg 타입으로 변환한다음
@@ -516,6 +652,34 @@ function ex32(l, r) {
   }
   return answer.length > 0 ? answer : [-1]; //answer 배열의 길이가 0 이라면 [-1]울 반환 아니라면
   //  answer를 반환한다
+
+  //2.
+  function isSpecialNumber(num) {
+    /* 코드 따로 분리 의미 있는 단위로 분리함.  */
+    const chgStr = String(num);
+    return /^[05]+$/.test(chgStr);
+  }
+
+  for (let num = l; num <= r; num++) {
+    if (isSpecialNumber(num)) {
+      answer.push(num);
+    }
+  }
+  return answer.length ? answer : [-1];
+  /* 배열의 length가 존재하면 true,, 아니면 false */
+
+  //3. 정규표현식 사용하지 않고 풀기
+  for (let i = l; i <= r; i++) {
+    const item = String(i); // string으로 변환후
+    if ([...item].every((el) => el === "5" || el === "0"))
+      /* string을 스프레드로 펼쳐서 배열로 반환후 every()메서드를 이용해서 모든 요소가 5 or 0 으로 되어있다면 true
+    아니면 fasle 값을 반환   */
+      answer.push(Number(item));
+  }
+  if (answer.length === 0) {
+    return [-1];
+  }
+  return answer;
 }
 
 function ex33(start, end) {
@@ -524,10 +688,25 @@ function ex33(start, end) {
     // end - start + 1 번 반복하면서 i 는 1씩 증가한다
     answer.push(i); //answer에 push 메서드를 이용하면 마지막 자리에 i를 추가한다.
   }
+
   return answer;
+
+  //2.
+  return Array.from({ length: end - start + 1 }, (_, index) => start + index);
+  /* Array() 생성자활용
+   */
+  //3.
+  return Array(end - start + 1)
+    .fill()
+    .map((_, index) => start + index);
+  /* Array() 생성자활용
+    배열의 길이가 end - start + 1 배열을 fill()로 undefine로 모두 채우고 
+    map 메서드를 이용해서 start + index 값으로 새로운 배열 생성
+   */
 }
 
 function ex34(n) {
+  //1.
   var answer = [n]; // answer 초기값을 [n] 으로 설정
   while (n !== 1) {
     // n이 1이 아닐떄까지 반복한다.
@@ -536,9 +715,22 @@ function ex34(n) {
     answer.push(n); //n 값을 answer push() 메서드를 이용하여, 마지막 자리에 계산된 n 값을 추가한다
   }
   return answer; // answer 값 리턴
+
+  //2.
+  function applyCollatzAlgorithm(num) {
+    return num % 2 === 0 ? num / 2 : 3 * num + 1;
+    /*코드분리. 의미있는 단위로 분리한다. */
+  }
+  var sequence = [n];
+  while (n !== 1) {
+    n = applyCollatzAlgorithm(n);
+    sequence.push(n);
+  }
+  return sequence;
 }
 
 function ex35(arr) {
+  //1.
   var stk = [];
   var i = 0;
   while (i < arr.length) {
@@ -556,6 +748,22 @@ function ex35(arr) {
   }
 
   return stk; //stk 값 리턴
+
+  //2.코드 분리
+  function popStackUntilValid(currentValue) {
+    while (stack.length !== 0 && stack.at(-1) >= currentValue) {
+      stack.pop();
+      /*while문은 조건이 해당 되지 않으면 실행하지않는다  */
+    }
+  }
+  const stack = [];
+  for (const num of arr) {
+    popStackUntilValid(num);
+    stack.push(num);
+    /* 어차피 +1 을하더라도 의미가없음 .. 코딩테스트 배열만들기 4 참고...
+     */
+  }
+  return stack;
 }
 
 function ex36(x1, x2, x3, x4) {
@@ -612,14 +820,117 @@ function ex37(a, b, c, d) {
   //dice 배열중 중복된 값이 없다면 가장 작은값 리턴
   return dice[0];
 }
+/*
+ 주사위게임입니다. 저는 정확하게 이런 순서로 코드를 작성할 거예요
+  1. 숫자를 정렬한다
+  2. 각 주사위 숫자의 개수를 센다
+  3. 주사위 규칙에 따라 점수를 계산한다
+    3-1. 모두 같은 경우
+    3-2. 모두 다른 경우
+    3-3. 2개는 같지만, 나머지가 다른 경우
+    
+    위 3가지 케이스를 머리속에서 지워보세요.
+    남은 케이스는 주사위가 (2🎲🎲, 2🎲🎲)씩 나왔거나, (3🎲🎲🎲,1🎲)씩 나온 경우입니다.
+    나머지 케이스를 고려할 필요가 없습니다. 머리가 가벼워지죠?
 
+    3-4. 2개씩 같은 경우
+    3-5. 3개만 같은 경우
+
+ A. 주사위게임은 순서가 상관없습니다.
+    그러나 숫자를 정렬해두면, 사람의 머리속으로 상상하는 내용이 단순해집니다.
+ B. 주의! object의 keys는 String입니다. 나중에 key를 숫자로 쓰려면 Number로 변환해줘야 합니다.
+*/
+function ex38DiceGame(a, b, c, d) {
+  const numbers = [a, b, c, d]; //숫자 배열
+  numbers.sort((x, y) => x - y); // 숫자를 오름차순으로 정렬
+
+  const diceReport = countDuplicates(numbers);
+  const keys = Object.keys(diceReport);
+  //object key 값을 동일한 순서로 순회되는 열거할 수 있는 배열로 반환
+  //diceReport가  {'1' :1, '2':1, '3':2 }라면 keys는 ['1', '2','3']
+  switch (keys.length) {
+    case 1: //모든 수가 같다면을 의미
+      return sameAll(a);
+    case 4: // 모든 수가 다름을 의미
+      return differentAll(numbers);
+    case 3: // 같은 수가 2개이고 서로 다른수 하나씩을 의미
+      return same211(diceReport);
+    case 2: // 같은수 3 개 이고 다른수하나 or  같은수 2개씩 의미
+      if (diceReport[a] === 2)
+        // 같은수 2개씩을 의미 왜냐하면 같은수 3 다른수 1 라면 a,b,c,d 어떤 것이든 2가 나올수없음
+        // diceReport[a] ===3 || diceReport[a] === 1 이렇게 비교할 수도 있는데, 2 한번만 비교하는게 더 간편해요.
+        return same22(keys.map(Number)); //// 같은수 2개씩일때 로직 number type 변환
+      return same31(diceReport, keys.map(Number)); //같은수 3개 다른수 1나일때 실행할 로직
+  }
+}
+
+function countDuplicates(arr) {
+  /* 주사위 결과값이 담긴 정렬된 배열 arr*/
+  const countMap = {};
+
+  for (const num of arr) {
+    //arr의 각 요소 가져오기
+    if (countMap[num] === undefined) countMap[num] = 0;
+
+    countMap[num] += 1;
+    /* countMap의  key num의 값이 undefined 라면 countMap[num] = 0; 추가 후
+      +1 해주기 countMap[num] = 0;해주는 이유는 값이 없어서 오브젝트에 초기값 설정한다고 보면 됨.
+       countMap[num] 값이 없는데 undefined 에 +1 해줄 수 없기때문.
+    */
+  }
+  /* 따라서 만약 arr가 arr[1,2,3,3] 이라면 countMap는 {'1' :1, '2':1, '3':2 } 이렇게 만들어진다.
+  참고로 object의 key는 string.  */
+  return countMap;
+}
+
+function sameAll(p) {
+  return p * 1111;
+}
+function same31(report, [p, q]) {
+  if (report[p] === 1) [p, q] = [q, p]; // p가 1개인 경우, swap(p ,q). 그럼 p가 3개짜리 숫자가 됩니다.
+  //diceReport[key] 의 값이 1이면 한개짜리인 숫자를 의미 바꿔주기.
+  return Math.pow(10 * p + q, 2);
+}
+
+function same22([p, q]) {
+  return (p + q) * Math.abs(p - q);
+}
+
+function same211(report) {
+  const [q, r] = Object.keys(report) //object key 값을 동일한 순서로 순회되는 열거할 수 있는 배열로 반환 구조분해할당
+    .filter((key) => report[key] === 1)
+    .map(Number);
+  /* filter 메서드로 report[key]값이 1인것 즉, 서로 다른 수를 의미 찾고 map메서드로 넘버로 변환 object key는
+  string type이라서.. */
+  return q * r;
+}
+
+// 물론 differentAll 자리에 Math.min 함수를 바로 사용할 수도 있습니다.
+// 그러나 이렇게 하면, 다른 함수들과 형식이 달라져서 diceGame 함수를 이해하는 것이 복잡해집니다.
+// 사람의 두뇌는 차이점을 인지하는데 특화되어 있어서 그래요.
+// 따라서 switch case의 경우 주변과 비슷하게 작성하는 것이 좋습니다.
+// 누누히 강조하지만, 함수 호출 하나 더 하는 것은 속도에 아무 영향을 끼치지 않습니다.
+// 그러나 사람이 코드를 읽기 힘들면 개발이 느려지도 관리가 어려워집니다.
+function differentAll(arr) {
+  return Math.min(...arr);
+}
 function ex38(my_string, index_list) {
+  //1.
   var answer = "";
   for (const idx of index_list) {
     //for of 문으로 요소 가져오기
     answer += my_string[idx]; //my_string인덱스 자리에 idx값을 넣고 answer 에 더해준다
   }
   return answer;
+  //2
+  function extractCharacterByIndex(inputString, indices) {
+    return indices.map((index) => inputString[index]).join("");
+    /* 먼저 코드단위 분리
+      map()으로 각 요소를 가져온뒤 inputString[index] 연산 후 결괏값을 리턴해 새로운 배열 생성후 
+      join메서드로 차례대로 붙이고 문자열로 반환 */
+  }
+
+  return extractCharacterByIndex(my_string, index_list);
 }
 
 function ex39(number) {
@@ -630,7 +941,12 @@ function ex39(number) {
 }
 
 function ex40(my_string, queries) {
+  //1.
   let strArr = my_string.split(""); // 문자열을 배열로 변환
+  //2.
+  let strArr = [...my_string]; // 문자열을 배열로 변환
+  // 전개연산자 사용으로 간단하게 문자열을 배열화..만약 [...'abc'] -> ['a','b','c']
+
   for (const query of queries) {
     // for of 문 사용해서 queries의 요소 하나씩 가져오기
     const [s, e] = query; // query 구조분해 할당
