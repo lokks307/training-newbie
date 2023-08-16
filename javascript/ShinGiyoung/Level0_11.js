@@ -1174,3 +1174,158 @@ function ex60(arr, query) {
   }
   return arr;
 }
+
+function ex61(num_list, n) {
+  return num_list.slice(n - 1);
+}
+
+function ex62(num_list, n) {
+  const after = num_list.slice(0, n);
+  num_list.splice(0, n);
+  return [...num_list, ...after];
+}
+
+function ex63(str_list) {
+  const lIndex = str_list.indexOf("l");
+  const rIndex = str_list.indexOf("r");
+
+  if (lIndex !== -1 && rIndex !== -1) {
+    return lIndex < rIndex
+      ? str_list.slice(0, lIndex)
+      : str_list.slice(rIndex + 1);
+  }
+
+  if (lIndex !== -1 || rIndex !== -1) {
+    return lIndex < 0 ? str_list.slice(rIndex + 1) : str_list.slice(0, lIndex);
+  }
+
+  return [];
+}
+
+function ex64(num_list, n) {
+  return num_list.splice(0, n);
+}
+
+function ex65(num_list, n) {
+  return num_list.filter((num, idx) => idx % n == 0);
+}
+
+function ex66(num_list) {
+  const odd = num_list.filter((num, idx) => (idx + 1) % 2 !== 0);
+  const even = num_list.filter((num, idx) => (idx + 1) % 2 === 0);
+
+  const oddSum = odd.reduce(function add(sum, currValue, idx) {
+    return sum + currValue;
+  }, 0);
+
+  const evenSum = even.reduce(function add(sum, currValue, idx) {
+    return sum + currValue;
+  }, 0);
+
+  return oddSum > evenSum ? oddSum : evenSum;
+}
+
+function ex67(names) {
+  const list = names.filter((name, idx) => idx % 5 === 0);
+  return list;
+}
+
+function ex68(todo_list, finished) {
+  var answer = todo_list.filter((list, idx) => !finished[idx]);
+  return answer;
+}
+
+function ex69(numbers, n) {
+  const answer = numbers.reduce(function add(sum, currValue) {
+    if (sum <= n) {
+      return sum + currValue;
+    }
+    return sum;
+  }, 0);
+
+  return answer;
+}
+
+function ex70(arr, queries) {
+  for (const [s, e] of queries) {
+    for (let i = s; i <= e; i++) {
+      arr[i] += 1;
+    }
+  }
+  return arr;
+}
+
+function ex71(arr) {
+  const answer = arr.map((num) => {
+    if (num >= 50 && num % 2 === 0) {
+      return num / 2;
+    }
+
+    if (num < 50 && num % 2 !== 0) {
+      return num * 2;
+    }
+    return num;
+  });
+  return answer;
+}
+
+function ex72(arr) {
+  function createArr() {
+    arr = arr.map((num) => {
+      if (num >= 50 && num % 2 === 0) {
+        return num / 2;
+      }
+
+      if (num < 50 && num % 2 !== 0) {
+        return num * 2 + 1;
+      }
+      return num;
+    });
+
+    return arr;
+  }
+
+  let count = 0;
+  let condition = true;
+  while (condition) {
+    const prev = JSON.stringify(arr);
+    createArr();
+    const next = JSON.stringify(arr);
+    prev !== next ? count++ : (condition = false);
+  }
+
+  return count;
+}
+
+function ex73(num_list) {
+  let count = 0;
+  for (const num of num_list) {
+    var number = num;
+    while (number !== 1) {
+      number = number % 2 == 0 ? number / 2 : (number - 1) / 2;
+      count++;
+    }
+  }
+
+  return count;
+}
+
+function ex74(num_list) {
+  const sum = num_list.reduce(
+    (accumulator, currentValue) => accumulator + currentValue,
+    0,
+  );
+  const multiply = num_list.reduce(
+    (accumulator, currentValue) => accumulator * currentValue,
+    1,
+  );
+
+  return num_list.length >= 11 ? sum : multiply;
+}
+
+function ex75(myString, pat) {
+  myString = myString.toLowerCase();
+  pat = pat.toLowerCase();
+
+  return myString.includes(pat) ? 1 : 0;
+}
