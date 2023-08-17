@@ -135,3 +135,18 @@ function ex22(a, d, included) {
 
   return result;
 }
+
+//주사위 게임 2
+function ex23(a, b, c) {
+  const plus1 = a + b + c;
+  const plus2 = a ** 2 + b ** 2 + c ** 2;
+  const plus3 = a ** 3 + b ** 3 + c ** 3;
+
+  if (a === b && b === c) {
+    return plus1 * plus2 * plus3;
+  }
+  if (a === b || b === c || a === c) {
+    return plus1 * plus2;
+  }
+  return plus1;
+}
