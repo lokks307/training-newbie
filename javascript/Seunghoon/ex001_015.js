@@ -95,6 +95,17 @@ function ex13(my_string, k) {
   return my_string.repeat(k);
 }
 
+//더 크게 합치기
+function ex14(a, b) {
+  let APlusB = Number(String(a) + String(b));
+  let BPlusA = Number(String(b) + String(a));
+
+  if (BPlusA > APlusB) {
+    return BPlusA;
+  }
+  return APlusB;
+}
+
 function solveThis(solveFunction) {
   const readline = require("readline");
   const rl = readline.createInterface({
