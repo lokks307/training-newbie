@@ -1,6 +1,6 @@
 let input;
 
-solveThis(ex7);
+solveThis(ex9);
 
 //문자열 출력하기
 function ex1() {
@@ -50,6 +50,13 @@ function ex6() {
 function ex7() {
   const result = input.split(" ");
   console.log(result.join(""));
+}
+
+//문자열 돌리기
+function ex8() {
+  for (word of input) {
+    console.log(word);
+  }
 }
 
 function solveThis(solveFunction) {
