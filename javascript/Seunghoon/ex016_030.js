@@ -150,3 +150,14 @@ function ex23(a, b, c) {
   }
   return plus1;
 }
+
+//원소들의 곱과 합
+function ex24(num_list) {
+  const multiplyList = num_list.reduce((prev, curr) => prev * curr);
+  const squareSum = num_list.reduce((prev, curr) => prev + curr) ** 2;
+
+  if (multiplyList < squareSum) {
+    return 1;
+  }
+  return 0;
+}
