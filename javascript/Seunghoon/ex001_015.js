@@ -1,6 +1,6 @@
 let input;
 
-solveThis(ex4);
+solveThis(ex5);
 
 //문자열 출력하기
 function ex1() {
@@ -33,6 +33,11 @@ function ex4() {
     }
   }
   console.log(result);
+}
+
+//특수문자 출력하기
+function ex5() {
+  console.log(`!@#$%^&*(\\'"<>?:;`);
 }
 
 function solveThis(solveFunction) {
