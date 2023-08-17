@@ -90,6 +90,11 @@ function ex12(arr) {
   return arr.join("");
 }
 
+//문자열 곱하기
+function ex13(my_string, k) {
+  return my_string.repeat(k);
+}
+
 function solveThis(solveFunction) {
   const readline = require("readline");
   const rl = readline.createInterface({
