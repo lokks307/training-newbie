@@ -1,6 +1,6 @@
 let input;
 
-solveThis(ex5);
+solveThis(ex6);
 
 //문자열 출력하기
 function ex1() {
@@ -38,6 +38,12 @@ function ex4() {
 //특수문자 출력하기
 function ex5() {
   console.log(`!@#$%^&*(\\'"<>?:;`);
+}
+
+//덧셈식 출력하기
+function ex6() {
+  let [a, b] = input.split(" ").map(Number);
+  console.log(`${a} + ${b} = ${a + b}`);
 }
 
 function solveThis(solveFunction) {
