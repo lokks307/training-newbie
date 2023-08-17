@@ -59,6 +59,14 @@ function ex8() {
   }
 }
 
+//홀짝 구분하기
+function ex9() {
+  const number = Number(input);
+  number % 2 === 0
+    ? console.log(`${number} is even`)
+    : console.log(`${number} is odd`);
+}
+
 function solveThis(solveFunction) {
   const readline = require("readline");
   const rl = readline.createInterface({
