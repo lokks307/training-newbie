@@ -67,6 +67,15 @@ function ex9() {
     : console.log(`${number} is odd`);
 }
 
+//문자열 겹쳐쓰기
+function ex10(my_string, overwrite_string, s) {
+  const overwriteLength = overwrite_string.length;
+  const my_stringArr = my_string.split("");
+
+  my_stringArr.splice(s, overwriteLength, overwrite_string);
+  return my_stringArr.join("");
+}
+
 function solveThis(solveFunction) {
   const readline = require("readline");
   const rl = readline.createInterface({
