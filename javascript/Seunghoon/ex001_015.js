@@ -76,6 +76,15 @@ function ex10(my_string, overwrite_string, s) {
   return my_stringArr.join("");
 }
 
+//문자열 섞기
+function ex11(str1, str2) {
+  let result = "";
+  for (let i = 0; i < str1.length; i++) {
+    result += str1[i] + str2[i];
+  }
+  return result;
+}
+
 function solveThis(solveFunction) {
   const readline = require("readline");
   const rl = readline.createInterface({
