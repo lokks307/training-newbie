@@ -91,3 +91,11 @@ function ex19(ineq, eq, n, m) {
   }
   return 0;
 }
+
+//flag에 따라 다른 값 반환하기
+function ex20(a, b, flag) {
+  if (flag) {
+    return a + b;
+  }
+  return a - b;
+}
