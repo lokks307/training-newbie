@@ -182,3 +182,26 @@ function ex26(num_list) {
 
   return result;
 }
+
+//수 조작하기1
+function ex27(n, control) {
+  const controlKeys = [...control];
+
+  for (const controlKey of controlKeys) {
+    switch (controlKey) {
+      case "w":
+        n += 1;
+        break;
+      case "s":
+        n -= 1;
+        break;
+      case "d":
+        n += 10;
+        break;
+      case "a":
+        n -= 10;
+        break;
+    }
+  }
+  return n;
+}
