@@ -239,3 +239,22 @@ function ex29(arr, queries) {
   }
   return result;
 }
+
+//수열과 구간 쿼리 2
+function ex30(arr, queries) {
+  let result = [];
+
+  for (const query of queries) {
+    const [s, e, k] = query;
+    const newArray = arr.slice(s, e + 1);
+    const filteredNewArray = newArray.filter((number) => number > k);
+
+    if (filteredNewArray.length > 0) {
+      result.push(Math.min(...filteredNewArray));
+      continue;
+    }
+    result.push(-1);
+  }
+
+  return result;
+}
