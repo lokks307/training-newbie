@@ -116,3 +116,22 @@ function ex21(code) {
   }
   return result === "" ? "EMPTY" : result;
 }
+
+//등차수열의 특정한 항만 더하기
+function ex22(a, d, included) {
+  let arr = [];
+  let result = 0;
+  arr[0] = a;
+
+  for (let i = 1; i < included.length; i++) {
+    arr.push(arr[i - 1] + d);
+  }
+
+  included.forEach((el, idx) => {
+    if (el) {
+      result += arr[idx];
+    }
+  });
+
+  return result;
+}
