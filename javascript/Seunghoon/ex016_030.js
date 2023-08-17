@@ -54,3 +54,40 @@ function ex18(n) {
   const result = arr.reduce((prev, curr) => prev + curr);
   return result;
 }
+
+//조건 문자열
+/** 
+function ex19(ineq, eq, n, m) {
+  if (ineq === ">" && eq === "=") {
+    return n >= m ? 1 : 0;
+  } else if (ineq === "<" && eq === "=") {
+    return n <= m ? 1 : 0;
+  } else if (ineq === ">" && eq === "!") {
+    return n > m ? 1 : 0;
+  } else if (ineq === "<" && eq === "!") {
+    return n < m ? 1 : 0;
+  }
+}
+*/
+function ex19(ineq, eq, n, m) {
+  const sign = ineq + eq;
+  let result;
+  switch (sign) {
+    case ">=":
+      result = n >= m;
+      break;
+    case "<=":
+      result = n <= m;
+      break;
+    case ">!":
+      result = n > m;
+      break;
+    case "<!":
+      result = n < m;
+      break;
+  }
+  if (result) {
+    return 1;
+  }
+  return 0;
+}
