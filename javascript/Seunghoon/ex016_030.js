@@ -169,3 +169,16 @@ function ex25(num_list) {
 
   return Number(odd) + Number(even);
 }
+
+//마지막 두 원소
+function ex26(num_list) {
+  const result = [...num_list];
+  const lastElement = result[result.length - 1];
+  const beforeLastElement = result[result.length - 2];
+
+  if (lastElement > beforeLastElement) {
+    result.push(lastElement - beforeLastElement);
+  } else result.push(lastElement * 2);
+
+  return result;
+}
