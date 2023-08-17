@@ -1,6 +1,6 @@
 let input;
 
-solveThis(ex6);
+solveThis(ex7);
 
 //문자열 출력하기
 function ex1() {
@@ -44,6 +44,12 @@ function ex5() {
 function ex6() {
   let [a, b] = input.split(" ").map(Number);
   console.log(`${a} + ${b} = ${a + b}`);
+}
+
+//문자열 붙여서 출력하기
+function ex7() {
+  const result = input.split(" ");
+  console.log(result.join(""));
 }
 
 function solveThis(solveFunction) {
