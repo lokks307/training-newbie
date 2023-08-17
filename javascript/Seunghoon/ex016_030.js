@@ -161,3 +161,11 @@ function ex24(num_list) {
   }
   return 0;
 }
+
+//이어 붙인 수
+function ex25(num_list) {
+  const odd = num_list.filter((number) => number % 2 !== 0).join("");
+  const even = num_list.filter((number) => number % 2 === 0).join("");
+
+  return Number(odd) + Number(even);
+}
