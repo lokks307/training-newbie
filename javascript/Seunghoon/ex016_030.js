@@ -228,3 +228,14 @@ function ex28(numLog) {
   }
   return result;
 }
+
+//수열과 구간 쿼리 3
+function ex29(arr, queries) {
+  let result = [...arr];
+
+  for (const query of queries) {
+    const [i, j] = query;
+    [result[i], result[j]] = [result[j], result[i]];
+  }
+  return result;
+}
