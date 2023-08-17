@@ -85,6 +85,11 @@ function ex11(str1, str2) {
   return result;
 }
 
+//문자 리스트를 문자열로 변환하기
+function ex12(arr) {
+  return arr.join("");
+}
+
 function solveThis(solveFunction) {
   const readline = require("readline");
   const rl = readline.createInterface({
