@@ -97,13 +97,24 @@ function ex13(my_string, k) {
 
 //더 크게 합치기
 function ex14(a, b) {
-  let APlusB = Number(String(a) + String(b));
-  let BPlusA = Number(String(b) + String(a));
+  let aPlusB = Number(String(a) + String(b));
+  let bPlusA = Number(String(b) + String(a));
 
-  if (BPlusA > APlusB) {
-    return BPlusA;
+  if (bPlusA > aPlusB) {
+    return bPlusA;
   }
-  return APlusB;
+  return aPlusB;
+}
+
+//두 수의 연산값 비교하기
+function ex15(a, b) {
+  const aPlusB = Number(String(a) + String(b));
+  const multipleAB2 = 2 * a * b;
+
+  if (multipleAB2 > aPlusB) {
+    return multipleAB2;
+  }
+  return aPlusB;
 }
 
 function solveThis(solveFunction) {
