@@ -74,3 +74,27 @@ function ex35(arr) {
   }
   return stk;
 }
+
+//간단한 논리 연산
+function ex36(x1, x2, x3, x4) {
+  let first, second, result;
+
+  const checkValueDown = (x, y) => {
+    if (x === false && y === false) {
+      return false;
+    }
+    return true;
+  };
+  const checkValueUp = (x, y) => {
+    if (x === true && y === true) {
+      return true;
+    }
+    return false;
+  };
+
+  first = checkValueDown(x1, x2);
+  second = checkValueDown(x3, x4);
+  result = checkValueUp(first, second);
+
+  return result;
+}
