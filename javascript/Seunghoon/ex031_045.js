@@ -223,3 +223,13 @@ function same211(report) {
 function differentAll(arr) {
   return Math.min(...arr);
 }
+
+//글자 이어 붙여 문자열 만들기
+function ex38(my_string, index_list) {
+  let result = [];
+
+  for (const index of index_list) {
+    result.push(my_string[index]);
+  }
+  return result.join("");
+}
