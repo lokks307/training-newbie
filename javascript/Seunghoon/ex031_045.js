@@ -241,3 +241,15 @@ function ex39(number) {
 
   return sumNumbers % 9;
 }
+
+//문자열 여러 번 뒤집기
+function ex40(my_string, queries) {
+  const arr = [...my_string];
+
+  for (const query of queries) {
+    const [s, e] = query;
+    const reverseString = arr.splice(s, e - s + 1).reverse();
+    arr.splice(s, 0, ...reverseString);
+  }
+  return arr.join("");
+}
