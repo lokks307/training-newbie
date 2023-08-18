@@ -160,12 +160,20 @@ function ex54CountDown(start, end) {
 
 // 가까운 1 찾기
 
+// function solution(arr, idx) {
+//   let answer;
+//   answer = arr.findIndex((el, i) => el === 1 && i >= idx);
+
+//   return answer;
+// }
+
 function ex55FindIndex(arr, idx) {
-  let answer;
-  for (item of arr) {
-    answer = arr.findIndex((el, i) => el === 1 && i >= idx);
+  for (let i = idx; i < arr.length; i++) {
+    if (arr[i] === 1) {
+      return i;
+    }
   }
-  return answer;
+  return -1;
 }
 
 //
