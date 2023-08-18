@@ -402,7 +402,7 @@ function ex69AddUntilLarger(numbers, n) {
 function ex70SeqAndQuery(arr, queries) {
   for (const [s, e] of queries) {
     for (let i = s; i <= e; i++) {
-      arr[i] += 1;
+      arr[i]++;
     }
   }
   return arr;
