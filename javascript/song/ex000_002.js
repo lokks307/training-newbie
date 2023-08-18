@@ -294,8 +294,14 @@ function ex61FromNthElement(num_list, n) {
 
 // 순서 바꾸기
 
+// function ex62SwapOrder(num_list, n) {
+//   return num_list.slice(n).concat(num_list.slice(0, n));
+// }
+
 function ex62SwapOrder(num_list, n) {
-  return num_list.slice(n).concat(num_list.slice(0, n));
+  const part1 = num_list.slice(n);
+  const part2 = num_list.slice(0, n);
+  return [...part1, ...part2];
 }
 
 //
