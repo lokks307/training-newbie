@@ -299,3 +299,14 @@ function ex43(my_string, n) {
   const start = my_string.length - n;
   return my_string.substring(start);
 }
+
+//접미사 배열
+function ex44(my_string) {
+  const result = [];
+  const length = my_string.length;
+  for (let i = 0; i < length; i++) {
+    result.push(my_string.substring(i));
+  }
+
+  return result.sort();
+}
