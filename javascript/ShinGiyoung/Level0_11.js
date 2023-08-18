@@ -1020,6 +1020,7 @@ function ex46(my_string, n) {
 function ex47(my_string, is_prefix) {
   let sum = "";
   let stringArr = [];
+  //1.
   let answer;
   for (let i = 0; i < my_string.length; i++) {
     //for문을 사용해서 my_string.length 만큼 반복
@@ -1029,9 +1030,22 @@ function ex47(my_string, is_prefix) {
   answer = stringArr.some((string) => string === is_prefix);
   // some 메소드를 이용하여 stringArr 요소중 is_prefix값이 하나라도 있으면 true 반환 하나라도 없으면 false
   return answer ? 1 : 0; // answer값이 true면 1 false 0 값을 반환
+
+  //2.
+  function isPrefixPresent(stringArr, prefix) {
+    return stringArr.some((string) => string === prefix);
+  } // 코드가 의미를 가진다면 함수화
+  function ex47(inputString, prefix) {
+    for (let i = 0; i < inputString.length; i++) {
+      sum += inputString[i];
+      stringArr.push(sum);
+    }
+    return isPrefixPresent(stringArr, prefix) ? 1 : 0;
+  }
 }
 
 function ex48(my_string, s, e) {
+  //1.
   let string_Arr = [...my_string]; //스프레드 문법으로 string ->array 변환
   // 예) '12345' string_Arr = ['1','2','3','4','5']
   const reverse = [...my_string.substr(s, e - s + 1)].reverse();
@@ -1040,6 +1054,14 @@ function ex48(my_string, s, e) {
   // splice() 메서드 사용하여 s인덱스부터  e-s +1 개수 만큼자르고 그 s인덱스 자리에 reverse 를 추가한다
 
   return string_Arr.join(""); //배열인 string_Arr를 join('')으로 문자열로 반환 후 리턴한다
+  //2.
+  let stringArr = [...my_string];
+  /*변수명을 정할때 js 규칙맞추기 camelCase 
+    또 의미있는 변수명 정하기 ..*/
+  const addArr = [...my_string.substr(s, e - s + 1)].reverse();
+  stringArr.splice(s, e - s + 1, ...addArr);
+
+  return string_Arr.join("");
 }
 
 function ex49(my_string, m, c) {
@@ -1067,6 +1089,7 @@ function ex50(q, r, code) {
 }
 
 function ex51(my_string) {
+  //1.
   let upperList = [];
   let lowList = [];
 
@@ -1088,6 +1111,41 @@ function ex51(my_string) {
   }
 
   return [...upperList, ...lowList];
+  //2.
+
+  function countOccurrences(str, ch) {
+    const count = (str.match(new RegExp(ch, "g")) || []).length;
+    return count;
+  }
+  /*  의미있는 변수는 함수로 뺴기 */
+
+  function ex51(myString) {
+    const char_A = 65;
+    const char_Z = 90;
+    const char_a = 97;
+    const char_z = 122;
+    /*  
+    각 알파벳의 아스키코드
+     */
+    const _atoz_ = 26;
+    const gap_aA = char_a - char_A;
+    // A 와 a의 아스키코드 차이
+    let upperList = [];
+    let lowerList = [];
+
+    for (let i = char_A; i <= char_Z; i++) {
+      const upperChar = String.fromCharCode(i);
+      const lowerChar = String.fromCharCode(i + gap_aA);
+
+      const upperCount = countOccurrences(myString, upperChar);
+      upperList.push(upperCount);
+
+      const lowerCount = countOccurrences(myString, lowerChar);
+      lowerList.push(lowerCount);
+    }
+
+    return [...upperList, ...lowerList];
+  }
 }
 
 function ex52(n, k) {
