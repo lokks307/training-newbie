@@ -253,3 +253,49 @@ function ex40(my_string, queries) {
   }
   return arr.join("");
 }
+
+//배열 만들기 5
+function ex41(intStrs, k, s, l) {
+  const result = [];
+
+  for (const intStr of intStrs) {
+    const arr = [...intStr];
+    const findStr = Number(arr.splice(s, l).join(""));
+
+    if (findStr > k) {
+      result.push(findStr);
+    }
+  }
+  return result;
+}
+
+//부분 문자열 이어 붙여 문자열 만들기
+
+/** 
+function ex42(my_strings, parts) {
+  let result = [];
+
+  my_strings.forEach((myString, idx) => {
+    const [s, e] = parts[idx];
+    const arr = [...myString].splice(s, e + 1).join("");
+    result.push(arr);
+  });
+  return result.join("");
+}
+*/
+
+function ex42(my_strings, parts) {
+  let result = "";
+
+  my_strings.forEach((myString, idx) => {
+    const [s, e] = parts[idx];
+    result += myString.substring(s, e + 1);
+  });
+  return result;
+}
+
+//문자열의 뒤의 n글자
+function ex43(my_string, n) {
+  const start = my_string.length - n;
+  return my_string.substring(start);
+}
