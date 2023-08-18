@@ -412,17 +412,28 @@ function ex70SeqAndQuery(arr, queries) {
 
 // 조건에 맞게 수열 변환하기 1
 
-function ex71ConvertSeq(arr) {
-  return arr.map((el) => {
-    if (el >= 50 && el % 2 === 0) {
-      return el / 2;
-    } else if (el < 50 && el % 2 !== 0) {
-      return el * 2;
-    }
-    return el;
-  });
-}
+// function ex71ConvertSeq(arr) {
+//   return arr.map((el) => {
+//     if (el >= 50 && el % 2 === 0) {
+//       return el / 2;
+//     } else if (el < 50 && el % 2 !== 0) {
+//       return el * 2;
+//     }
+//     return el;
+//   });
+// }
 
+function transformElement(el) {
+  if (el >= 50 && el % 2 === 0) {
+    return el / 2;
+  } else if (el < 50 && el % 2 !== 0) {
+    return el * 2;
+  }
+  return el;
+}
+function ex71ConvertSeq(arr) {
+  return arr.map(transformElement);
+}
 //
 
 // 조건에 맞게 수열 변환하기 2
