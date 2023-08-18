@@ -303,10 +303,20 @@ function ex43(my_string, n) {
 //접미사 배열
 function ex44(my_string) {
   const result = [];
-  const length = my_string.length;
-  for (let i = 0; i < length; i++) {
+
+  for (let i = 0; i < my_string.length; i++) {
     result.push(my_string.substring(i));
   }
 
   return result.sort();
+}
+
+//접미사인지 확인하기
+function ex45(my_string, is_suffix) {
+  const suffix = [];
+  for (let i = 0; i < my_string.length; i++) {
+    suffix.push(my_string.substring(i));
+  }
+  if (suffix.includes(is_suffix)) return 1;
+  return 0;
 }
