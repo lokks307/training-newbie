@@ -38,3 +38,19 @@ function ex33(start, end) {
   }
   return result;
 }
+
+//콜라츠 수열 만들기
+function ex34(n) {
+  let result = [n];
+
+  while (n > 1) {
+    if (n % 2 === 0) {
+      n = n / 2;
+      result.push(n);
+    } else {
+      n = 3 * n + 1;
+      result.push(n);
+    }
+  }
+  return result;
+}
