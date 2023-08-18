@@ -308,16 +308,28 @@ function ex62SwapOrder(num_list, n) {
 
 // 왼쪽 오른쪽
 
-function ex63LeftRight(str_list) {
-  const idx = str_list.findIndex((el) => el === "l" || el === "r");
+// function ex63LeftRight(str_list) {
+//   const idx = str_list.findIndex((el) => el === "l" || el === "r");
 
+//   if (idx === -1) {
+//     return [];
+//   } else if (str_list[idx] === "l") {
+//     return str_list.slice(0, idx);
+//   } else {
+//     return str_list.slice(idx + 1);
+//   }
+// }
+
+function ex63LeftRight(str_list) {
+  const idx = str_list.findIndex((el) => el === "l" || el === "r"); // str_list에서 "l"이거나 "r"인 원소의 index를 구한다
   if (idx === -1) {
+    // "l" 과 "r" 이 다 없다면 빈 배열 return
     return [];
-  } else if (str_list[idx] === "l") {
-    return str_list.slice(0, idx);
-  } else {
-    return str_list.slice(idx + 1);
   }
+  const isL = str_list[idx] === "l";
+  const start = isL ? 0 : idx + 1; // "l"이라면 0부터 시작, 아니면 idx + 1부터 시작
+  const end = isL ? idx : undefined; // "r"이라면 idx가 end 위치
+  return str_list.slice(start, end); // start부터 end까지 slice 실행
 }
 
 //
