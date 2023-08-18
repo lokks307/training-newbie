@@ -76,20 +76,45 @@ function ex50QrCode(q, r, code) {
 
 // 문자 개수 세기
 
-function ex51CountCharacter(my_string) {
-  let arr = new Array(52).fill(0);
+// function ex51CountCharacter(my_string) {
+//   let arr = new Array(52).fill(0);
 
+//   let strArr = [...my_string];
+
+//   strArr.map((el, i) => {
+//     const charcode = my_string.charCodeAt(i);
+
+//     if (charcode >= 65 && charcode <= 90) {
+//       arr[charcode - 65] += 1; // charcode가 대문자일 때
+//     } else if (charcode >= 97 && charcode <= 122) {
+//       arr[charcode - 97 + 26] += 1;
+//     }
+//   });
+//   return arr;
+// }
+
+// 하드코딩된 숫자들을 상수로 지정하기
+
+function ex51CountCharacter(my_string) {
+  const char_A = 65;
+  const char_Z = 90;
+  const char_a = 97;
+  const char_z = 122;
+  const _atoz_ = 26;
+
+  let arr = new Array(_atoz_ * 2).fill(0);
   let strArr = [...my_string];
 
   strArr.map((el, i) => {
     const charcode = my_string.charCodeAt(i);
 
-    if (charcode >= 65 && charcode <= 90) {
-      arr[charcode - 65] += 1; // charcode가 대문자일 때
-    } else if (charcode >= 97 && charcode <= 122) {
-      arr[charcode - 97 + 26] += 1;
+    if (charcode >= char_A && charcode <= char_Z) {
+      arr[charcode - char_A] += 1;
+    } else if (charcode >= char_a && charcode <= char_z) {
+      arr[charcode - char_a + _atoz_] += 1;
     }
   });
+
   return arr;
 }
 
