@@ -12,3 +12,20 @@ function ex31(arr, queries) {
   }
   return result;
 }
+
+//배열 만들기 2
+function ex32(l, r) {
+  let result = [];
+
+  for (let i = l; i <= r; i++) {
+    if (i % 5 !== 0) {
+      continue;
+    }
+    const individualNumbers = String(i).split("");
+    if (individualNumbers.every((num) => num === "0" || num === "5")) {
+      result.push(i);
+    }
+  }
+  if (result.length === 0) return [-1];
+  return result;
+}
