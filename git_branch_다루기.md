@@ -18,7 +18,7 @@ git commit -m "#ADD - day1 [p001 ~ p015]"
 
 참고 이미지 1
 <div style="text-align: center;" >
-<img src="image/branch.01.png" width="360"/>
+<img src="image/branch.01.png" width="720"/>
 <br>
 <p>하나의 브랜치를 파고 계획대로 커밋을 만들었다! 뿌듯 - * </p>
 </div>
@@ -36,7 +36,7 @@ git commit -m "#ADD - day2 [p016 ~ p030]"
 
 참고 이미지 2
 <div style="text-align: center;" >
-<img src="image/branch.02.png" width="360"/>
+<img src="image/branch.02.png" width="720"/>
 <br>
 <p>day1 위치에서 하나의 브랜치를 더 파고 day2를 진행한다. 나는 git을 좀 잘 다루는 것 같다. </p>
 </div>
@@ -45,7 +45,7 @@ git commit -m "#ADD - day2 [p016 ~ p030]"
 day2까지 푼 문제도 PR로 등록했다. 기분 좋게 잠들 수 있을 것 같다.
 
 <div style="text-align: center;" >
-<img src="image/branch.02.01.png" width="360"/>
+<img src="image/branch.02.01.png" width="720"/>
 <br>
 <p>이 상태에서 보이는 커밋. day1과 day2 커밋이 함께 보인다. </p>
 </div>
@@ -79,7 +79,7 @@ git cm -m "#FIX - day1 리뷰 받은 내용 모두 수정"
 그럼 이런 모양이 만들어 집니다.
 
 <div style="text-align: center;" >
-<img src="image/branch.03.png" width="360"/>
+<img src="image/branch.03.png" width="720"/>
 <br>
 <p>뭐야 무서워...뭔가 잘못된 것 같아요 선생님.. </p>
 </div>
@@ -88,7 +88,7 @@ git cm -m "#FIX - day1 리뷰 받은 내용 모두 수정"
 리뷰를 받았으면, <B>리뷰 받은 브랜치에서 코드를 수정하고 커밋하세요. 그리고 origin repo에 push 하세요.</B>
 
 <div style="text-align: center;" >
-<img src="image/branch.03.01.png" width="360"/>
+<img src="image/branch.03.01.png" width="720"/>
 <br>
 <p>day1와 day2 다른 길을 걷게 되었다.</p>
 </div>
@@ -111,7 +111,7 @@ git co -b feature/day3
 
 그럼 이런 모양이 되었을 거예요.
 <div style="text-align: center;" >
-<img src="image/branch.04.png" width="360"/>
+<img src="image/branch.04.png" width="720"/>
 <br>
 <p> .. (속는셈 치고 따라하자) </p>
 </div>
@@ -126,7 +126,7 @@ git cm -m "#ADD - day3 [p031 ~ p045]"
 day3까지 커밋을 올리면 이런 모양이 됩니다.
 
 <div style="text-align: center;" >
-<img src="image/branch.05.png" width="360"/>
+<img src="image/branch.05.png" width="720"/>
 <br>
 <p> .. (day1이랑 너무 멀어진 것 같은 day3)</p>
 </div>
@@ -136,7 +136,7 @@ day3까지 커밋을 올리면 이런 모양이 됩니다.
 그리고 이때! 드디어 dos가 `feature/day1` 의 수정사항을 모두 확인하고 upstream repository (github.com/lokks307/training-newbie) 의 main 브랜치에 코드를 반영해주었습니다! 
 
 <div style="text-align: center;" >
-<img src="image/branch.05.01.png" width="360"/>
+<img src="image/branch.05.01.png" width="720"/>
 <br>
 <p> 내용을 확인한 dos upstream에서 PR을 받아들였다.</p>
 </div>
@@ -145,7 +145,7 @@ day3까지 커밋을 올리면 이런 모양이 됩니다.
 그럼 이제 여러분이 fork한 `github repository`에서 upstream의 최신 사항을 반영할 차례입니다.
 
 <div style="text-align: center;" >
-<img src="image/branch.06.png" width="360"/>
+<img src="image/branch.06.png" width="720"/>
 <br>
 <p> upstream(github/lokks307/training-newbie) 브랜치가 바뀌자 나의 github에서 친절하게 알려준다. sync하자. </p>
 </div>
@@ -165,7 +165,7 @@ git lg
 진짜 망한 것 같은 모양이 나옵니다!! 이런 건 본적이 없어서 가슴이 두근거리고 심박수가 올라갑니다.
 
 <div style="text-align: center;" >
-<img src="image/branch.07.png" width="360"/>
+<img src="image/branch.07.png" width="720"/>
 <br>
 <p> .. 과거의 코드가 가장 최신 코드가 된 것 같다. 나의 day2, day3는 어떻게 되는가..</p>
 </div>
@@ -182,13 +182,13 @@ git merge origin/main
 ```
 
 <div style="text-align: center;" >
-<img src="image/branch.08.png" width="360"/>
+<img src="image/branch.08.png" width="720"/>
 <br>
 <p> workspace의 `main`에 `origin/main` 의 변경사항을 반영한다. 이 merge는 'fast-forward' 라고 안내 받았다. </p>
 </div>
 
 <div style="text-align: center;" >
-<img src="image/branch.08.01.png" width="360"/>
+<img src="image/branch.08.01.png" width="720"/>
 <br>
 <p> 머지 직후의 git lg, 아까 본 그림이랑 비슷하다. 다만 origin/main과 나의 main이 같은 지점을 가리킨다. </p>
 </div>
@@ -205,25 +205,25 @@ git push origin feature/day2
 ```
 
 <div style="text-align: center;" >
-<img src="image/branch.09.png" width="360"/>
+<img src="image/branch.09.png" width="720"/>
 <br>
 <p> 시간 차이가 조금 있지만, day2 브랜치를 보니 day1의 모든 수정 내용이 반영되었다! main을 머지했기 때문이다. </p>
 </div>
 
 <div style="text-align: center;" >
-<img src="image/branch.09.00.png" width="360"/>
+<img src="image/branch.09.00.png" width="720"/>
 <br>
 <p> 이걸 push 해보자.</p>
 </div>
 
 <div style="text-align: center;" >
-<img src="image/branch.09.01.png" width="360"/>
+<img src="image/branch.09.01.png" width="720"/>
 <br>
 <p> 내가 등록한 PR에 이 내용이 자연스럽게 반영되어있다. PR2에서 day1 커밋의 흔적을 볼 수 없다. day2에 풀이한 코드만 남아있다. </p>
 </div>
 
 <div style="text-align: center;" >
-<img src="image/branch.09.02.png" width="360"/>
+<img src="image/branch.09.02.png" width="720"/>
 <br>
 <p> day2에 main을 머지한 모습 </p>
 </div>
@@ -242,7 +242,7 @@ git merge feature/day2
 ```
 
 <div style="text-align: center;" >
-<img src="image/branch.10.png" width="360"/>
+<img src="image/branch.10.png" width="720"/>
 <br>
 <p> day1이 main에 머지된 후, 이 결과를 다시 day2에 머지하고, 또 day3까지 순서대로 머지했다. 결국 day3는 day1+day1수정과 day2를 모두 담은, 가장 최신의 브랜치가 되었다.</p>
 </div>
