@@ -225,18 +225,6 @@ function ex58BuildArray(arr, intervals) {
 
 // 2의 영역
 
-// function ex59AreaOfTwo(arr) {
-//   const indices = arr.reduce((acc, cur, idx) => {
-//     if (cur === 2) {
-//       acc.push(idx);
-//     }
-//     return acc;
-//   }, []);
-//   const slicedArr = arr.slice(indices[0], indices[indices.length - 1] + 1);
-//   if (slicedArr.length === 0) return [-1];
-//   return slicedArr;
-// }
-
 function ex59AreaOfTwo(arr) {
   const indices = arr.reduce((acc, cur, idx) => {
     if (cur === 2) {
@@ -244,11 +232,34 @@ function ex59AreaOfTwo(arr) {
     }
     return acc;
   }, []);
+  if (indices.length === 0) return [-1];
   const slicedArr = arr.slice(indices[0], indices[indices.length - 1] + 1);
-  if (slicedArr.length === 0) return [-1];
   return slicedArr;
 }
 
+function ex59BoundaryOf2(arr) {
+  var answer = [];
+  const idxList = getAllIndexes(arr, 2);
+  const len = idxList.length;
+  switch (len) {
+    case 0:
+      return [-1];
+    case 1:
+      return [2];
+    case 2:
+    default: // 앞에 정의한 case 이외의 경우일 때
+      var last = idxList[len - 1] + 1;
+      var start = idxList[0];
+      return arr.slice(start, last);
+  }
+}
+
+function getAllIndexes(arr, val) {
+  var indexes = [],
+    i;
+  for (i = 0; i < arr.length; i++) if (arr[i] === val) indexes.push(i);
+  return indexes;
+}
 //
 
 // 배열 조각하기
