@@ -29,3 +29,12 @@ function ex32(l, r) {
   if (result.length === 0) return [-1];
   return result;
 }
+
+//카운트 업
+function ex33(start, end) {
+  let result = [];
+  for (let i = start; i <= end; i++) {
+    result.push(i);
+  }
+  return result;
+}
