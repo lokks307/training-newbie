@@ -22,3 +22,20 @@ function ex48(my_string, s, e) {
 
   return myStringArr.join("");
 }
+
+//세로 읽기
+function ex49(my_string, m, c) {
+  const arr = [...my_string];
+  const splitWithMArr = [];
+  const result = [];
+
+  for (let i = 0; i < my_string.length; i += m) {
+    splitWithMArr.push(arr.splice(0, m));
+  }
+
+  splitWithMArr.forEach((word) => {
+    result.push(word[c - 1]);
+  });
+
+  return result.join("");
+}
