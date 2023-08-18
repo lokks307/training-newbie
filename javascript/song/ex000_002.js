@@ -264,13 +264,22 @@ function getAllIndexes(arr, val) {
 
 // 배열 조각하기
 
+// function ex60SliceArray(arr, query) {
+//   let answer = arr;
+//   for (let i = 0; i < query.length; i++) {
+//     if (i % 2 === 0) answer = answer.slice(0, query[i] + 1);
+//     else answer = answer.slice(query[i]);
+//   }
+//   return answer;
+// }
+
 function ex60SliceArray(arr, query) {
-  let answer = arr;
   for (let i = 0; i < query.length; i++) {
-    if (i % 2 === 0) answer = answer.slice(0, query[i] + 1);
-    else answer = answer.slice(query[i]);
+    const start = i % 2 === 0 ? 0 : query[i]; // start index
+    const end = i % 2 === 0 ? query[i] + 1 : undefined; // end index
+    arr = arr.slice(start, end);
   }
-  return answer;
+  return arr;
 }
 
 //
