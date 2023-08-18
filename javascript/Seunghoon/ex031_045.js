@@ -233,3 +233,11 @@ function ex38(my_string, index_list) {
   }
   return result.join("");
 }
+
+//9로 나눈 나머지
+function ex39(number) {
+  const individualNumber = [...number].map(Number);
+  const sumNumbers = individualNumber.reduce((prev, curr) => prev + curr);
+
+  return sumNumbers % 9;
+}
