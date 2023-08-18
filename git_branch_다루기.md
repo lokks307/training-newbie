@@ -18,12 +18,12 @@ git commit -m "#ADD - day1 [p001 ~ p015]"
 
 참고 이미지 1
 <div style="text-align: center;" >
-<img src="image/branch.01.jpg" width="360"/>
+<img src="image/branch.01.png" width="720"/>
 <br>
 <p>하나의 브랜치를 파고 계획대로 커밋을 만들었다! 뿌듯 - * </p>
 </div>
 
-[PR #1 link 바로 가기](link1)
+[PR #1 link 바로 가기](https://github.com/lokks307/training-newbie/pull/23)
 
 그리고 upstream repository (github.com/lokks307/training-newbie)에 PR을 등록했다.
 시원하게 샤워 한 번 하고 왔는데, 시간을 보니 여유가 조금 있다. 오늘은 어쩐지 운수가 좋은 느낌인걸? 호기롭게 day2 문제를 조금 더 풀어보자.
@@ -36,13 +36,19 @@ git commit -m "#ADD - day2 [p016 ~ p030]"
 
 참고 이미지 2
 <div style="text-align: center;" >
-<img src="image/branch.02.jpg" width="360"/>
+<img src="image/branch.02.png" width="720"/>
 <br>
 <p>day1 위치에서 하나의 브랜치를 더 파고 day2를 진행한다. 나는 git을 좀 잘 다루는 것 같다. </p>
 </div>
 
-[PR #2 link 바로 가기](link2)
+[PR #2 link 바로 가기](https://github.com/lokks307/training-newbie/pull/24)
 day2까지 푼 문제도 PR로 등록했다. 기분 좋게 잠들 수 있을 것 같다.
+
+<div style="text-align: center;" >
+<img src="image/branch.02.01.png" width="720"/>
+<br>
+<p>이 상태에서 보이는 커밋. day1과 day2 커밋이 함께 보인다. </p>
+</div>
 
 (다음 날)
 
@@ -67,19 +73,32 @@ day2까지 푼 문제도 PR로 등록했다. 기분 좋게 잠들 수 있을 것
 git co feature/day1
 (리뷰 받은대로 코드를 수정)
 git add .
-git cm -m "FIX - 리뷰 받은 내용 모두 수정"
+git cm -m "#FIX - day1 리뷰 받은 내용 모두 수정"
 ```
 
 그럼 이런 모양이 만들어 집니다.
 
 <div style="text-align: center;" >
-<img src="image/branch.03.jpg" width="360"/>
+<img src="image/branch.03.png" width="720"/>
 <br>
 <p>뭐야 무서워...뭔가 잘못된 것 같아요 선생님.. </p>
 </div>
 
-왠지 망한거 같다구요...? 그렇지 않습니다.
+왠지 망한거 같다구요...? 그렇지 않습니다. 대충 볼까봐 걱정되니까 두 번 말할게요.
+
 리뷰를 받았으면, <B>리뷰 받은 브랜치에서 코드를 수정하고 커밋하세요. 그리고 origin repo에 push 하세요.</B>
+
+리뷰를 받았으면, <B>리뷰 받은 브랜치에서 코드를 수정하고 커밋하세요. 그리고 origin repo에 push 하세요.</B>
+
+<div style="text-align: center;" >
+<img src="image/branch.03.01.png" width="720"/>
+<br>
+<p>day1와 day2 다른 길을 걷게 되었다.</p>
+</div>
+
+[PR #1의 review를 반영한 link 바로 가기](https://github.com/lokks307/training-newbie/pull/23/commits/66fae46c84290a9105746773d746fc8b31d37763)
+
+
 
 문제를 풀 때는 다시 feature/day2로 이동하세요. 마치 day1에 아무런 문제가 없는 것 처럼. 마치 day1과 처음부터 관련이 없는 것 처럼.
 
@@ -95,7 +114,7 @@ git co -b feature/day3
 
 그럼 이런 모양이 되었을 거예요.
 <div style="text-align: center;" >
-<img src="image/branch.04.jpg" width="360"/>
+<img src="image/branch.04.png" width="720"/>
 <br>
 <p> .. (속는셈 치고 따라하자) </p>
 </div>
@@ -110,59 +129,78 @@ git cm -m "#ADD - day3 [p031 ~ p045]"
 day3까지 커밋을 올리면 이런 모양이 됩니다.
 
 <div style="text-align: center;" >
-<img src="image/branch.05.jpg" width="360"/>
+<img src="image/branch.05.png" width="720"/>
 <br>
 <p> .. (day1이랑 너무 멀어진 것 같은 day3)</p>
 </div>
 
-dos가 `feature/day1` 의 수정사항을 모두 확인하고 upstream repository (github.com/lokks307/training-newbie) 의 main 브랜치에 코드를 반영해주었습니다! 
+(day3 PR은 올리지 않습니다. workspace에만 있습니다.)
+
+그리고 이때! 드디어 dos가 `feature/day1` 의 수정사항을 모두 확인하고 upstream repository (github.com/lokks307/training-newbie) 의 main 브랜치에 코드를 반영해주었습니다! 
+
+<div style="text-align: center;" >
+<img src="image/branch.05.01.png" width="720"/>
+<br>
+<p> 내용을 확인한 dos, upstream에서 PR을 받아들였다.</p>
+</div>
 
 ---
 
 그럼 이제 여러분이 fork한 `github repository`에서 upstream의 최신 사항을 반영할 차례입니다.
 
 <div style="text-align: center;" >
-<img src="image/branch.06.jpg" width="360"/>
+<img src="image/branch.06.png" width="720"/>
 <br>
 <p> upstream(github/lokks307/training-newbie) 브랜치가 바뀌자 나의 github에서 친절하게 알려준다. sync하자. </p>
 </div>
 
 day2, day3은 잊고 그냥 하세요. 괜찮습니다.
 
-그랬더니!
-진짜 망한 것 같은 모양이 나옵니다! 이런 건 본적이 없어서 가슴이 두근거리고 심박수가 올라갑니다.
-
-<div style="text-align: center;" >
-<img src="image/branch.07.jpg" width="360"/>
-<br>
-<p> .. 과거의 코드가 가장 최신 코드가 된 것 같다. 나의 day2, day3는 어떻게 되는가..</p>
-</div>
-
-눈물이 앞을 가립니다. '내가 몇시간을 쏟아부어서 문제를 풀었는데... ㅠㅠ' 라고 생각하실지도 모르겠네요.
-괜찮아요. 날라간건 아무것도 없습니다.
-
 이제 여러분의 컴퓨터, workspace로 이동하세요.
-
 이 명령어를 입력하세요
 
 ```
 git fetch origin --prune
-(대충 origin의 main 브랜치가 바뀌었다는 설명)
+(대충 origin의 main 브랜치가 변경되었다는 설명)
+git lg
+```
+
+그랬더니...!
+진짜 망한 것 같은 모양이 나옵니다!! 이런 건 본적이 없어서 가슴이 두근거리고 심박수가 올라갑니다.
+
+<div style="text-align: center;" >
+<img src="image/branch.07.png" width="720"/>
+<br>
+<p> .. 과거의 코드가 가장 최신 코드가 된 것 같다. 나의 day2, day3는 어떻게 되는가..</p>
+</div>
+
+눈물이 앞을 가립니다. '내가 몇시간을 쏟아 부어서 문제를 풀었는데... ㅠㅠ' 라고 생각하실지도 모르겠네요.
+괜찮아요. 날라간건 아무것도 없습니다.
+
+이제 이 내용을 day2, day3에 차근차근, 순서대로 적용할게요.
+
+```
 git co main
 git merge origin/main
-(대개 fast-forward 라고 나옴 - fast-forward가 뭘까요? ㅎㅎ)
+(대개 fast-forward 라고 나오죠? 그런데 fast-forward가 뭘까요? ㅎㅎ)
 ```
 
 <div style="text-align: center;" >
-<img src="image/branch.08.jpg" width="360"/>
+<img src="image/branch.08.png" width="720"/>
 <br>
-<p> workspace의 `main`에 `origin/main` 의 변경사항을 반영한다. </p>
+<p> workspace의 `main`에 `origin/main` 의 변경사항을 반영한다. 이 merge는 'fast-forward' 라고 안내 받았다. </p>
+</div>
+
+<div style="text-align: center;" >
+<img src="image/branch.08.01.png" width="720"/>
+<br>
+<p> 머지 직후의 git lg, 아까 본 그림이랑 비슷하다. 다만 origin/main과 나의 main이 같은 지점을 가리킨다. </p>
 </div>
 
 조금 길어졌지만 정신을 차려보세요.
-지금 여러분이 가진 main 브랜치는 day1의 첫 코드 + 리뷰 후 수정된 코드가 담겨 있습니다.
+지금 여러분이 가진 <B>main 브랜치에는 day1의 첫 코드 + 리뷰 후 수정된 코드가 담겨 있습니다.</B>
 
-day2는 이 내용을 가져오기만 하면 돼요.
+day2는 <B>이 변경사항을 가져오기만 하면 돼요.</B>
 
 ```
 git co feature/day2
@@ -171,15 +209,33 @@ git push origin feature/day2
 ```
 
 <div style="text-align: center;" >
-<img src="image/branch.09.jpg" width="360"/>
+<img src="image/branch.09.png" width="720"/>
 <br>
-<p> 시간 차이가 조금 있지만, day2 브랜치를 보니 day1의 모든 수정 내용이 반영되었다! main을 머지했기 때문이다. 이걸 push하자 내가 올린 PR에도 이 내용이 자연스럽게 반영되어있다. </p>
+<p> 시간 차이가 조금 있지만, day2 브랜치를 보니 day1의 모든 수정 내용이 반영되었다! main을 머지했기 때문이다. </p>
+</div>
+
+<div style="text-align: center;" >
+<img src="image/branch.09.00.png" width="720"/>
+<br>
+<p> 이걸 push 해보자.</p>
+</div>
+
+<div style="text-align: center;" >
+<img src="image/branch.09.01.png" width="720"/>
+<br>
+<p> 내가 등록한 PR에 이 내용이 자연스럽게 반영되어있다. PR2에서 day1 커밋의 흔적을 볼 수 없다. day2에 풀이한 코드만 남아있다. </p>
+</div>
+
+<div style="text-align: center;" >
+<img src="image/branch.09.02.png" width="720"/>
+<br>
+<p> day2에 main을 머지한 모습 </p>
 </div>
 
 어, 그런데 이번엔 day3이 어긋난 것처럼 보입니다.
 day3의 기준점은 day2였죠?
 
-그런데 방금 수행한 명령어로 인해 기준점인 day2가 바뀌었습니다.
+그런데 방금 수행한 명령어로 인해 <B>기준점인 day2가 바뀌었습니다.</B>
 그럼 이제 어떻게 하면 되나요?
 
 day3 브랜치로 이동 후, day2를 머지하면 됩니다.
@@ -190,10 +246,14 @@ git merge feature/day2
 ```
 
 <div style="text-align: center;" >
-<img src="image/branch.10.jpg" width="360"/>
+<img src="image/branch.10.png" width="720"/>
 <br>
-<p> day3는 day1+ 와 day2를 모두 담은, 가장 최신의 브랜치가 되었다. 이어서 문제를 풀면 된다. </p>
+<p> day1이 main에 머지된 후, 이 결과를 다시 day2에 머지하고, 또 day3까지 순서대로 머지했다. 결국 day3는 day1+day1수정과 day2를 모두 담은, 가장 최신의 브랜치가 되었다.</p>
 </div>
+
+(끝)
+
+---
 
 사실 이 과정은 여러분이 branch를 만들고 develop 브랜치를 최신화하는 것과 정확하게 똑같은 원리로 동작합니다.
 운이 조금 나쁘게 원리를 제대로 설명해주는 사람을 못 만났거나, 'develop 브랜치가 바뀌었으니 pull 해야지' 하고 원리도 모른채 `git pull`을 남용해서 생긴 지식의 공백입니다.
@@ -214,10 +274,11 @@ git은 제어 도구입니다. 관리 대상이 아닙니다.
 git은 연필처럼 쓰고 지우개처럼 지우고, 포스트잇처럼 이리 떼었다 저리 붙이는 버전 제어 도구입니다.
 git은 내가 사용할 도구입니다.
 
-DO NOT 시리즈
-git을 소중하게 관리하려고 들지 마세요.
-git 이력을 예쁘게 관리하려고 들지 마세요.
-git을 마치 정답이 있는 것처럼 사용하려고 하지 마세요.
+DO NOT 시리즈 몇개만 말씀드릴게요.
+
+- git을 소중하게 관리하려고 들지 마세요.
+- git 이력을 예쁘게 관리하려고 들지 마세요.
+- git을 마치 정답이 있는 것처럼 사용하려고 하지 마세요.
 
 git에 정답만 기록하려고 들면 그때부터 망가지기 시작합니다.
 
@@ -232,5 +293,3 @@ git은 과거 시점 어디로든 이동할 수 있게 도와주고, 과거와 �
 git 초보자 한정 
 - git pull 금지
 - GUI 사용 금지.
-
-더 자세한 내용은 입사 후 교육과정에서 배우시게 될 거예요.
