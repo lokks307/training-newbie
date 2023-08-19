@@ -29,3 +29,18 @@ function ex63(str_list) {
 function ex64(num_list, n) {
   return num_list.splice(0, n);
 }
+
+//n개 간격의 원소들
+/** 
+function ex65(num_list, n) {
+  const result = [];
+  for (let i = 0; i < num_list.length; i += n) {
+    result.push(num_list[i]);
+  }
+  return result;
+}
+*/
+// n개 간격은 n의 배수로 볼 수 있음
+function ex65(num_list, n) {
+  return num_list.filter((_, idx) => idx % n === 0);
+}
