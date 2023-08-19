@@ -142,3 +142,12 @@ function ex58(arr, intervals) {
   }
   return result;
 }
+
+//2의 영역
+function ex59(arr) {
+  const firstIndex = [...arr].indexOf(2);
+  const lastIndex = [...arr].lastIndexOf(2);
+
+  if (firstIndex === -1) return [-1];
+  return arr.splice(firstIndex, lastIndex - firstIndex + 1);
+}
