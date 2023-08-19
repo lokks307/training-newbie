@@ -60,3 +60,8 @@ function ex66(num_list) {
   if (odd >= even) return odd;
   return even;
 }
+
+//5명씩
+function ex67(names) {
+  return names.filter((_, idx) => idx % 5 === 0);
+}
