@@ -1387,3 +1387,104 @@ function ex75(myString, pat) {
 
   return myString.includes(pat) ? 1 : 0;
 }
+function ex76(myString) {
+  return myString.toUpperCase();
+}
+
+function ex77(myString) {
+  return myString.toLowerCase();
+}
+
+function ex78(strArr) {
+  var answer = strArr.map((str, idx) =>
+    idx % 2 === 0 ? str.toLowerCase() : str.toUpperCase(),
+  );
+  return answer;
+}
+
+function ex79(myString) {
+  let answer = [...myString.toLowerCase()]
+    .map((str) => (str === "a" ? str.toUpperCase() : str))
+    .join("");
+  return answer;
+}
+
+function ex80(my_string, alp) {
+  let answer = [...my_string]
+    .map((str) => (str === alp ? str.toUpperCase() : str))
+    .join("");
+  return answer;
+}
+
+function ex81(myString, pat) {
+  const lastIndex = myString.lastIndexOf(pat);
+  const strArr = [...myString];
+  strArr.splice(lastIndex, myString.length - lastIndex + 1, pat);
+
+  return strArr.join("");
+}
+
+function ex82(myString, pat) {
+  let count = 0;
+  const strLength = myString.length - pat.length;
+
+  for (let i = 0; i <= strLength; i++) {
+    if (myString.slice(i, pat.length + i) === pat) {
+      count++;
+    }
+  }
+
+  return count;
+}
+
+function ex83(strArr) {
+  var answer = strArr.filter((str) => str.indexOf("ad") === -1);
+  return answer;
+}
+
+function ex84(my_string) {
+  return my_string.split(" ");
+}
+
+function ex85(my_string) {
+  const stringArr = my_string.split(" ");
+
+  return stringArr.filter(Boolean);
+}
+
+function ex86(myString) {
+  const arr = myString.split("x");
+
+  var answer = arr.map((str, idx) => str.length);
+  return answer;
+}
+
+function ex87(myString) {
+  return myString.split("x").sort().filter(Boolean);
+}
+
+function ex88(binomial) {
+  function calculate(a, b, op) {
+    const operators = {
+      "+": a + b,
+      "-": a - b,
+      "*": a * b,
+    };
+    return operators[op];
+  }
+
+  const [a, op, b] = binomial.split(" ");
+  const answer = calculate(Number(a), Number(b), op);
+  return answer;
+}
+
+function ex89(myString, pat) {
+  const change = [...myString].map((str) => (str === "A" ? "B" : "A")).join("");
+  var answer = change.indexOf(pat);
+  return answer !== -1 ? 1 : 0;
+}
+
+function ex90(rny_string) {
+  var answer = rny_string.replaceAll("m", "rn");
+  return answer;
+}
