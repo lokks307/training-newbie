@@ -39,3 +39,11 @@ function ex49(my_string, m, c) {
 
   return result.join("");
 }
+
+//qr code
+function ex50(q, r, code) {
+  const codeArr = [...code];
+  const result = codeArr.filter((code, idx) => idx % q === r).join("");
+
+  return result;
+}
