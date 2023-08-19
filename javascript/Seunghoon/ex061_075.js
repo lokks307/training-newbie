@@ -44,3 +44,19 @@ function ex65(num_list, n) {
 function ex65(num_list, n) {
   return num_list.filter((_, idx) => idx % n === 0);
 }
+
+//홀수 vs 짝수
+function ex66(num_list) {
+  const odd = num_list.reduce((prev, curr, idx) => {
+    if (idx % 2 === 0) return prev + curr;
+    return prev;
+  }, 0);
+
+  const even = num_list.reduce((prev, curr, idx) => {
+    if (idx % 2 !== 0) return prev + curr;
+    return prev;
+  }, 0);
+
+  if (odd >= even) return odd;
+  return even;
+}
