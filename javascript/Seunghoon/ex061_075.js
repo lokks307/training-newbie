@@ -8,3 +8,19 @@ function ex62(num_list, n) {
   const toNumList = num_list.splice(n);
   return [...toNumList, ...num_list];
 }
+
+//왼쪽 오른쪽
+function ex63(str_list) {
+  const findLIndex = str_list.indexOf("l");
+  const findRIndex = str_list.indexOf("r");
+
+  if ((findLIndex >= 0 && findLIndex < findRIndex) || findRIndex === -1) {
+    return str_list.splice(0, findLIndex);
+  } else if (
+    (findRIndex >= 0 && findLIndex > findRIndex) ||
+    findLIndex === -1
+  ) {
+    return str_list.splice(findRIndex + 1);
+  }
+  return [];
+}
