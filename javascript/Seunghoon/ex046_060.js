@@ -47,3 +47,20 @@ function ex50(q, r, code) {
 
   return result;
 }
+
+//문자 개수 세기
+// 65 ~ 90 - A ~ Z, 97 ~ 122 - a ~ z
+function ex51(my_string) {
+  const result = new Array(52).fill(0);
+  const myStringArr = [...my_string];
+
+  myStringArr.map((myString) => {
+    const asciiNumber = myString.charCodeAt();
+    if (asciiNumber < 91) {
+      result[asciiNumber - 65] += 1;
+    } else {
+      result[asciiNumber - 97 + 26] += 1;
+    }
+  });
+  return result;
+}
