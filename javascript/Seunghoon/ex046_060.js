@@ -125,3 +125,8 @@ function ex56(n, slicer, num_list) {
   }
   return result;
 }
+
+//첫 번째로 나오는 음수
+function ex57(num_list) {
+  return num_list.findIndex((elem) => elem < 0);
+}
