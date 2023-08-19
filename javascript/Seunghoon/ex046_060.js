@@ -100,3 +100,28 @@ function ex54(start, end) {
 function ex55(arr, idx) {
   return arr.findIndex((elem, index) => index >= idx && elem === 1);
 }
+
+//리스트 자르기
+function ex56(n, slicer, num_list) {
+  const [a, b, c] = slicer;
+  let result = [];
+
+  switch (n) {
+    case 1:
+      result = num_list.splice(0, b + 1);
+      break;
+    case 2:
+      result = num_list.splice(a);
+      break;
+    case 3:
+      result = num_list.splice(a, b - a + 1);
+      break;
+    case 4:
+      const tempArr = num_list.splice(a, b - a + 1);
+      for (let i = 0; i < tempArr.length; i += c) {
+        result.push(tempArr[i]);
+      }
+      break;
+  }
+  return result;
+}
