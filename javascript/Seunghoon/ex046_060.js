@@ -130,3 +130,15 @@ function ex56(n, slicer, num_list) {
 function ex57(num_list) {
   return num_list.findIndex((elem) => elem < 0);
 }
+
+//배열 만들기 3
+function ex58(arr, intervals) {
+  let result = [];
+
+  for (const interval of intervals) {
+    const [a, b] = interval;
+    const tempArr = arr.slice(a, b + 1);
+    result = [...result, ...tempArr];
+  }
+  return result;
+}
