@@ -73,3 +73,16 @@ function ex52(n, k) {
   }
   return result;
 }
+
+//글자 지우기
+function ex53(my_string, indices) {
+  let result;
+  const myStringArr = [...my_string];
+
+  for (const idx of indices) {
+    myStringArr[idx] = 0;
+  }
+
+  result = myStringArr.filter((elem) => elem !== 0).join("");
+  return result;
+}
