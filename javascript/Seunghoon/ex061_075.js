@@ -97,3 +97,15 @@ function ex70(arr, queries) {
   }
   return arr;
 }
+
+//조건에 맞게 수열 변환하기 1
+function ex71(arr) {
+  return arr.map((elem) => {
+    if (elem >= 50 && elem % 2 === 0) {
+      return elem / 2;
+    } else if (elem < 50 && elem % 2 !== 0) {
+      return elem * 2;
+    }
+    return elem;
+  });
+}
