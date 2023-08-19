@@ -24,3 +24,8 @@ function ex63(str_list) {
   }
   return [];
 }
+
+//n 번째 원소까지
+function ex64(num_list, n) {
+  return num_list.splice(0, n);
+}
