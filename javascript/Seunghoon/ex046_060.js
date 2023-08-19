@@ -86,3 +86,12 @@ function ex53(my_string, indices) {
   result = myStringArr.filter((elem) => elem !== 0).join("");
   return result;
 }
+
+//카운트 다운
+function ex54(start, end) {
+  const result = [];
+  for (let i = start; i >= end; i--) {
+    result.push(i);
+  }
+  return result;
+}
