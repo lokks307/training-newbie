@@ -85,3 +85,15 @@ function ex69(numbers, n) {
     return acc;
   });
 }
+
+//수열과 구간 쿼리 1
+function ex70(arr, queries) {
+  for (const query of queries) {
+    const [start, end] = query;
+
+    for (let i = start; i <= end; i++) {
+      arr[i] += 1;
+    }
+  }
+  return arr;
+}
