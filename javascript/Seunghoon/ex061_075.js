@@ -70,3 +70,18 @@ function ex67(names) {
 function ex68(todo_list, finished) {
   return todo_list.filter((_, idx) => finished[idx] === false);
 }
+
+//n보다 커질 때까지 더하기
+function ex69(numbers, n) {
+  // let result = 0;
+  // for(let i = 0; i < numbers.length; i++){
+  //     if(result > n) return result
+  //     result += numbers[i]
+  // }
+  // return result
+
+  return numbers.reduce((acc, curr) => {
+    if (acc <= n) return acc + curr;
+    return acc;
+  });
+}
