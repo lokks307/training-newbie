@@ -151,3 +151,15 @@ function ex59(arr) {
   if (firstIndex === -1) return [-1];
   return arr.splice(firstIndex, lastIndex - firstIndex + 1);
 }
+
+//배열 조각하기
+function ex60(arr, query) {
+  query.map((_, index) => {
+    if (index % 2 === 0) {
+      arr.splice(query[index] + 1);
+    } else {
+      arr.splice(0, query[index]);
+    }
+  });
+  return arr;
+}
