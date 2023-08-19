@@ -1642,3 +1642,130 @@ function ex104(num_str) {
 function ex105(n_str) {
   return Number(n_str);
 }
+
+function ex106(n_str) {
+  let nStrToArr = [...n_str];
+
+  let index = 0;
+  while (index !== -1) {
+    if (nStrToArr[0] === "0") {
+      nStrToArr.splice(0, 1);
+      continue;
+    }
+    index = -1;
+  }
+
+  return nStrToArr.join("");
+}
+
+function ex107(a, b) {
+  const aBigint = BigInt(a);
+  const bBigint = BigInt(b);
+
+  const numerSum = aBigint + bBigint;
+  return String(numerSum);
+}
+
+function ex108(n) {
+  return String(n);
+}
+
+function ex109(arr, delete_list) {
+  const duplicationRemove = arr.filter((num) => !delete_list.includes(num));
+  return duplicationRemove;
+}
+
+function ex110(my_string, target) {
+  return my_string.includes(target) ? 1 : 0;
+}
+
+function ex111(str1, str2) {
+  return str2.includes(str1) ? 1 : 0;
+}
+
+function ex112(str_list, ex) {
+  const removeTailStr = str_list.filter((str) => !str.includes(ex));
+  return removeTailStr.join("");
+}
+
+function ex113(num_list, n) {
+  return num_list.indexOf(n) !== -1 ? 1 : 0;
+}
+
+function ex114(a, b) {
+  if (a % 2 === 1 && b % 2 === 1) {
+    return a ** 2 + b ** 2;
+  }
+
+  if (a % 2 === 0 && b % 2 === 0) {
+    return Math.abs(a - b);
+  }
+  return 2 * (a + b);
+}
+
+function ex115(date1, date2) {
+  const date1Sum = Number(date1.map(String).join(""));
+  const date2Sum = Number(date2.map(String).join(""));
+  return date1Sum < date2Sum ? 1 : 0;
+}
+
+function ex116(order) {
+  let sum = 0;
+  order.forEach((coffee) => {
+    if (coffee.includes("cafelatte")) {
+      return (sum += 5000);
+    }
+    return (sum += 4500);
+  });
+  return sum;
+}
+
+function ex117(picture, k) {
+  let RepeatArr = [];
+  for (const string of picture) {
+    const repeat = [...string].map((str) => str.repeat(k));
+
+    for (let i = 1; i <= k; i++) {
+      RepeatArr.push(repeat.join(""));
+    }
+  }
+
+  return RepeatArr;
+}
+
+function ex118(arr, k) {
+  const evenCondition = arr.map((num) => num + k);
+  const oddCondition = arr.map((num) => num * k);
+
+  return k % 2 === 0 ? evenCondition : oddCondition;
+}
+
+function ex119(myString) {
+  const charL = "l".charCodeAt();
+  let changeAsc = [];
+
+  for (const string of myString) {
+    const asciiCode = string.charCodeAt();
+    changeAsc.push(asciiCode);
+  }
+  const changeL = changeAsc.map((asc) => (asc < charL ? charL : asc));
+  const ascToString = changeL.map((asc) => String.fromCharCode(asc));
+
+  return ascToString.join("");
+}
+
+function ex120(n) {
+  var answer = [];
+  for (let i = 0; i < n; i++) {
+    const arr = [];
+    for (let j = 0; j < n; j++) {
+      if (i === j) {
+        arr.push(1);
+      } else {
+        arr.push(0);
+      }
+    }
+    answer.push(arr);
+  }
+  return answer;
+}
