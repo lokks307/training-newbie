@@ -65,3 +65,8 @@ function ex66(num_list) {
 function ex67(names) {
   return names.filter((_, idx) => idx % 5 === 0);
 }
+
+//할 일 목록
+function ex68(todo_list, finished) {
+  return todo_list.filter((_, idx) => finished[idx] === false);
+}
