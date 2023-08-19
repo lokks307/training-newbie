@@ -64,3 +64,12 @@ function ex51(my_string) {
   });
   return result;
 }
+
+//배열 만들기 1
+function ex52(n, k) {
+  const result = [];
+  for (let i = 1; i <= n; i++) {
+    if (i % k === 0) result.push(i);
+  }
+  return result;
+}
