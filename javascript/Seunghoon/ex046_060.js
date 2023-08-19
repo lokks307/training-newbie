@@ -95,3 +95,8 @@ function ex54(start, end) {
   }
   return result;
 }
+
+//가까운 1 찾기
+function ex55(arr, idx) {
+  return arr.findIndex((elem, index) => index >= idx && elem === 1);
+}
