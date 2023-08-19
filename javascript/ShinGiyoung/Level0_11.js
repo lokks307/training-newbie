@@ -1488,3 +1488,157 @@ function ex90(rny_string) {
   var answer = rny_string.replaceAll("m", "rn");
   return answer;
 }
+
+function ex91(myStr) {
+  var removeCondition = myStr.split(/[a-c]/);
+  const removeEmpty =
+    removeCondition.filter(Boolean).length === 0
+      ? ["EMPTY"]
+      : removeCondition.filter(Boolean);
+  return removeEmpty;
+}
+
+function ex92(arr) {
+  var answer = [];
+  for (const num of arr) {
+    for (let i = 0; i < num; i++) {
+      answer.push(num);
+    }
+  }
+  return answer;
+}
+
+function ex93(arr, flag) {
+  var answer = [];
+
+  for (let i = 0; i < flag.length; i++) {
+    if (flag[i]) {
+      answer.push(...String(arr[i]).repeat(arr[i] * 2));
+    } else {
+      answer.splice(-arr[i]);
+    }
+  }
+
+  return answer.map(Number);
+}
+
+function ex94(arr) {
+  let stk = [];
+  for (let i = 0; i < arr.length; i++) {
+    if (stk.at(-1) === arr[i]) {
+      stk.pop();
+      continue;
+    }
+
+    stk.push(arr[i]);
+  }
+  const isEmpty = stk.length === 0 ? [-1] : stk;
+  return isEmpty;
+}
+
+function ex95(arr, k) {
+  let removeDup = [...new Set(arr)];
+  removeDup.splice(k);
+
+  let newArray = removeDup.concat(new Array(k - removeDup.length).fill(-1));
+
+  let answer = removeDup.length < k ? newArray : removeDup;
+
+  return answer;
+}
+
+function ex96(arr) {
+  let exponent = 0;
+  let squareNum = 1;
+  while (exponent !== -1) {
+    if (arr.length > 2 ** exponent) {
+      exponent++;
+      continue;
+    }
+    squareNum = 2 ** exponent;
+    i = -1;
+  }
+
+  let newArray = arr.concat(new Array(squareNum - arr.length).fill(0));
+  return newArray;
+}
+
+function ex97(arr1, arr2) {
+  function Sum(arr) {
+    return arr.reduce(
+      (accumulator, currentValue) => accumulator + currentValue,
+      0,
+    );
+  }
+
+  if (arr1.length !== arr2.length) {
+    return arr1.length > arr2.length ? 1 : -1;
+  }
+
+  if (Sum(arr1) === Sum(arr2)) {
+    return 0;
+  }
+
+  return Sum(arr1) > Sum(arr2) ? 1 : -1;
+}
+
+function ex98(strArr) {
+  let lengthDuplicates = {};
+
+  for (const str of strArr) {
+    if (lengthDuplicates[str.length] === undefined)
+      lengthDuplicates[str.length] = 0;
+
+    lengthDuplicates[str.length] += 1;
+  }
+  const propertyValues = Object.values(lengthDuplicates);
+  return Math.max(...propertyValues);
+}
+
+function ex99(arr, n) {
+  if (arr.length % 2 === 0) {
+    return arr.map((num, idx) => (idx % 2 !== 0 ? num + n : num));
+  }
+
+  return arr.map((num, idx) => (idx % 2 === 0 ? num + n : num));
+}
+
+function ex100(num_list) {
+  const sortList = num_list.sort((a, b) => a - b);
+
+  return sortList.slice(0, 5);
+}
+
+function ex101(num_list) {
+  const sortList = num_list.sort((a, b) => a - b);
+
+  return sortList.slice(5);
+}
+
+function ex102(rank, attendance) {
+  let participant = rank.filter((num, idx) => attendance[idx]);
+  const [first, second, third] = participant.sort((a, b) => a - b);
+  let topRanking = [first, second, third];
+  let answer = [];
+  topRanking.forEach((ranking) => answer.push(rank.indexOf(ranking)));
+  const [a, b, c] = answer;
+  return 10000 * a + 100 * b + c;
+}
+
+function ex103(flo) {
+  return Math.floor(flo);
+}
+
+function ex104(num_str) {
+  const numList = [...num_str].map(Number);
+  const sum = numList.reduce(
+    (accumulator, currentValue) => accumulator + currentValue,
+    0,
+  );
+
+  return sum;
+}
+
+function ex105(n_str) {
+  return Number(n_str);
+}
