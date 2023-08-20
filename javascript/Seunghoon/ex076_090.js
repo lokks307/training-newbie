@@ -15,3 +15,15 @@ function ex78(strArr) {
     return str.toUpperCase();
   });
 }
+
+//A 강조하기
+function ex79(myString) {
+  let myStringArr = [...myString];
+  return myStringArr
+    .map((string, idx) => {
+      string = string.toLowerCase();
+      if (string === "a") return string.toUpperCase();
+      return string.toLowerCase();
+    })
+    .join("");
+}
