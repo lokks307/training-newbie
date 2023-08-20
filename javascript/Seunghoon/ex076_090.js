@@ -56,3 +56,8 @@ function ex82(myString, pat) {
 function ex83(strArr) {
   return strArr.filter((str) => !str.includes("ad"));
 }
+
+//공백으로 구분하기
+function ex84(my_string) {
+  return my_string.split(" ");
+}
