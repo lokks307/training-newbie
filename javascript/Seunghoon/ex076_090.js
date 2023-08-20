@@ -32,3 +32,9 @@ function ex79(myString) {
 function ex80(my_string, alp) {
   return my_string.replaceAll(alp, alp.toUpperCase());
 }
+
+//특정 문자열로 끝나는 가장 긴 부분 문자열 찾기
+function ex81(myString, pat) {
+  const lastIndex = myString.lastIndexOf(pat);
+  return myString.slice(0, lastIndex) + pat;
+}
