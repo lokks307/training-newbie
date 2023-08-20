@@ -163,3 +163,8 @@ function ex74(num_list) {
   }
   return num_list.reduce((prev, curr) => prev * curr);
 }
+
+//원하는 문자열 찾기
+function ex75(myString, pat) {
+  return myString.toUpperCase().includes(pat.toUpperCase()) ? 1 : 0;
+}
