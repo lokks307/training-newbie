@@ -42,3 +42,18 @@ function ex93(arr, flag) {
   });
   return result;
 }
+
+//배열 만들기 6
+function ex94(arr) {
+  let result = [];
+
+  arr.forEach((num, idx) => {
+    if (result[result.length - 1] === num) {
+      result.pop();
+    } else {
+      result.push(num);
+    }
+  });
+
+  return result.length === 0 ? [-1] : result;
+}
