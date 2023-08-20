@@ -109,3 +109,25 @@ function ex71(arr) {
     return elem;
   });
 }
+
+//조건에 맞게 수열 변환하기 2
+function transArr(arr) {
+  return arr.map((elem) => {
+    if (elem >= 50 && elem % 2 === 0) return elem / 2;
+    else if (elem < 50 && elem % 2 !== 0) return elem * 2 + 1;
+    return elem;
+  });
+}
+
+function ex72(arr) {
+  let count = 0;
+  let prevArr = [...arr];
+
+  while (true) {
+    let currentArr = transArr(prevArr);
+    let isSame = prevArr.every((num, idx) => num === currentArr[idx]);
+    if (isSame) return count;
+    count += 1;
+    prevArr = currentArr;
+  }
+}
