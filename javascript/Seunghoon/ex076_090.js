@@ -38,3 +38,16 @@ function ex81(myString, pat) {
   const lastIndex = myString.lastIndexOf(pat);
   return myString.slice(0, lastIndex) + pat;
 }
+
+//문자열이 몇 번 등장하는지 세기
+function ex82(myString, pat) {
+  let count = 0;
+  let findIndex = myString.indexOf(pat);
+
+  while (findIndex !== -1) {
+    count += 1;
+    findIndex = myString.indexOf(pat, findIndex + 1);
+  }
+
+  return count;
+}
