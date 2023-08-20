@@ -71,3 +71,11 @@ function ex85(my_string) {
 function ex86(myString) {
   return myString.split("x").map((str) => str.length);
 }
+
+//문자열 잘라서 정렬하기
+function ex87(myString) {
+  return myString
+    .split("x")
+    .sort()
+    .filter((str) => str !== "");
+}
