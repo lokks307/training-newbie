@@ -1769,3 +1769,190 @@ function ex120(n) {
   }
   return answer;
 }
+
+function ex121(n) {
+  const arr = new Array(n).fill(null).map(() => new Array(n).fill(0));
+  let num = 1;
+  let row = 0;
+  let col = 0;
+  let direction = "right";
+
+  while (num <= n * n) {
+    arr[row][col] = num;
+    num++;
+
+    if (direction === "right") {
+      if (col + 1 < n && arr[row][col + 1] === 0) {
+        col++;
+      } else {
+        direction = "down";
+        row++;
+      }
+    } else if (direction === "down") {
+      if (row + 1 < n && arr[row + 1][col] === 0) {
+        row++;
+      } else {
+        direction = "left";
+        col--;
+      }
+    } else if (direction === "left") {
+      if (col - 1 >= 0 && arr[row][col - 1] === 0) {
+        col--;
+      } else {
+        direction = "up";
+        row--;
+      }
+    } else if (direction === "up") {
+      if (row - 1 >= 0 && arr[row - 1][col] === 0) {
+        row--;
+      } else {
+        direction = "right";
+        col++;
+      }
+    }
+  }
+
+  return arr;
+  /* 양심삼 이 문제는 아무리 고민해도 어떻게 풀어야할지 모르겠어서 gpt에게 도움을 받았습니다.. */
+}
+
+function ex122(arr) {
+  const n = Math.sqrt(arr.length);
+  let row = 0;
+  let col = 0;
+  for (let i = 0; i < n; i++) {
+    row = i;
+    for (let j = i + 1; j < n; j++) {
+      col = j;
+      if (arr[row][col] !== arr[col][row]) return 0;
+    }
+  }
+  return 1;
+}
+
+function ex123(arr) {
+  const row = arr.length;
+  const col = arr[0].length;
+
+  function addRow(row, col) {
+    for (let i = 0; i < row; i++) {
+      for (let j = col; j < row; j++) {
+        arr[i][j] = 0;
+      }
+    }
+  }
+
+  function addCol(row, col) {
+    const limit = col - row;
+    const addArr = new Array(col).fill(0);
+    for (let i = 1; i <= limit; i++) {
+      arr.push(addArr);
+    }
+  }
+  row > col ? addRow(row, col) : addCol(row, col);
+
+  return arr;
+}
+
+function ex124(board, k) {
+  let indexCondition = board.map((row, rowIdx) =>
+    row.filter((val, colIdx) => rowIdx + colIdx <= k),
+  );
+  let sum = 0;
+  for (const row of indexCondition) {
+    for (const num of row) {
+      sum += num;
+    }
+  }
+
+  return sum;
+}
+
+function ex125(babbling) {
+  var answer = 0;
+  const regex = /^(aya|ye|woo|ma)+$/;
+
+  babbling.forEach((word) => {
+    if (regex.test(word)) answer++;
+  });
+
+  return answer;
+}
+
+function ex126(common) {
+  const arrLastIdx = common.length - 1;
+  const isArithmeticSequence = common[2] - common[1] === common[1] - common[0];
+  const commonDifference = isArithmeticSequence
+    ? common[2] - common[1]
+    : common[2] / common[1];
+  return isArithmeticSequence
+    ? common[arrLastIdx] + commonDifference
+    : common[arrLastIdx] * commonDifference;
+}
+
+function ex127(num, total) {
+  let sum = 0;
+  let n = 0;
+  for (let i = 1; i < num; i++) {
+    sum += i;
+  }
+  n = (total - sum) / num;
+  return Array.from({ length: num }, (_, i) => n + i);
+}
+
+function ex128(M, N) {
+  return M * N - 1;
+}
+
+function ex129(A, B) {
+  let arrA = [...A];
+
+  if (A === B) {
+    return 0;
+  }
+
+  for (let i = 1; i < A.length; i++) {
+    arrA.splice(0, 0, arrA[arrA.length - 1]);
+    arrA.pop();
+
+    if (arrA.join("") === B) {
+      return i;
+    }
+  }
+
+  return -1;
+}
+
+function ex130(my_str, n) {
+  let strToArr = [...my_str];
+  var answer = [];
+  for (let i = 0; i < my_str.length / n; i++) {
+    answer.push(strToArr.splice(0, n).join(""));
+  }
+
+  return answer;
+}
+
+function ex131(array) {
+  const result = array.join("").match(/7/g);
+
+  return result ? result.length : 0;
+}
+
+function ex132(my_string) {
+  let changeLower = [...my_string.toLowerCase()].sort();
+  return changeLower.join("");
+}
+
+function ex133(n, t) {
+  return n * 2 ** t;
+}
+
+function ex134(n) {
+  const squareRoot = Math.sqrt(n);
+  return squareRoot === Math.floor(squareRoot) ? 1 : 2;
+}
+
+function ex135(str1, str2) {
+  return str1.includes(str2) ? 1 : 2;
+}
