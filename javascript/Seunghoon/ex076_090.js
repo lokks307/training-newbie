@@ -66,3 +66,8 @@ function ex84(my_string) {
 function ex85(my_string) {
   return my_string.split(" ").filter((str) => str !== "");
 }
+
+//x 사이의 개수
+function ex86(myString) {
+  return myString.split("x").map((str) => str.length);
+}
