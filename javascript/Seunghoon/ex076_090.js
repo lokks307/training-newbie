@@ -79,3 +79,12 @@ function ex87(myString) {
     .sort()
     .filter((str) => str !== "");
 }
+
+//간단한 식 계산하기
+function ex88(binomial) {
+  const [a, op, b] = binomial.split(" ");
+
+  if (op === "+") return Number(a) + Number(b);
+  if (op === "-") return Number(a) - Number(b);
+  return Number(a) * Number(b);
+}
