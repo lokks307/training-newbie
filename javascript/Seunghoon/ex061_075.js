@@ -155,3 +155,11 @@ function ex73(num_list) {
   });
   return result;
 }
+
+//길이에 따른 연산
+function ex74(num_list) {
+  if (num_list.length > 10) {
+    return num_list.reduce((prev, curr) => prev + curr);
+  }
+  return num_list.reduce((prev, curr) => prev * curr);
+}
