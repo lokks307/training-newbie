@@ -131,3 +131,27 @@ function ex72(arr) {
     prevArr = currentArr;
   }
 }
+
+//1로 만들기
+function makeOne(num) {
+  let count = 0;
+  while (num > 1) {
+    if (num % 2 === 0) {
+      count += 1;
+      num = num / 2;
+    } else {
+      num = (num - 1) / 2;
+      count += 1;
+    }
+  }
+  return count;
+}
+
+function ex73(num_list) {
+  let result = 0;
+
+  num_list.forEach((num) => {
+    result += makeOne(num);
+  });
+  return result;
+}
