@@ -61,3 +61,8 @@ function ex83(strArr) {
 function ex84(my_string) {
   return my_string.split(" ");
 }
+
+//공백으로 구분하기 2
+function ex85(my_string) {
+  return my_string.split(" ").filter((str) => str !== "");
+}
