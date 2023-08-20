@@ -88,3 +88,14 @@ function ex88(binomial) {
   if (op === "-") return Number(a) - Number(b);
   return Number(a) * Number(b);
 }
+
+//문자열 바꿔서 찾기
+function ex89(myString, pat) {
+  const changeString = [...myString]
+    .map((str) => {
+      if (str === "A") return (str = "B");
+      return (str = "A");
+    })
+    .join("");
+  return changeString.includes(pat) ? 1 : 0;
+}
