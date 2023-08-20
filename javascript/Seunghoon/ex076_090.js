@@ -99,3 +99,13 @@ function ex89(myString, pat) {
     .join("");
   return changeString.includes(pat) ? 1 : 0;
 }
+
+//rny_string
+function ex90(rny_string) {
+  return [...rny_string]
+    .map((str) => {
+      if (str === "m") return (str = "rn");
+      return str;
+    })
+    .join("");
+}
