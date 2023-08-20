@@ -25,3 +25,20 @@ function ex92(arr) {
   }
   return result;
 }
+
+//빈 배열에 추가, 삭제하기
+function ex93(arr, flag) {
+  let result = [];
+  arr.map((num, idx) => {
+    if (flag[idx]) {
+      for (let i = 0; i < num * 2; i++) {
+        result.push(num);
+      }
+    } else {
+      for (let i = 0; i < num; i++) {
+        result.pop();
+      }
+    }
+  });
+  return result;
+}
