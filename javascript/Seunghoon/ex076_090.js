@@ -51,3 +51,8 @@ function ex82(myString, pat) {
 
   return count;
 }
+
+//ad 제거하기
+function ex83(strArr) {
+  return strArr.filter((str) => !str.includes("ad"));
+}
