@@ -162,3 +162,8 @@ function ex102(rank, attendance) {
 function ex103(flo) {
   return Math.floor(flo);
 }
+
+//문자열 정수의 합
+function ex104(num_str) {
+  return [...num_str].reduce((prev, curr) => Number(prev) + Number(curr));
+}
