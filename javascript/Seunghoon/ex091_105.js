@@ -139,3 +139,9 @@ function ex100(num_list) {
   let sortList = num_list.sort((a, b) => a - b);
   return sortList.slice(0, 5);
 }
+
+//뒤에서 5등 위로
+function ex101(num_list) {
+  const sortList = num_list.sort((a, b) => a - b);
+  return sortList.slice(5);
+}
