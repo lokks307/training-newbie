@@ -84,3 +84,24 @@ function ex115(date1, date2) {
   if (dateA < dateB) return 1;
   return 0;
 }
+
+//커피 심부름
+function checkPrice(order) {
+  //아메 4,500원 라테 5,000원 아무거나 4,500원
+  const price = {
+    americano: 4500,
+    latte: 5000,
+    anything: 4500,
+  };
+  const priceKeys = Object.keys(price);
+  for (key of priceKeys) {
+    if (order.includes(key)) {
+      return price[key];
+    }
+  }
+}
+
+function ex116(order) {
+  const changePrice = order.map((item) => checkPrice(item));
+  return changePrice.reduce((prev, curr) => prev + curr);
+}
