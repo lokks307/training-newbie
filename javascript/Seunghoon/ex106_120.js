@@ -138,3 +138,13 @@ function ex118(arr, k) {
   }
   return arr.map((num) => num * k);
 }
+
+//l로 만들기
+function ex119(myString) {
+  const result = [...myString].map((str) => {
+    if (str.charCodeAt() < "l".charCodeAt()) return "l";
+    return str;
+  });
+
+  return result.join("");
+}
