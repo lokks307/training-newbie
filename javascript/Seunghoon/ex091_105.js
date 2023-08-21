@@ -57,3 +57,17 @@ function ex94(arr) {
 
   return result.length === 0 ? [-1] : result;
 }
+
+//무작위로 K개의 수 뽑기
+function ex95(arr, k) {
+  let result = [];
+  let deduplicationArr = [...new Set(arr)];
+  for (let i = 0; i < k; i++) {
+    if (deduplicationArr[i] === undefined) {
+      result.push(-1);
+    } else {
+      result.push(deduplicationArr[i]);
+    }
+  }
+  return result;
+}
