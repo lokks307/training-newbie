@@ -84,3 +84,22 @@ function ex96(arr) {
   }
   return arr;
 }
+
+//배열 비교하기
+function compareAB(a, b) {
+  if (a > b) {
+    return 1;
+  } else if (a < b) {
+    return -1;
+  }
+  return 0;
+}
+
+function ex97(arr1, arr2) {
+  if (arr1.length === arr2.length) {
+    const sumArr1 = arr1.reduce((prev, curr) => prev + curr);
+    const sumArr2 = arr2.reduce((prev, curr) => prev + curr);
+    return compareAB(sumArr1, sumArr2);
+  }
+  return compareAB(arr1.length, arr2.length);
+}
