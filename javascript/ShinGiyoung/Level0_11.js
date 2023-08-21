@@ -1956,3 +1956,217 @@ function ex134(n) {
 function ex135(str1, str2) {
   return str1.includes(str2) ? 1 : 2;
 }
+
+function ex136(quiz) {
+  let answer = [];
+  let cal;
+
+  const operator = {
+    "-": (a, b) => a - b,
+    "+": (a, b) => a + b,
+  };
+
+  for (const num of quiz) {
+    let x = Number(num.split(" ")[0]);
+    let y = Number(num.split(" ")[2]);
+    let z = Number(num.split(" ")[4]);
+    cal = operator[num.split(" ")[1]](x, y);
+    answer.push(cal === z ? "O" : "X");
+  }
+
+  return answer;
+}
+
+function ex137(n) {
+  let arrayN = [...String(n)];
+  let sum = arrayN.reduce((acc, value) => acc + Number(value), 0);
+
+  return sum;
+}
+
+function ex138(n, numlist) {
+  return numlist.filter((num) => num % n === 0);
+}
+
+function ex139(num, k) {
+  const isIndex = String(num).indexOf(k);
+  return isIndex > -1 ? isIndex + 1 : isIndex;
+}
+
+function ex140(s1, s2) {
+  const duplicateValue = s1.filter((it) => s2.includes(it));
+  return duplicateValue.length;
+}
+
+function ex141(my_string) {
+  const calculator = {
+    "+": (a, b) => a + b,
+    "-": (a, b) => a - b,
+  };
+
+  const emptyRemove = my_string.split(" ");
+  let x = Number(emptyRemove[0]);
+
+  for (let i = 1; i < emptyRemove.length; i += 2) {
+    const operator = emptyRemove[i];
+    const y = Number(emptyRemove[i + 1]);
+    x = calculator[operator](x, y);
+  }
+
+  return x;
+}
+
+function ex142(array) {
+  const maxNum = Math.max(...array);
+  return [maxNum, array.indexOf(maxNum)];
+}
+
+function ex143(message) {
+  return 2 * message.length;
+}
+
+function ex144(n) {
+  var answer = [];
+
+  for (let i = 1; i <= n; i++) {
+    n % i === 0 && answer.push(i);
+  }
+  return answer;
+}
+
+function ex145(s) {
+  let answer = [];
+  let alphabetCount = {};
+  let stringToArr = [...s];
+  for (const str of stringToArr) {
+    if (alphabetCount[str] === undefined) {
+      alphabetCount[str] = 0;
+    }
+    alphabetCount[str]++;
+  }
+
+  for (const alp in alphabetCount) {
+    alphabetCount[alp] === 1 && answer.push(alp);
+  }
+
+  return answer.sort().join("");
+}
+
+function ex146(my_string, num1, num2) {
+  const stringToArr = [...my_string];
+  [stringToArr[num1], stringToArr[num2]] = [
+    stringToArr[num2],
+    stringToArr[num1],
+  ];
+  return stringToArr.join("");
+}
+
+function ex147(numbers) {
+  let alpArray = [...numbers];
+  let word = "";
+  let answer = "";
+  const wordToNumber = {
+    zero: "0",
+    one: "1",
+    two: "2",
+    three: "3",
+    four: "4",
+    five: "5",
+    six: "6",
+    seven: "7",
+    eight: "8",
+    nine: "9",
+  };
+
+  alpArray.forEach((alp) => {
+    word += alp;
+    if (wordToNumber[word]) {
+      answer += wordToNumber[word];
+      word = "";
+    }
+  });
+  return Number(answer);
+}
+
+function ex148(my_string) {
+  let stringToArray = [...my_string];
+  const changeChar = stringToArray.map((str) =>
+    str === str.toLowerCase() ? str.toUpperCase() : str.toLowerCase(),
+  );
+
+  return changeChar.join("");
+}
+
+function ex149(cipher, code) {
+  let stringToArr = [...cipher];
+  const password = stringToArr.filter((str, idx) => {
+    if ((idx + 1) % code === 0) return str;
+  });
+
+  return password.join("");
+}
+
+function ex150(order) {
+  let count = 0;
+  for (const num of String(order)) {
+    /3|6|9/g.test(num) && count++;
+  }
+  return count;
+}
+
+function ex151(array, n) {
+  array.push(n);
+  array.sort((a, b) => a - b);
+  let nIndex = array.indexOf(n);
+  let nNextValue = array[nIndex + 1];
+  let nPrevValue = array[nIndex - 1];
+
+  if (nNextValue === undefined) return nPrevValue;
+
+  if (nPrevValue === undefined) return nNextValue;
+
+  return n - nPrevValue > nNextValue - n ? nNextValue : nPrevValue;
+}
+
+function ex152(sides) {
+  sides.sort((a, b) => a - b);
+  const [a, b, c] = sides;
+  return a + b > c ? 1 : 2;
+}
+
+function ex153(my_string) {
+  let removeDuplication = new Set([...my_string]);
+  return [...removeDuplication].join("");
+}
+
+function ex154(i, j, k) {
+  let count = 0;
+
+  for (let startNum = i; startNum <= j; startNum++) {
+    for (const str of String(startNum)) {
+      if (Number(str) === k) {
+        count++;
+      }
+    }
+  }
+  return count;
+}
+
+function ex155(before, after) {
+  let beforeToArray = [...before].sort((a, b) => a.localeCompare(b));
+  let afterToArray = [...after].sort((a, b) => a.localeCompare(b));
+  if (beforeToArray.join("") === afterToArray.join("")) return 1;
+
+  return 0;
+}
+
+function ex156(bin1, bin2) {
+  const int1 = parseInt(bin1, 2);
+  const int2 = parseInt(bin2, 2);
+
+  const sum = int1 + int2;
+
+  const sumInBinary = sum.toString(2); // 10진수 합을 다시 이진수 문자열로 변환
+
+  return sumInBinary;
+}
