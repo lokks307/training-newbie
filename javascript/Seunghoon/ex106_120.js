@@ -70,3 +70,17 @@ function oneOdd(a, b) {
 function allOdd(a, b) {
   return a ** 2 + b ** 2;
 }
+
+//날짜 비교하기
+function getDate(date) {
+  const [year, month, day] = date;
+  return new Date(`${year}-${month}-${day}`);
+}
+
+function ex115(date1, date2) {
+  const dateA = getDate(date1);
+  const dateB = getDate(date2);
+
+  if (dateA < dateB) return 1;
+  return 0;
+}
