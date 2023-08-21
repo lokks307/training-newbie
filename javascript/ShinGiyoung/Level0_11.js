@@ -1488,16 +1488,27 @@ function ex90(rny_string) {
   var answer = rny_string.replaceAll("m", "rn");
   return answer;
 }
-
+//.1
 function ex91(myStr) {
   var removeCondition = myStr.split(/[a-c]/);
+  //a,b,c 알파벳기준으로 문자열 자르고 배열로 리턴
   const removeEmpty =
     removeCondition.filter(Boolean).length === 0
       ? ["EMPTY"]
       : removeCondition.filter(Boolean);
   return removeEmpty;
+  /*removeCondition 배열의 길이가 0 이라면  ["EMPTY"] 할당 아니라면 빈값을 제외한 배열 할당*/
 }
-
+//2.
+function ex91Edit(str) {
+  const result = str.split(/[a-c]/).filter(Boolean);
+  return result.length === 0 ? ["EMPTY"] : result;
+  /* a,b,c 알파벳기준으로 문자열 자른 배열생성 후 빈값  제외한 배열 재리턴
+    result의 길이가 0 이라면  ["EMPTY"] 리턴 아니면 result 값리턴
+    //1. 과 같이 removeCondition.filter 를 두번 쓴다면 한번에 적용하는 방향으로 코드 짜기.
+  */
+}
+//1.
 function ex92(arr) {
   var answer = [];
   for (const num of arr) {
@@ -1505,7 +1516,23 @@ function ex92(arr) {
       answer.push(num);
     }
   }
+  /* for of 문 사용해서 arr 각 요소가져오기
+    요소 num 만큼 반복하고 asnwer 배열에 추가하고 값 리턴
+  */
   return answer;
+}
+//2.
+function ex92Edit(inputArray) {
+  const answer = inputArray.flatMap((num) =>
+    Array.from({ length: num }, () => num),
+  );
+  return answer;
+  /* flatMap은 map과 동일하지만  둘을 하나의 메소드로 병합가능
+    flatMap 으로 각 요소가져와서 길이가 각 요소만큼인 Array 생성 후 
+    병합함 
+    예를들어 inputArray 가 [3,5] 이라면 Array.from({ length: num }, () => num) 
+    [3,3,3] , [5,5,5,5,5] 인 배열이 만들어지고 병합되어 [3,3,3,5,5,5,5,5] 인배열 생성
+   */
 }
 
 function ex93(arr, flag) {
@@ -1521,7 +1548,7 @@ function ex93(arr, flag) {
 
   return answer.map(Number);
 }
-
+//1.
 function ex94(arr) {
   let stk = [];
   for (let i = 0; i < arr.length; i++) {
@@ -1534,8 +1561,32 @@ function ex94(arr) {
   }
   const isEmpty = stk.length === 0 ? [-1] : stk;
   return isEmpty;
+  /* arr길이만큼 반복하고, stk 배열의 마지막 요소가 arr[i]와 같다면 stk.pop()으로 마지막
+    요소룰 제거하고 그 다음 로직을 건너뛴다.  stk 배열의 마지막 요소가 arr[i]와 같지 않다면 
+    stk 배열뒤에 arr[i]를 추가한다.
+    stk 길이가 0이라면 [-1]을 리턴하고 아니라면 stk을 리턴한다 */
 }
+//2.
+function ex94Edit(arr) {
+  const stack = [];
 
+  for (let i = 0; i < arr.length; i++) {
+    if (stack.at(-1) === arr[i]) {
+      stack.pop();
+    } else {
+      stack.push(arr[i]);
+    }
+  }
+
+  return stack.length === 0 ? [-1] : stack;
+  /* arr길이만큼 반복하고, stack 배열의 마지막 요소가 arr[i]와 같다면 stack.pop()으로 마지막
+    요소룰 제거하고 아니라면  stack 배열뒤에 arr[i]를 추가한다.
+    앞 //1. 에서는 continue를 썼지만 여기서는 else문을 쓰는게 맞다 . 너무 if else 을 안쓰려고 하는게 아닌
+    적절하게 if else 문을 쓰는게 중요하다.  
+    stack 길이가 0이라면 [-1]을 리턴하고 아니라면 stack 리턴한다 
+    변수명이 어떤것을 명확하게 의미하지 못한다면 차라리 풀네임으로 쓰는게 낫다 .*/
+}
+//.1
 function ex95(arr, k) {
   let removeDup = [...new Set(arr)];
   removeDup.splice(k);
@@ -1545,8 +1596,35 @@ function ex95(arr, k) {
   let answer = removeDup.length < k ? newArray : removeDup;
 
   return answer;
-}
+  /* arr안 중복값을 제거하고 배열로 만든후 removeDup할당
+    splice로 인덱스 0 번부터 k -1 인덱스까지 자르고 removeDup 리턴한다 (원본 배열을 바꿈)
+    new Array(k - removeDup.length).fill(-1) 길이가 k-removeDup.length 인 배열을 만들고 -1로 채운다.
+   그 후 removeDup 배열과 -1로 채워진 배열을 합치고  newArray에 할당한다 
+   removeDup 배열의 길이가 k 보다 작다면 newArray 크거나 같다면 removeDup 을 리턴한다.
 
+  */
+}
+//2
+function ex95Edit(arr, k) {
+  const uniqueArray = [...new Set(arr)];
+  const selectedArray = uniqueArray.slice(0, k);
+  const newArray = selectedArray.concat(
+    new Array(k - selectedArray.length).fill(-1),
+  );
+
+  return newArray;
+  /* arr안 중복값을 제거하고 배열로 만든후 uniqueArray 할당
+    slice 인덱스 0 번부터 k -1 인덱스까지 자르고 selectedArray 할당 (원본 배열을 바꾸지 않아서 다른 변수에할당필수)
+    selectedArray와 길이가 k-selectedArray.length이고 -1 채워진 배열을 합친 후 newArray 할당 후 리턴
+   
+    //1.과 다르게 splice보다 slice 썼다 splice를 꼭 써야하는 이유가 없다면 slice쓰는게 더 직관적이다,
+    또 어차피 removeDup.length < k ? newArray : removeDup; 쓸 이유가 없다 만약에 k길이가 더 컷다면 이미
+    newArray는 -1 들어가 배열이 반환되고 k 길이가 selectedArray의 길이와같거나  작았다면  new Array길이가 0 이거나 
+    없기 떄문이다.
+
+  */
+}
+//.1
 function ex96(arr) {
   let exponent = 0;
   let squareNum = 1;
@@ -1556,14 +1634,43 @@ function ex96(arr) {
       continue;
     }
     squareNum = 2 ** exponent;
-    i = -1;
+    exponent = -1;
   }
 
   let newArray = arr.concat(new Array(squareNum - arr.length).fill(0));
   return newArray;
+  /*exponent이 -1 이 아닐떄 계속 무한 반복한다 . 
+    arr 길이가 2의 exponent 제곱보다 크다면 exponent에 1 을더해주고 다음 로직은 continue 건너뛴다.
+     arr 길이가 2의 exponent 제곱보다 작거나 같다면 squareNum 에 2 의  exponent제곱을 할당하고 exponent에 -1을
+     할당해 반복문을 멈춘다.  arr와 길이가 squareNum - arr.length고 0으로 채워진 배열을 합치고 리턴한다.
+  */
+}
+//.2
+function ex96Edit(arr) {
+  let exponent = 0;
+  let targetLength = 1;
+
+  while (exponent >= 0) {
+    if (arr.length <= targetLength) {
+      break;
+    }
+    targetLength = 2 ** exponent;
+    exponent++;
+  }
+
+  const newArray = arr.concat(new Array(targetLength - arr.length).fill(0));
+  return newArray;
+  /* exponent가 0보다 같거나 크다면 무한 반복한다. 
+    arr 길이가 targetLength보다 같거나 작다면 while문을 종료하고, 아니라면targetLength = 2 ** exponent을 할당후
+    exponent + 1을 해준다.
+
+    //1.과 다르게 while문을 쓸떄 break문을 썼는데 while문을 쓸떄는 꼭 break 필수..다..
+
+  */
 }
 
 function ex97(arr1, arr2) {
+  //1.
   function Sum(arr) {
     return arr.reduce(
       (accumulator, currentValue) => accumulator + currentValue,
@@ -1580,11 +1687,23 @@ function ex97(arr1, arr2) {
   }
 
   return Sum(arr1) > Sum(arr2) ? 1 : -1;
+  /* reduce를 사용해서 배열의 총 합을 구하는 sum 함수를 만들고 
+    arr1길이와 arr2 길이가 다를떄 arr1길이가 arr2 길이보다 크다면 1리턴 아니라면 -1 리턴한다.
+    만약 두개의 배열의 길이가 같다면 Sum()함수로 각 총합을 구한뒤 같다면 0 리턴 arr1 총합이 크다면 1 리턴 아니라면 -1 리턴한다
+  */
+  //2.
+  const sum1 = sum(arr1);
+  const sum2 = sum(arr2);
+  // 1. 과 다르게 같은 값을 쓴다면 함수 호출후 할당하는게 낫다 값이 계속 같은 함수를 계속 호출하는건 좋지않음 .
+  // 또 함수 처음 시작할떄는 대문자가 아니라 소문자로 시작해야함
 }
 
 function ex98(strArr) {
+  //1.
   let lengthDuplicates = {};
-
+  //2.
+  let lengthFrequency = {};
+  // 적절한 변수명 쓰기..
   for (const str of strArr) {
     if (lengthDuplicates[str.length] === undefined)
       lengthDuplicates[str.length] = 0;
@@ -1593,6 +1712,13 @@ function ex98(strArr) {
   }
   const propertyValues = Object.values(lengthDuplicates);
   return Math.max(...propertyValues);
+  /* for of 문으로 strArr의 각 요소를 가져와 lengthDuplicates[str.length] 가 undefined라면
+     lengthDuplicates[str.length] = 0으로 설정후 +1 해주기 만약에 lengthDuplicates[str.length]값이 존재한다면
+     그냥 +1 해주기 
+     Object.values()로 lengthDuplicates의 속성의 값들로 이루어진 배열을 만들고 전개연산자로 각 요소를 나열하고,
+     Math.max 로 최댓값을 구한뒤 리턴한다.
+     
+     */
 }
 
 function ex99(arr, n) {
@@ -1614,7 +1740,7 @@ function ex101(num_list) {
 
   return sortList.slice(5);
 }
-
+//.1
 function ex102(rank, attendance) {
   let participant = rank.filter((num, idx) => attendance[idx]);
   const [first, second, third] = participant.sort((a, b) => a - b);
@@ -1623,6 +1749,29 @@ function ex102(rank, attendance) {
   topRanking.forEach((ranking) => answer.push(rank.indexOf(ranking)));
   const [a, b, c] = answer;
   return 10000 * a + 100 * b + c;
+  /* rank배열에 filter 를 사용하여  attendance[idx]값이 true 일떄 num값 리턴 후 participant만들기
+    participant 을 오름차순으로 sorting 하고 index 0 , 1, 2 번의 요소가져오기 각 [first, second, third]
+    first, second, third을 배열 topRanking 에 만들고 forEach문으로 배열의 길이만큼 반복한다
+    길이만큼 반복하면서 요소를 가져온뒤 기존에 있던 rank배열에 indexOf 로 가져온 요소의 인덱스를 구해 answer배열에 추가한다
+    추가한 인덱스 a,b,c 로 가져와   return 10000 * a + 100 * b + c 연산 후 리턴.
+  */
+}
+//2.
+function ex102Edit(rank, attendance) {
+  const participant = rank.filter((num, idx) => attendance[idx]);
+  const [first, second, third] = participant.sort((a, b) => a - b);
+  const topRanking = [first, second, third];
+  const answer = [];
+  topRanking.forEach((ranking) => answer.push(rank.indexOf(ranking)));
+  const [a, b, c] = answer;
+  //1.과 설명이 같음
+  const FIRST = 10000;
+  const SECOND = 100;
+  return FIRST * a + SECOND * b + c;
+  // 1.과 다른 부분은 각 넘버가 무엇을 의미하는지 변수로 지정 (최대한 어떤걸 의미하는지 알수있게 변수명을 지정해 할당하는게 좋음)
+  // 의미전달이 안된다면 주석을 다는것도 방법
+  // 참여자는 100명 미만이고, 1,2,3등을 순서대로 뽑기 위해 아래의 규칙을 정의함
+  // procotol : 1등: 만번대, 2등: 백번대, 3: 그대로
 }
 
 function ex103(flo) {
