@@ -2170,3 +2170,69 @@ function ex156(bin1, bin2) {
 
   return sumInBinary;
 }
+
+function ex157(chicken) {
+  let serviceChicken = 0;
+  for (let coupon = 1; coupon <= chicken; coupon++) {
+    if (coupon % 10 === 0) {
+      chicken++;
+      serviceChicken++;
+    }
+  }
+
+  return serviceChicken;
+}
+
+function ex158(userInfo, db) {
+  var idPasswordInfo = {};
+  const [userId, userPassword] = userInfo;
+
+  for (const data of db) {
+    const [dataId, dataPassword] = data;
+    idPasswordInfo[dataId] = dataPassword;
+  }
+
+  if (idPasswordInfo[userId] === undefined) {
+    return "fail";
+  }
+
+  if (idPasswordInfo[userId] !== userPassword) {
+    return "wrong pw";
+  }
+
+  return "login";
+}
+
+function ex159(score) {
+  const averages = score.map(
+    ([mathScore, enScore]) => (mathScore + enScore) / 2,
+  );
+  const comparisonScore = [...averages];
+
+  const ranking = averages.map((value) => {
+    let rank = 1;
+
+    for (const comparisonVal of comparisonScore) {
+      if (value < comparisonVal) {
+        rank++;
+      }
+    }
+    return rank;
+  });
+
+  return ranking;
+}
+
+function ex160(numlist, n) {
+  numlist.sort((a, b) => {
+    const distanceA = Math.abs(a - n);
+    const distanceB = Math.abs(b - n);
+    if (distanceA === distanceB) {
+      return b - a;
+    }
+
+    return distanceA - distanceB;
+  });
+
+  return numlist;
+}
