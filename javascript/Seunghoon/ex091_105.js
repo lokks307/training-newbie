@@ -103,3 +103,19 @@ function ex97(arr1, arr2) {
   }
   return compareAB(arr1.length, arr2.length);
 }
+
+//문자열 묶기
+function ex98(strArr) {
+  const strLengthArr = strArr.map((str) => str.length);
+  const lengthObj = {};
+
+  strLengthArr.forEach((num) => {
+    if (lengthObj[num] === undefined) {
+      lengthObj[num] = 0;
+    }
+    lengthObj[num] += 1;
+  });
+
+  const values = Object.values(lengthObj);
+  return Math.max(...values);
+}
