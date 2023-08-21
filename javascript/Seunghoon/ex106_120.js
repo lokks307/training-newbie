@@ -105,3 +105,28 @@ function ex116(order) {
   const changePrice = order.map((item) => checkPrice(item));
   return changePrice.reduce((prev, curr) => prev + curr);
 }
+
+//그림 확대
+//더 깔끔한 코드가 있을 것 같은데..
+function ex117(picture, k) {
+  let temp = [];
+  const arr = [];
+  const result = [];
+
+  for (const pic of picture) {
+    const spreadPicture = [...pic];
+    for (const spreadPic of spreadPicture) {
+      temp.push(spreadPic.repeat(k));
+    }
+    arr.push(temp.join(""));
+    temp = [];
+  }
+
+  arr.map((item) => {
+    for (let i = 0; i < k; i++) {
+      result.push(item);
+    }
+  });
+
+  return result;
+}
