@@ -71,3 +71,16 @@ function ex95(arr, k) {
   }
   return result;
 }
+
+//배열의 길이를 2의 거듭제곱으로 만들기
+function ex96(arr) {
+  let logNumber = Math.log2(arr.length);
+  if (Number.isInteger(logNumber)) {
+    return arr;
+  }
+  let zeroCount = Math.pow(2, Math.ceil(logNumber)) - arr.length;
+  for (let i = 0; i < zeroCount; i++) {
+    arr.push(0);
+  }
+  return arr;
+}
