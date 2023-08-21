@@ -119,3 +119,17 @@ function ex98(strArr) {
   const values = Object.values(lengthObj);
   return Math.max(...values);
 }
+
+//배열의 길이에 따라 다른 연산하기
+function ex99(arr, n) {
+  if (arr.length % 2 === 0) {
+    return arr.map((num, idx) => {
+      if (idx % 2 !== 0) return num + n;
+      return num;
+    });
+  }
+  return arr.map((num, idx) => {
+    if (idx % 2 === 0) return num + n;
+    return num;
+  });
+}
