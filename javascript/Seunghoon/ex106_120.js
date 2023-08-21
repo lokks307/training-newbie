@@ -17,3 +17,8 @@ function ex108(n) {
 function ex109(arr, delete_list) {
   return arr.filter((num) => delete_list.includes(num) === false);
 }
+
+//부분 문자열인지 확인하기
+function ex110(my_string, target) {
+  return my_string.includes(target) ? 1 : 0;
+}
