@@ -148,3 +148,17 @@ function ex119(myString) {
 
   return result.join("");
 }
+
+//특별한 이차원 배열 1
+function ex120(n) {
+  const arr = [];
+  for (let i = 0; i < n; i++) {
+    arr.push(new Array(n).fill(0));
+  }
+
+  arr.map((elem, idx) => {
+    elem[idx] = 1;
+  });
+
+  return arr;
+}
