@@ -22,3 +22,8 @@ function ex109(arr, delete_list) {
 function ex110(my_string, target) {
   return my_string.includes(target) ? 1 : 0;
 }
+
+//부분 문자열
+function ex111(str1, str2) {
+  return str2.includes(str1) ? 1 : 0;
+}
