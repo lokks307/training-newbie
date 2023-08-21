@@ -7,3 +7,8 @@ function ex106(n_str) {
 function ex107(a, b) {
   return String(BigInt(a) + BigInt(b));
 }
+
+//문자열로 변환
+function ex108(n) {
+  return String(n);
+}
