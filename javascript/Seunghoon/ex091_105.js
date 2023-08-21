@@ -157,3 +157,8 @@ function ex102(rank, attendance) {
 
   return 10000 * result[0] + 100 * result[1] + result[2];
 }
+
+//정수 부분
+function ex103(flo) {
+  return Math.floor(flo);
+}
