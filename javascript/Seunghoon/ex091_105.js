@@ -145,3 +145,15 @@ function ex101(num_list) {
   const sortList = num_list.sort((a, b) => a - b);
   return sortList.slice(5);
 }
+
+//전국 대회 선발 고사
+function ex102(rank, attendance) {
+  const result = [];
+  for (let i = 1; i <= rank.length; i++) {
+    if (attendance[rank.indexOf(i)] === true) {
+      result.push(rank.indexOf(i));
+    }
+  }
+
+  return 10000 * result[0] + 100 * result[1] + result[2];
+}
