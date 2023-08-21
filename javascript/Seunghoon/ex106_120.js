@@ -12,3 +12,8 @@ function ex107(a, b) {
 function ex108(n) {
   return String(n);
 }
+
+//배열의 원소 삭제하기
+function ex109(arr, delete_list) {
+  return arr.filter((num) => delete_list.includes(num) === false);
+}
