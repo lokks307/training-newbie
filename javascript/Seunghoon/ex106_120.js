@@ -27,3 +27,8 @@ function ex110(my_string, target) {
 function ex111(str1, str2) {
   return str2.includes(str1) ? 1 : 0;
 }
+
+//꼬리 문자열
+function ex112(str_list, ex) {
+  return str_list.filter((str) => str.includes(ex) === false).join("");
+}
