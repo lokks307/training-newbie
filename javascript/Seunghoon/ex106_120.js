@@ -32,3 +32,8 @@ function ex111(str1, str2) {
 function ex112(str_list, ex) {
   return str_list.filter((str) => str.includes(ex) === false).join("");
 }
+
+//정수 찾기
+function ex113(num_list, n) {
+  return num_list.includes(n) ? 1 : 0;
+}
