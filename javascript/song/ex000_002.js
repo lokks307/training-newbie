@@ -803,7 +803,6 @@ function ex102GetDiscount(price) {
   if (price >= 100000) {
     return Discount5;
   }
-
   return price;
 }
 
