@@ -37,3 +37,36 @@ function ex112(str_list, ex) {
 function ex113(num_list, n) {
   return num_list.includes(n) ? 1 : 0;
 }
+
+//주사위 게임 1
+function isOdd(num) {
+  if (num % 2 === 0) return 0;
+  return 1;
+}
+
+function ex114(a, b) {
+  const checkA = isOdd(a);
+  const checkB = isOdd(b);
+  const oddSum = checkA + checkB;
+
+  switch (oddSum) {
+    case 0:
+      return noOdd(a, b);
+    case 1:
+      return oneOdd(a, b);
+    case 2:
+      return allOdd(a, b);
+  }
+}
+
+function noOdd(a, b) {
+  return Math.abs(a - b);
+}
+
+function oneOdd(a, b) {
+  return 2 * (a + b);
+}
+
+function allOdd(a, b) {
+  return a ** 2 + b ** 2;
+}
