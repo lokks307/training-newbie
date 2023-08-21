@@ -133,3 +133,9 @@ function ex99(arr, n) {
     return num;
   });
 }
+
+//뒤에서 5등까지
+function ex100(num_list) {
+  let sortList = num_list.sort((a, b) => a - b);
+  return sortList.slice(0, 5);
+}
