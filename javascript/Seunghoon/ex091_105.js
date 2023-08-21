@@ -167,3 +167,8 @@ function ex103(flo) {
 function ex104(num_str) {
   return [...num_str].reduce((prev, curr) => Number(prev) + Number(curr));
 }
+
+//문자열을 정수로 변환하기
+function ex105(n_str) {
+  return Number(n_str);
+}
