@@ -189,3 +189,223 @@ function ex58BuildArray(arr, intervals) {
 }
 
 //
+
+// 2의 영역
+
+function ex59AreaOfTwo(arr) {
+  const indices = arr.reduce((acc, cur, idx) => {
+    if (cur === 2) {
+      acc.push(idx);
+    }
+    return acc;
+  }, []);
+  const slicedArr = arr.slice(indices[0], indices[indices.length - 1] + 1);
+  if (slicedArr.length === 0) return [-1];
+  return slicedArr;
+}
+
+//
+
+// 배열 조각하기
+
+function ex60SliceArray(arr, query) {
+  let answer = arr;
+  for (let i = 0; i < query.length; i++) {
+    if (i % 2 === 0) answer = answer.slice(0, query[i] + 1);
+    else answer = answer.slice(query[i]);
+  }
+  return answer;
+}
+
+//
+
+// n 번째 원소부터
+
+function ex61FromNthElement(num_list, n) {
+  return num_list.slice(n - 1);
+}
+
+//
+
+// 순서 바꾸기
+
+function ex62SwapOrder(num_list, n) {
+  return num_list.slice(n).concat(num_list.slice(0, n));
+}
+
+//
+
+// 왼쪽 오른쪽
+
+function ex63LeftRight(str_list) {
+  const idx = str_list.findIndex((el) => el === "l" || el === "r");
+
+  if (idx === -1) {
+    return [];
+  } else if (str_list[idx] === "l") {
+    return str_list.slice(0, idx);
+  } else {
+    return str_list.slice(idx + 1);
+  }
+}
+
+//
+
+// n 번째 원소까지
+
+function ex64ToNthElement(num_list, n) {
+  return num_list.slice(0, n);
+}
+
+//
+
+// n개 간격의 원소들
+
+function ex65FilteredLIst(num_list, n) {
+  return num_list.filter((_, i) => i % n === 0);
+}
+
+//
+
+// 홀수 vs 짝수
+
+function ex66OddVersusEven(num_list) {
+  const oddSum = num_list
+    .filter((_, i) => i % 2 !== 0)
+    .reduce((acc, cur) => acc + cur, 0);
+  const evenSum = num_list
+    .filter((_, i) => i % 2 === 0)
+    .reduce((acc, cur) => acc + cur, 0);
+
+  if (oddSum >= evenSum) return oddSum;
+  return evenSum;
+}
+
+//
+
+// 5명씩
+
+function ex67FilterFirst(names) {
+  return names.filter((_, i) => i % 5 === 0);
+}
+
+//
+
+// 할 일 목록
+
+function ex68ToDoList(todo_list, finished) {
+  return todo_list.filter((_, i) => finished[i] === false);
+}
+
+//
+
+// n보다 커질 때까지 더하기
+
+function ex69AddUntilLarger(numbers, n) {
+  let sum = 0;
+
+  for (let i = 0; i < numbers.length; i++) {
+    sum += numbers[i];
+    if (sum > n) break;
+  }
+
+  return sum;
+}
+
+//
+
+// 수열과 구간 쿼리 1
+
+function ex70SeqAndQuery(arr, queries) {
+  for (const [s, e] of queries) {
+    for (let i = s; i <= e; i++) {
+      arr[i] += 1;
+    }
+  }
+  return arr;
+}
+
+//
+
+// 조건에 맞게 수열 변환하기 1
+
+function ex71ConvertSeq(arr) {
+  return arr.map((el) => {
+    if (el >= 50 && el % 2 === 0) {
+      return el / 2;
+    } else if (el < 50 && el % 2 !== 0) {
+      return el * 2;
+    }
+    return el;
+  });
+}
+
+//
+
+// 조건에 맞게 수열 변환하기 2
+
+function ex72ConvertSeq(arr) {
+  let count = 0;
+
+  while (
+    !arr.every((el) => (el > 50 && el % 2 !== 0) || (el < 50 && el % 2 === 0))
+  ) {
+    arr = arr.map((el) => {
+      if (el >= 50 && el % 2 === 0) {
+        return el / 2;
+      } else if (el < 50 && el % 2 !== 0) {
+        return el * 2 + 1;
+      }
+      return el;
+    });
+    count++;
+  }
+  return count;
+}
+
+//
+
+// 1로 만들기
+
+function ex73CountForOne(num_list) {
+  let count = 0;
+
+  for (el of num_list) {
+    while (el !== 1) {
+      if (el % 2 === 0) {
+        el /= 2;
+      } else {
+        el -= 1;
+        el /= 2;
+      }
+      count++;
+    }
+  }
+  return count;
+}
+
+//
+
+// 길이에 따른 연산
+
+function ex74ReduceArr(num_list) {
+  let sum = 0;
+  if (num_list.length >= 11) {
+    sum = num_list.reduce((acc, cur) => acc + cur, 0);
+  } else {
+    sum = num_list.reduce((acc, cur) => acc * cur, 1);
+  }
+
+  return sum;
+}
+
+//
+
+// 원하는 문자열 찾기
+
+function ex75FindString(myString, pat) {
+  if (myString.toUpperCase().includes(pat.toUpperCase())) return 1;
+  return 0;
+}
+
+//
