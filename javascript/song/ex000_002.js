@@ -409,3 +409,292 @@ function ex75FindString(myString, pat) {
 }
 
 //
+
+// 대문자로 바꾸기
+
+function ex76ReplaceWithCap(myString) {
+  return myString.toUpperCase();
+}
+
+//
+
+// 소문자로 바꾸기
+
+function ex77ReplaceWithLow(myString) {
+  return myString.toLowerCase();
+}
+
+//
+
+// 배열에서 대소문자 변환하기
+
+function ex78ConvertAlp(strArr) {
+  return strArr.map((el, i) => {
+    if (i % 2 === 0) {
+      return el.toLowerCase();
+    } else {
+      return el.toUpperCase();
+    }
+  });
+}
+
+//
+
+// 두 수의 곱
+
+function ex79Multiply(num1, num2) {
+  return num1 * num2;
+}
+
+//
+
+// 숫자 비교하기
+
+function ex80CompareNum(num1, num2) {
+  if (num1 === num2) return 1;
+  return -1;
+}
+
+//
+
+// 몫 구하기
+
+function ex81GetQuotient(num1, num2) {
+  return Math.floor(num1 / num2);
+}
+
+//
+
+// 두 수의 차
+
+function ex82GetDifference(num1, num2) {
+  return num1 - num2;
+}
+
+//
+
+// 나머지 구하기
+
+function ex83GetRemainder(num1, num2) {
+  return num1 % num2;
+}
+
+//
+
+// 나이 출력
+
+function exGetYear(age) {
+  return 2022 - age + 1;
+}
+
+//
+
+// 두 수의 합
+
+function ex85GetSum(num1, num2) {
+  return num1 + num2;
+}
+
+//
+
+// 두 수의 나눗셈
+
+function ex86Division(num1, num2) {
+  return Math.floor((num1 / num2) * 1000);
+}
+
+//
+
+// 각도기
+
+function ex87Angle(angle) {
+  if (angle < 90) {
+    return 1;
+  } else if (angle === 90) {
+    return 2;
+  } else if (angle < 180) {
+    return 3;
+  } else {
+    return 4;
+  }
+}
+
+//
+
+// 짝수의 합
+
+function ex88SumOfEvenNums(n) {
+  let sum = 0;
+  for (let i = 0; i <= n; i += 2) {
+    sum += i;
+  }
+  return sum;
+}
+
+//
+
+// 배열의 평균값
+
+function ex89GetAverage(numbers) {
+  let sum = numbers.reduce((acc, cur) => acc + cur, 0);
+  return sum / numbers.length;
+}
+
+//
+
+// 양꼬치
+
+function ex90GetTotalPrice(n, k) {
+  return n * 12000 + k * 2000 - Math.floor(n / 10) * 2000;
+}
+
+//
+
+// 편지
+
+function ex91GetLength(message) {
+  return 2 * message.length;
+}
+
+//
+
+// 피자 나눠 먹기 (1)
+
+function ex92SharePizza(n) {
+  let quotient = Math.floor(n / 7);
+  if (n % 7 >= 1) return quotient + 1;
+  return quotient;
+}
+
+//
+
+// 배열 자르기
+
+function ex93SliceArray(numbers, num1, num2) {
+  return numbers.slice(num1, num2 + 1);
+}
+
+//
+
+// 배열 뒤집기
+
+function ex94ReverseArray(num_list) {
+  return num_list.reverse();
+}
+
+//
+
+// 최댓값 만들기 (1)
+
+function ex95GetMaxNum(numbers) {
+  let sortedArr = numbers.sort((a, b) => b - a);
+  return sortedArr[0] * sortedArr[1];
+}
+
+//
+
+// 순서쌍의 개수
+
+function ex96CountDivisor(n) {
+  let count = 0;
+  for (let i = 1; i <= n; i++) {
+    if (n % i === 0) {
+      count++;
+    }
+  }
+  return count;
+}
+
+//
+
+// 삼각형의 완성조건 (1)
+
+function ex97IsTriangle(sides) {
+  let sortedArr = sides.sort();
+  let MaxLength = sortedArr[2];
+  let MinLength = sortedArr[0];
+
+  if (MaxLength < MinLength + sortedArr[1]) return 1;
+  return 2;
+}
+
+//
+
+// 문자열 뒤집기
+
+function ex98ReverseString(my_string) {
+  return [...my_string].reverse().join("");
+}
+
+//
+
+// 피자 나눠 먹기 (3)
+
+function ex99SharePizza(slice, n) {
+  return Math.ceil(n / slice);
+}
+
+//
+
+// 배열 두 배 만들기
+
+function ex100MultiplyByTwo(numbers) {
+  return numbers.map((el) => el * 2);
+}
+
+//
+
+// 배열 원소의 길이
+
+function ex101GetLengthOfElement(strlist) {
+  return strlist.map((el) => el.length);
+}
+
+//
+
+// 옷가게 할인 받기
+
+function ex101GetDiscount(price) {
+  if (price >= 500000) {
+    return Math.floor(price * 0.8);
+  } else if (price >= 300000) {
+    return Math.floor(price * 0.9);
+  } else if (price >= 100000) {
+    return Math.floor(price * 0.95);
+  } else {
+    return price;
+  }
+}
+
+//
+
+// 가까운 수
+
+function ex102GetCloseNum(array, n) {
+  array.sort((a, b) => a - b);
+  console.log(array);
+
+  let difArr = [];
+
+  for (let i = 0; i < array.length; i++) {
+    difArr.push(Math.abs(n - array[i]));
+  }
+  let min = Math.min(...difArr);
+  let minIdx = difArr.indexOf(min);
+  return array[minIdx];
+}
+
+//
+
+// 2차원으로 만들기
+
+function ex103BuildDimensionArray(num_list, n) {
+  let answer = [];
+
+  for (let i = 0; i < num_list.length / n; i++) {
+    answer.push(num_list.slice(i * n, i * n + n));
+  }
+  return answer;
+}
+
+//
