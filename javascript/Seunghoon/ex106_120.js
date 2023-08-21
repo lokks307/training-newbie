@@ -130,3 +130,11 @@ function ex117(picture, k) {
 
   return result;
 }
+
+//조건에 맞게 수열 변환하기 3
+function ex118(arr, k) {
+  if (k % 2 === 0) {
+    return arr.map((num) => num + k);
+  }
+  return arr.map((num) => num * k);
+}
