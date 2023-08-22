@@ -1642,45 +1642,101 @@ function ex104(num_str) {
 function ex105(n_str) {
   return Number(n_str);
 }
-
+//1.
 function ex106(n_str) {
   let nStrToArr = [...n_str];
-
+  //파라미터 n_str 을 전개연산자를 사용하여 array로 만들기
   let index = 0;
   while (index !== -1) {
+    //index가 -1 이 아닐때 무한반복
     if (nStrToArr[0] === "0") {
+      //배열 nStrToArr 첫번째 요소가 '0' 이라면
       nStrToArr.splice(0, 1);
+      // 배열 nStrToArr 의 0 번째 인덱스에서 1개 만큼 자르고 원본 배열에 적용한다
       continue;
+      // 다음 로직은 건너뛴다.
     }
     index = -1;
   }
 
   return nStrToArr.join("");
+  //join('')으로 배열을 string 만든다 예 ['1','2'].join('') = '12'
 }
+//2.
+function ex106Edit(n_str) {
+  const arr = [...n_str];
+  //파라미터 n_str 을 전개연산자를 사용하여 array로 만들기
+  //arr은 arr이지 strToArr 이라고 이름 지을 이유가 없음. 내가 다루려는 정보가 어디 출신인지 기억할 필요가 없기떄문에 현재 type 으로 변수정하기.
+  while (arr[0] === "0") {
+    // arr.[0] 가 0 일때만 로직을 수행하기 때문에 조건 arr[0] === "0"만 반복한다로 설정
+    arr.splice(0, 1);
+    // 배열 arr 의 0 번째 인덱스에서 1개 만큼 자르고 원본 배열에 적용한다
+  }
 
+  return arr.join("");
+  //join('')으로 배열을 string 만든다 예 ['1','2'].join('') = '12'
+}
+//1.
 function ex107(a, b) {
-  const aBigint = BigInt(a);
-  const bBigint = BigInt(b);
+  const aBigint = BigInt(a); //문자열 a 를 BigInt로 만들기
+  const bBigint = BigInt(b); //문자열 b 를 BigInt로 만들기
 
   const numerSum = aBigint + bBigint;
+  // 빅인트 a 와 빅인트 b 값을 더한후 numerSum 넣기
   return String(numerSum);
+  // numerSum -> string 타입으로 변견 후 리턴
+}
+//2.
+function ex107Edit(strA, strB) {
+  // 매개변수 a,b를 어던 type인지 바로 알수있게 명확한 명으로 매개변수 지정
+  const a = BigInt(strA);
+  const b = BigInt(strB);
+  const sum = a + b;
+  return String(sum);
 }
 
 function ex108(n) {
   return String(n);
 }
-
+//.1
 function ex109(arr, delete_list) {
   const duplicationRemove = arr.filter((num) => !delete_list.includes(num));
+  //arr 각 요소를 반복하면서 각 요소를 나타내는 numdl delete_list안에 있지 않다면 num 값을 반환한다. 즉, arr 각 요소값이 delete_list에 없는 것들만 반환한다
   return duplicationRemove;
 }
+//2.
+function ex109Edit(arr, delete_list) {
+  const deleteList = new Set(delete_list);
+  //has() 사용하기 위해서 Set 생성하기.
+  //1.과 달리 includes 쓰지않고 has 쓴이유는 has가 더 빠르기 떄문이다.
+  const others = arr.filter((num) => !deleteList.has(num));
+  // arr각 요소들은 반복하면서 set.has()를 사용하여 deleteList안에 num값이 있는지 확인한다 있다면 true 없다면 false를 반환하고
+  //앞에 ! 부정이 붙어있기떄문에 false 일때(deleteList 안에 num 값이 없을때) 리턴하여 새로운 배열을 만든다 .
+  return others;
+}
 
-function ex110(my_string, target) {
-  return my_string.includes(target) ? 1 : 0;
+function isInclude(list, n) {
+  return list.includes(n) ? 1 : 0;
+  //파라미터 list안에 파라미터 n 값이 있다면 1 리턴 없다면 0 리턴
+}
+
+function ex110(myString, target) {
+  //1.
+  return myString.includes(target) ? 1 : 0;
+  //includes를 사용하여 my_string 안에 target 값이 있는지 확인하고 있다면 1 리턴 없다면 0리턴
+
+  //2.
+  isInclude(myString, target);
+  //isInclude 함수에 myString, target 를 아규먼트로 넘겨주기
 }
 
 function ex111(str1, str2) {
+  //.1
   return str2.includes(str1) ? 1 : 0;
+  //includes를 사용하여 str2 안에 str1 값이 있는지 확인하고 있다면 1 리턴 없다면 0리턴
+  //2.
+  isInclude(str2, str1);
+  //isInclude 함수에 str2, str1 를 아규먼트로 넘겨주기
 }
 
 function ex112(str_list, ex) {
@@ -1690,6 +1746,10 @@ function ex112(str_list, ex) {
 
 function ex113(num_list, n) {
   return num_list.indexOf(n) !== -1 ? 1 : 0;
+  //indexOf 사용하여 num_list 안에 n 값이 있는지 확인하고 있다면 1 리턴 없다면 0리턴
+  //2.
+  isInclude(num_list, n);
+  //isInclude 함수에 num_list, n 를 아규먼트로 넘겨주기
 }
 
 function ex114(a, b) {
@@ -1712,32 +1772,92 @@ function ex115(date1, date2) {
 function ex116(order) {
   let sum = 0;
   order.forEach((coffee) => {
+    //order의 각 요소를 반복하며
     if (coffee.includes("cafelatte")) {
-      return (sum += 5000);
+      //각 요소 coffee가 'cafelatte' 이 포함되어 있다면
+      return (sum += 5000); // sum에 5000 더해주기
     }
-    return (sum += 4500);
+    return (sum += 4500); // 포함되어있지 않다면 sum에 4500 더해주기
+  });
+  return sum;
+
+  //2.
+  const cafelattePrice = 5000;
+  const americanoPrice = 4500;
+  // 매직넘버에 이름지어주기..
+  let sum = 0;
+  order.forEach((coffee) => {
+    //order의 각 요소를 반복하며
+    if (coffee.includes("cafelatte")) {
+      //각 요소 coffee가 'cafelatte' 이 포함되어 있다면
+      return (sum += cafelattePrice); // sum에 cafelattePrice 더해주기
+    }
+    return (sum += americanoPrice); // 포함되어있지 않다면 sum에 americanoPrice 더해주기
   });
   return sum;
 }
-
+//1.
 function ex117(picture, k) {
   let RepeatArr = [];
   for (const string of picture) {
+    //picture의 각 요소 string 가져오기
     const repeat = [...string].map((str) => str.repeat(k));
-
+    //전개연산자로 string을 배열로 만들고 map 을 이용하여 배열 string의 각 요소 str을 repeat로 k번 반복한뒤 repeat에 반환한다
     for (let i = 1; i <= k; i++) {
+      //repeat를 join 하여 하나의 문자열로 만든뒤 k 번 반복해서 RepeatArr에 넣어준다.
       RepeatArr.push(repeat.join(""));
     }
   }
 
   return RepeatArr;
 }
+//2
+function ex117Edit(picture, k) {
+  const arrays = picture.map((string) => {
+    //picture 배열을 map을 이용하여 각 요소를 반복하고, 새로운 배열을 만든다.
+    // picture 배열의 각 요소 string 을 배열로 만들고, map 사용하여 각 요소를 반복한다.
+    // 각 요소 ch를 repeat를 사용하여 k 번 반복하고 repeatedString에 반환한다음 join('')으로 문자열로 만든다.
+    // 길이가 k 이인 array 를 생성한 뒤 fill로 repeatedString로 길이만큼 채운다.
+    //결국 arrays는 예를 들어 [['3333','2222']] 와 같은 이차원배열이 되고,
+    const repeatedString = [...string].map((ch) => ch.repeat(k)).join("");
+    return Array(k).fill(repeatedString);
+  });
 
+  return arrays.flat();
+  // 2차원배열을 .flat() 메서드로 모든 하위 배열 요소를 지정한 깊이까지 재귀적으로 이어붙인 새로운 배열을 생성한다.
+  //예를 들어 arrays [1,2,[4,5,[3]]].flat() 이라면 default 값이 1 이기때문에 [1,2,4,5,[3]] 이렇게 생성되고
+  // arrays [1,2,[4,5,[3]]].flat(2) 이라면 [1,2,4,5,3] 이렇게 생성된다.
+
+  /* flat()라면   const arrays = picture.flatMap()  을 사용해도 된다*/
+}
+//1.
 function ex118(arr, k) {
   const evenCondition = arr.map((num) => num + k);
+  // map 메서드롤 사용하여 arr의 각 요소 num 을 가져오고 num에 k를 더한다음 배열에 담아 evenCondition할당한다
   const oddCondition = arr.map((num) => num * k);
+  // map 메서드롤 사용하여 arr의 각 요소 num 을 가져오고 num에 k를 곱한다음 배열에 담아 oddCondition
 
   return k % 2 === 0 ? evenCondition : oddCondition;
+  //k를 2로 나누었을때 나머지가 0이라면 (짝수) evenCondition을 아니라면 oddCondition값을 리턴한다
+}
+//2.
+function ex118Edit(arr, k) {
+  function transform(num, k) {
+    return k % 2 === 0 ? num + k : num * k;
+  }
+  //차이점을 함수로 만들기 더 간단하진다.
+  // 파라미터로 num k를 받고, k를 2로 나누었을때 나머지가 0이라면 (짝수) num + k 를 반환 아니라면 num * k;반환
+  const transformedArray = arr.map((num) => transform(num, k));
+  // map 메서드롤 사용하여 arr의 각 요소 num 을 가져오고 transform 함수에  num,k를 아규먼트로 넘겨준다. 그 후 리턴된 값을 계산 후 배열에 담은 후 transformedArray 할당한다
+  return transformedArray;
+}
+//3. 주의해야 할점
+function ex118Caution(arr, k) {
+  const transformedArray = arr.map((num) => {
+    return k % 2 === 0 ? num + k : num * k;
+  });
+  //맵 안에서 연산을 하는 버릇은 좋지 않음 로직이 바뀌게 되면 수정하기 어렵기 떄문이다.
+  return transformedArray;
 }
 
 function ex119(myString) {
