@@ -68,28 +68,53 @@ function extractCharacters(str, interval, offset) {
 function ex50QrCode(q, r, code) {
   let arr = [...code];
 
-  const filteredArr = arr.filter((_, i) => i % q === r);
-  return filteredArr.join("");
+  const filteredCharacters = arr.filter((_, i) => i % q === r);
+  return filteredCharacters.join("");
 }
 
 //
 
 // 문자 개수 세기
 
-function ex51CountCharacter(my_string) {
-  let arr = new Array(52).fill(0);
+// function ex51CountCharacter(my_string) {
+//   let arr = new Array(52).fill(0);
 
+//   let strArr = [...my_string];
+
+//   strArr.map((el, i) => {
+//     const charcode = my_string.charCodeAt(i);
+
+//     if (charcode >= 65 && charcode <= 90) {
+//       arr[charcode - 65] += 1; // charcode가 대문자일 때
+//     } else if (charcode >= 97 && charcode <= 122) {
+//       arr[charcode - 97 + 26] += 1;
+//     }
+//   });
+//   return arr;
+// }
+
+// 하드코딩된 숫자들을 상수로 지정하기
+
+function ex51CountCharacter(my_string) {
+  const char_A = 65;
+  const char_Z = 90;
+  const char_a = 97;
+  const char_z = 122;
+  const _atoz_ = 26;
+
+  let arr = new Array(_atoz_ * 2).fill(0);
   let strArr = [...my_string];
 
   strArr.map((el, i) => {
     const charcode = my_string.charCodeAt(i);
 
-    if (charcode >= 65 && charcode <= 90) {
-      arr[charcode - 65] += 1; // charcode가 대문자일 때
-    } else if (charcode >= 97 && charcode <= 122) {
-      arr[charcode - 97 + 26] += 1;
+    if (charcode >= char_A && charcode <= char_Z) {
+      arr[charcode - char_A] += 1;
+    } else if (charcode >= char_a && charcode <= char_z) {
+      arr[charcode - char_a + _atoz_] += 1;
     }
   });
+
   return arr;
 }
 
@@ -135,12 +160,20 @@ function ex54CountDown(start, end) {
 
 // 가까운 1 찾기
 
+// function solution(arr, idx) {
+//   let answer;
+//   answer = arr.findIndex((el, i) => el === 1 && i >= idx);
+
+//   return answer;
+// }
+
 function ex55FindIndex(arr, idx) {
-  let answer;
-  for (item of arr) {
-    answer = arr.findIndex((el, i) => el === 1 && i >= idx);
+  for (let i = idx; i < arr.length; i++) {
+    if (arr[i] === 1) {
+      return i;
+    }
   }
-  return answer;
+  return -1;
 }
 
 //
@@ -199,22 +232,54 @@ function ex59AreaOfTwo(arr) {
     }
     return acc;
   }, []);
+  if (indices.length === 0) return [-1];
   const slicedArr = arr.slice(indices[0], indices[indices.length - 1] + 1);
-  if (slicedArr.length === 0) return [-1];
   return slicedArr;
 }
 
+function ex59BoundaryOf2(arr) {
+  var answer = [];
+  const idxList = getAllIndexes(arr, 2);
+  const len = idxList.length;
+  switch (len) {
+    case 0:
+      return [-1];
+    case 1:
+      return [2];
+    case 2:
+    default: // 앞에 정의한 case 이외의 경우일 때
+      var last = idxList[len - 1] + 1;
+      var start = idxList[0];
+      return arr.slice(start, last);
+  }
+}
+
+function getAllIndexes(arr, val) {
+  var indexes = [],
+    i;
+  for (i = 0; i < arr.length; i++) if (arr[i] === val) indexes.push(i);
+  return indexes;
+}
 //
 
 // 배열 조각하기
 
+// function ex60SliceArray(arr, query) {
+//   let answer = arr;
+//   for (let i = 0; i < query.length; i++) {
+//     if (i % 2 === 0) answer = answer.slice(0, query[i] + 1);
+//     else answer = answer.slice(query[i]);
+//   }
+//   return answer;
+// }
+
 function ex60SliceArray(arr, query) {
-  let answer = arr;
   for (let i = 0; i < query.length; i++) {
-    if (i % 2 === 0) answer = answer.slice(0, query[i] + 1);
-    else answer = answer.slice(query[i]);
+    const start = i % 2 === 0 ? 0 : query[i]; // start index
+    const end = i % 2 === 0 ? query[i] + 1 : undefined; // end index
+    arr = arr.slice(start, end);
   }
-  return answer;
+  return arr;
 }
 
 //
@@ -229,24 +294,42 @@ function ex61FromNthElement(num_list, n) {
 
 // 순서 바꾸기
 
+// function ex62SwapOrder(num_list, n) {
+//   return num_list.slice(n).concat(num_list.slice(0, n));
+// }
+
 function ex62SwapOrder(num_list, n) {
-  return num_list.slice(n).concat(num_list.slice(0, n));
+  const part1 = num_list.slice(n);
+  const part2 = num_list.slice(0, n);
+  return [...part1, ...part2];
 }
 
 //
 
 // 왼쪽 오른쪽
 
-function ex63LeftRight(str_list) {
-  const idx = str_list.findIndex((el) => el === "l" || el === "r");
+// function ex63LeftRight(str_list) {
+//   const idx = str_list.findIndex((el) => el === "l" || el === "r");
 
+//   if (idx === -1) {
+//     return [];
+//   } else if (str_list[idx] === "l") {
+//     return str_list.slice(0, idx);
+//   } else {
+//     return str_list.slice(idx + 1);
+//   }
+// }
+
+function ex63LeftRight(str_list) {
+  const idx = str_list.findIndex((el) => el === "l" || el === "r"); // str_list에서 "l"이거나 "r"인 원소의 index를 구한다
   if (idx === -1) {
+    // "l" 과 "r" 이 다 없다면 빈 배열 return
     return [];
-  } else if (str_list[idx] === "l") {
-    return str_list.slice(0, idx);
-  } else {
-    return str_list.slice(idx + 1);
   }
+  const isL = str_list[idx] === "l";
+  const start = isL ? 0 : idx + 1; // "l"이라면 0부터 시작, 아니면 idx + 1부터 시작
+  const end = isL ? idx : undefined; // "r"이라면 idx가 end 위치
+  return str_list.slice(start, end); // start부터 end까지 slice 실행
 }
 
 //
@@ -319,7 +402,7 @@ function ex69AddUntilLarger(numbers, n) {
 function ex70SeqAndQuery(arr, queries) {
   for (const [s, e] of queries) {
     for (let i = s; i <= e; i++) {
-      arr[i] += 1;
+      arr[i]++;
     }
   }
   return arr;
@@ -329,17 +412,28 @@ function ex70SeqAndQuery(arr, queries) {
 
 // 조건에 맞게 수열 변환하기 1
 
-function ex71ConvertSeq(arr) {
-  return arr.map((el) => {
-    if (el >= 50 && el % 2 === 0) {
-      return el / 2;
-    } else if (el < 50 && el % 2 !== 0) {
-      return el * 2;
-    }
-    return el;
-  });
-}
+// function ex71ConvertSeq(arr) {
+//   return arr.map((el) => {
+//     if (el >= 50 && el % 2 === 0) {
+//       return el / 2;
+//     } else if (el < 50 && el % 2 !== 0) {
+//       return el * 2;
+//     }
+//     return el;
+//   });
+// }
 
+function transformElement(el) {
+  if (el >= 50 && el % 2 === 0) {
+    return el / 2;
+  } else if (el < 50 && el % 2 !== 0) {
+    return el * 2;
+  }
+  return el;
+}
+function ex71ConvertSeq(arr) {
+  return arr.map(transformElement);
+}
 //
 
 // 조건에 맞게 수열 변환하기 2
@@ -507,16 +601,32 @@ function ex86Division(num1, num2) {
 
 // 각도기
 
+// function ex87Angle(angle) {
+//   if (angle < 90) {
+//     return 1;
+//   } else if (angle === 90) {
+//     return 2;
+//   } else if (angle < 180) {
+//     return 3;
+//   } else {
+//     return 4;
+//   }
+// }
+
+function solution(angle) {
+  var answer = 0;
+  return ex87Angle(angle);
+}
+
 function ex87Angle(angle) {
-  if (angle < 90) {
-    return 1;
-  } else if (angle === 90) {
-    return 2;
-  } else if (angle < 180) {
-    return 3;
-  } else {
-    return 4;
-  }
+  const 각도기 = { 예각: 1, 직각: 2, 둔각: 3, 평각: 4, 모름: 5 };
+
+  if (angle < 90) return 각도기.예각;
+  if (angle === 90) return 각도기.직각;
+  if (angle < 180) return 각도기.둔각;
+  if (angle === 180) return 각도기.평각;
+
+  return 각도기.모름;
 }
 
 //
@@ -544,8 +654,16 @@ function ex89GetAverage(numbers) {
 
 // 양꼬치
 
+// function ex90GetTotalPrice(n, k) {
+//   return n * 12000 + k * 2000 - Math.floor(n / 10) * 2000;
+// }
+
 function ex90GetTotalPrice(n, k) {
-  return n * 12000 + k * 2000 - Math.floor(n / 10) * 2000;
+  const 양꼬치 = 12000; // 양꼬치 1인분 가격
+  const drink = 2000; // 음료 한 개 가격
+  const serviceCount = Math.floor(n / 10); // 할인받는 금액
+
+  return n * 양꼬치 + (k - serviceCount) * drink; // 총 결제 금액
 }
 
 //
@@ -609,13 +727,30 @@ function ex96CountDivisor(n) {
 
 // 삼각형의 완성조건 (1)
 
-function ex97IsTriangle(sides) {
-  let sortedArr = sides.sort();
-  let MaxLength = sortedArr[2];
-  let MinLength = sortedArr[0];
+// function ex97IsTriangle(sides) {
+//   let sortedArr = sides.sort();
+//   let MaxLength = sortedArr[2];
+//   let MinLength = sortedArr[0];
 
-  if (MaxLength < MinLength + sortedArr[1]) return 1;
-  return 2;
+//   if (MaxLength < MinLength + sortedArr[1]) return 1;
+//   return 2;
+// }
+
+function ex000IsTriangle(sides) {
+  if (sides.length !== 3) {
+    return answerBuilder(false);
+  }
+
+  const [a, b, c] = sides.sort((x, y) => x - y);
+
+  if (c < a + b) {
+    return answerBuilder(true);
+  }
+  return answerBuilder(false);
+}
+
+function answerBuilder(b) {
+  return b ? 1 : 2;
 }
 
 //
@@ -639,7 +774,7 @@ function ex99SharePizza(slice, n) {
 // 배열 두 배 만들기
 
 function ex100MultiplyByTwo(numbers) {
-  return numbers.map((el) => el * 2);
+  return numbers.map((ch) => ch * 2); // element가 숫자라면 el 대신 n 쓰기!
 }
 
 //
@@ -647,30 +782,35 @@ function ex100MultiplyByTwo(numbers) {
 // 배열 원소의 길이
 
 function ex101GetLengthOfElement(strlist) {
-  return strlist.map((el) => el.length);
+  return strlist.map((str) => str.length); // el 대신 str!
 }
 
 //
 
 // 옷가게 할인 받기
 
-function ex101GetDiscount(price) {
+function ex102GetDiscount(price) {
+  const Discount20 = Math.floor(price * 0.8);
+  const Discount10 = Math.floor(price * 0.9);
+  const Discount5 = Math.floor(price * 0.95);
+
   if (price >= 500000) {
-    return Math.floor(price * 0.8);
-  } else if (price >= 300000) {
-    return Math.floor(price * 0.9);
-  } else if (price >= 100000) {
-    return Math.floor(price * 0.95);
-  } else {
-    return price;
+    return Discount20;
   }
+  if (price >= 300000) {
+    return Discount10;
+  }
+  if (price >= 100000) {
+    return Discount5;
+  }
+  return price;
 }
 
 //
 
 // 가까운 수
 
-function ex102GetCloseNum(array, n) {
+function ex103GetCloseNum(array, n) {
   array.sort((a, b) => a - b);
   console.log(array);
 
@@ -688,13 +828,31 @@ function ex102GetCloseNum(array, n) {
 
 // 2차원으로 만들기
 
-function ex103BuildDimensionArray(num_list, n) {
-  let answer = [];
+// function ex104BuildDimensionArray(num_list, n) {
+//   let answer = [];
 
-  for (let i = 0; i < num_list.length / n; i++) {
-    answer.push(num_list.slice(i * n, i * n + n));
+//   for (let i = 0; i < num_list.length / n; i++) {
+//     answer.push(num_list.slice(i * n, i * n + n));
+//   }
+//   return answer;
+// }
+
+function solution(num_list, n) {
+  return ex103BuildDimensionArray(num_list, n); // ex103BuildDimensionArray 실행값 리턴
+}
+
+function ex103BuildDimensionArray(num_list, chunkSize) {
+  let result = []; // 빈 배열 result로 선언
+
+  for (let i = 0; i < num_list.length / chunkSize; i++) {
+    // num_list의 길이만큼 반복
+    result.push(getSubArray(num_list, i * chunkSize, chunkSize)); // result 배열에 getSubArray 실행값을 넣는다
   }
-  return answer;
+  return result;
+}
+
+function getSubArray(arr, start, length) {
+  return arr.slice(start, start + length); // arr 배열에서 start부터 start+length 까지 자른 배열을 return
 }
 
 //
