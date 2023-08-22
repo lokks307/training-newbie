@@ -184,9 +184,10 @@ function ex26(num_list) {
 }
 
 //수 조작하기1
+/**
 function ex27(n, control) {
   const controlKeys = [...control];
-
+  
   for (const controlKey of controlKeys) {
     switch (controlKey) {
       case "w":
@@ -205,8 +206,28 @@ function ex27(n, control) {
   }
   return n;
 }
+ */
+
+function ex27(n, control) {
+  const controlKeys = [...control];
+  const operation = {
+    w: +1,
+    s: -1,
+    d: +10,
+    a: -10,
+  };
+  // controlKey에 해당하는 프로퍼티를 갖고 있는지 확인한다.
+  // hasOwnProperty --> 지금은 불필요해보일 지 모르지만 추후 이상한 프로퍼티값이 들어오는 걸 방지해줄듯
+  for (const controlKey of controlKeys) {
+    if (operation.hasOwnProperty(controlKey)) {
+      n += operation[controlKey];
+    }
+  }
+  return n;
+}
 
 //수 조작하기 2
+/**
 function ex28(numLog) {
   let result = "";
   for (let i = 1; i < numLog.length; i++) {
@@ -224,6 +245,24 @@ function ex28(numLog) {
       case -10:
         result += "a";
         break;
+    }
+  }
+  return result;
+}
+ */
+
+function ex28(numLog) {
+  let result = "";
+  const operation = {
+    1: "w",
+    "-1": "s",
+    10: "d",
+    "-10": "a",
+  };
+  for (let i = 1; i < numLog.length; i++) {
+    let difference = numLog[i] - numLog[i - 1];
+    if (operation.hasOwnProperty(difference)) {
+      result += operation[difference];
     }
   }
   return result;
