@@ -598,25 +598,36 @@ function ex34MakeCollatzSeq(n) {
 
 // 배열 만들기 4
 
-function ex35MakeArray(arr) {
-  let stk = [];
-  let i = 0;
+// function ex35MakeArray(arr) {
+//   let stk = [];
+//   let i = 0;
 
-  while (i < arr.length) {
-    if (stk.length === 0) {
-      stk.push(arr[i]);
-      i++;
-    } else if (stk.length !== 0) {
-      if (stk[stk.length - 1] < arr[i]) {
-        stk.push(arr[i]);
-        i++;
-      } else {
-        stk.pop();
-      }
+//   while (i < arr.length) {
+//     if (stk.length === 0) {
+//       stk.push(arr[i]);
+//       i++;
+//     } else if (stk.length !== 0) {
+//       if (stk[stk.length - 1] < arr[i]) {
+//         stk.push(arr[i]);
+//         i++;
+//       } else {
+//         stk.pop();
+//       }
+//     }
+//   }
+
+//   return stk;
+// }
+
+function ex35BuildArray4(arr) {
+  const stack = [];
+  for (const num of arr) {
+    while (stack.length && stack[stack.length - 1] >= num) {
+      stack.pop(); // stk의 마지막 원소 제거
     }
+    stack.push(num); // stk에 num 추가
   }
-
-  return stk;
+  return stack; // 최종적으로 생성된 stk 반환
 }
 
 //
@@ -631,26 +642,88 @@ function ex36SimpleBoolean(x1, x2, x3, x4) {
 
 // 주사위 게임 3
 
-function ex37DiceGame(a, b, c, d) {
-  if (a === b && a === c && a === d) return 1111 * a;
+// function ex37DiceGame(a, b, c, d) {
+//   if (a === b && a === c && a === d) return 1111 * a;
 
-  if (a === b && a === c) return (10 * a + d) ** 2;
-  if (a === b && a === d) return (10 * a + c) ** 2;
-  if (a === c && a === d) return (10 * a + b) ** 2;
-  if (b === c && b === d) return (10 * b + a) ** 2;
+//   if (a === b && a === c) return (10 * a + d) ** 2;
+//   if (a === b && a === d) return (10 * a + c) ** 2;
+//   if (a === c && a === d) return (10 * a + b) ** 2;
+//   if (b === c && b === d) return (10 * b + a) ** 2;
 
-  if (a === b && c === d) return (a + c) * Math.abs(a - c); // 절댓값 구하기
-  if (a === c && b === d) return (a + b) * Math.abs(a - b);
-  if (a === d && b === c) return (a + b) * Math.abs(a - b);
+//   if (a === b && c === d) return (a + c) * Math.abs(a - c); // 절댓값 구하기
+//   if (a === c && b === d) return (a + b) * Math.abs(a - b);
+//   if (a === d && b === c) return (a + b) * Math.abs(a - b);
 
-  if (a === b) return c * d;
-  if (a === c) return b * d;
-  if (a === d) return b * c;
-  if (b === c) return a * d;
-  if (b === d) return a * c;
-  if (c === d) return a * b;
+//   if (a === b) return c * d;
+//   if (a === c) return b * d;
+//   if (a === d) return b * c;
+//   if (b === c) return a * d;
+//   if (b === d) return a * c;
+//   if (c === d) return a * b;
 
-  return Math.min(a, b, c, d);
+//   return Math.min(a, b, c, d);
+// }
+
+function ex37diceGame(a, b, c, d) {
+  const numbers = [a, b, c, d];
+  numbers.sort((x, y) => x - y);
+
+  const diceReport = countDuplicates(numbers);
+  const keys = Object.keys(diceReport); // diceReport의 key를 배열로 받기
+
+  switch (keys.length) {
+    case 1:
+      return sameAll(a);
+    case 4:
+      return differentAll(numbers);
+    case 3:
+      return same211(diceReport);
+    case 2:
+      if (diceReport[a] === 2) return same22(keys.map(Number));
+      return same31(diceReport, keys.map(Number));
+  }
+}
+
+function countDuplicates(arr) {
+  // 주사위로 나온 숫자가 key, 숫자 갯수를 value로 하는 객체 만들기
+  const countMap = {};
+
+  for (const num of arr) {
+    if (countMap[num] === undefined) countMap[num] = 0;
+
+    countMap[num] += 1;
+  }
+
+  return countMap;
+}
+
+function sameAll(p) {
+  // 주사위 모든 수가 다 같을 때
+  return p * 1111;
+}
+
+function same31(report, [p, q]) {
+  // 주사위 세 숫자만 같을 때
+  if (report[p] === 1) [p, q] = [q, p]; // p가 1개인 경우, swap(p ,q). 그럼 p가 3개짜리 숫자가 됩니다.
+
+  return Math.pow(10 * p + q, 2);
+}
+
+function same22([p, q]) {
+  // 주사위가 두 개씩 같은 값일 때
+  return (p + q) * Math.abs(p - q);
+}
+
+function same211(report) {
+  // 주사위 두 숫자가 같고, 나머지는 서로 다를 때
+  const [q, r] = Object.keys(report)
+    .filter((key) => report[key] === 1)
+    .map(Number);
+  return q * r;
+}
+
+function differentAll(arr) {
+  return Math.min(...arr);
 }
 
 //
@@ -665,12 +738,22 @@ function ex38MakeString(my_string, index_list) {
 
 // 9로 나눈 나머지
 
+// function ex39DivideByNine(number) {
+//   let sum = 0;
+//   let numArr = [...number];
+//   for (num of numArr) {
+//     sum += Number(num);
+//   }
+//   return sum % 9;
+// }
+
+// reduce 사용
 function ex39DivideByNine(number) {
-  let sum = 0;
   let numArr = [...number];
-  for (num of numArr) {
-    sum += Number(num);
-  }
+  const sum = numArr.reduce((acc, cur) => {
+    return (acc += Number(cur));
+  }, 0);
+
   return sum % 9;
 }
 
@@ -693,13 +776,24 @@ function ex40ReverseString(my_string, queries) {
 
 // 배열 만들기 5
 
-function ex41BuildArray(intStrs, k, s, l) {
-  let answer = [];
-  for (num of intStrs) {
-    const newNum = Number(num.slice(s, s + l));
-    if (newNum > k) answer.push(newNum);
-  }
-  return answer;
+// function ex41BuildArray(intStrs, k, s, l) {
+//   let answer = [];
+//   for (num of intStrs) {
+//     const newNum = Number(num.slice(s, s + l));
+//     if (newNum > k) answer.push(newNum);
+//   }
+//   return answer;
+// }
+
+function extractNumber(str, start, length) {
+  // 문자열에서 숫자 추출하는 함수 분리
+  return Number(str.slice(start, start + length));
+}
+
+function ex41BuildArray(stringNumbers, k, s, l) {
+  return stringNumbers
+    .map((num) => extractNumber(num, s, l))
+    .filter((newNum) => newNum > k);
 }
 
 //
@@ -721,6 +815,28 @@ function ex42BuildString(my_strings, parts) {
   return answer;
 }
 
+// Extract Method
+function ex42BuildString(my_strings, parts) {
+  let answer = "";
+
+  const getSubstring = (str, start, end) => str.slice(start, end + 1);
+
+  parts.forEach(([start, end], i) => {
+    answer += getSubstring(my_strings[i], start, end);
+  });
+
+  return answer;
+}
+
+// Replace Loop with Pipeline
+function ex42BuildString(my_strings, parts) {
+  const getSubstring = (str, start, end) => str.slice(start, end + 1);
+
+  return parts
+    .map(([start, end], i) => getSubstring(my_strings[i], start, end))
+    .join("");
+}
+
 //
 
 // 문자열 뒤의 n글자
@@ -733,24 +849,46 @@ function ex43SliceString(my_string, n) {
 
 // 접미사 배열
 
+// function ex44SuffixArray(my_string) {
+//   let answer = [];
+//   for (let i = 0; i < my_string.length; i++) {
+//     answer.push(my_string.substr(i, my_string.length));
+//   }
+//   return answer.sort();
+// }
+
+// Extract Method, Replace Loop with Map, Extract Variable 순서로 푼 방식
 function ex44SuffixArray(my_string) {
-  let answer = [];
-  for (let i = 0; i < my_string.length; i++) {
-    answer.push(my_string.substr(i, my_string.length));
-  }
-  return answer.sort();
+  const generateSuffix = (str, start) => str.slice(start);
+
+  const suffixes = [...my_string].map((_, i) => generateSuffix(my_string, i));
+  const sortedSuffixes = suffixes.sort();
+
+  return sortedSuffixes;
 }
 
 //
 
 // 접미사인지 확인하기
 
+// function ex45IsSuffix(my_string, is_suffix) {
+//   let arr = [];
+//   for (let i = 0; i < my_string.length; i++) {
+//     arr.push(my_string.substr(i, my_string.length));
+//   }
+//   if (arr.includes(is_suffix)) return 1;
+//   return 0;
+// }
+
+// generateSuffixes 함수 분리
+
+function generateSuffix(str, start) {
+  return str.slice(start);
+}
 function ex45IsSuffix(my_string, is_suffix) {
-  let arr = [];
-  for (let i = 0; i < my_string.length; i++) {
-    arr.push(my_string.substr(i, my_string.length));
-  }
-  if (arr.includes(is_suffix)) return 1;
+  const suffixes = [...my_string].map((_, i) => generateSuffix(my_string, i));
+  console.log(suffixes);
+  if (suffixes.includes(is_suffix)) return 1;
   return 0;
 }
 
