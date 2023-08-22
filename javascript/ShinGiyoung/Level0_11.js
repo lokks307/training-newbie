@@ -1328,6 +1328,7 @@ function ex71(arr) {
 }
 
 function ex72(arr) {
+  //1.
   function createArr() {
     arr = arr.map((num) => {
       if (num >= 50 && num % 2 === 0) {
@@ -1353,6 +1354,22 @@ function ex72(arr) {
   }
 
   return count;
+  //2.
+  function transformArray() {
+    arr = arr.map((num) => {
+      if (num >= 50 && num % 2 === 0) {
+        return num / 2;
+      }
+
+      if (num < 50 && num % 2 !== 0) {
+        return num * 2 + 1;
+      }
+      return num;
+    });
+
+    return arr;
+  }
+  /*조금더 적절한 네이밍 고민하기 */
 }
 
 function ex73(num_list) {
@@ -1369,6 +1386,7 @@ function ex73(num_list) {
 }
 
 function ex74(num_list) {
+  //1.
   const sum = num_list.reduce(
     (accumulator, currentValue) => accumulator + currentValue,
     0,
@@ -1379,6 +1397,10 @@ function ex74(num_list) {
   );
 
   return num_list.length >= 11 ? sum : multiply;
+  //2.
+  const lengthThreshold = 11;
+  return num_list.length >= lengthThreshold ? sum : multiply;
+  /* 다른사람이 코드를 봐도 의미를 알수있게 넘버에도 의미있는 변수명 지어주기.. */
 }
 
 function ex75(myString, pat) {
@@ -1403,25 +1425,56 @@ function ex78(strArr) {
 }
 
 function ex79(myString) {
+  //1.
   let answer = [...myString.toLowerCase()]
     .map((str) => (str === "a" ? str.toUpperCase() : str))
     .join("");
+
+  //2.
+  let answer = [...myString.toLowerCase()]
+    .map((ch) => (ch === "a" ? ch.toUpperCase() : ch))
+    .join("");
+  /* str는 문자열을 의미. 해석하면 문자열이 "a"라면 문자열(모두를) 대문자로 바꾼다. 라고 해석.
+    근데 str 보다 ch 로 바꾸면 문자가 "a" 라면 해당 문자를 대문자로 바꾼다.로 해석 가능하다.
+  */
   return answer;
 }
 
 function ex80(my_string, alp) {
+  //1.
   let answer = [...my_string]
     .map((str) => (str === alp ? str.toUpperCase() : str))
     .join("");
+
   return answer;
 }
+//2.
+function ex80Edit(string, alp) {
+  //프로그래머스에서 문제를 가져올떄 ES6문법에 맞춰서 가져오기
 
+  let answer = [...string]
+    .map((ch) => (ch === alp ? ch.toUpperCase() : ch))
+    .join("");
+  /* str는 문자열을 의미. 해석하면 문자열이 "a"라면 문자열(모두를) 대문자로 바꾼다. 라고 해석.
+    근데 str 보다 ch 로 바꾸면 문자가 "a" 라면 해당 문자를 대문자로 바꾼다.로 해석 가능하다.
+
+    map으로 변환하는 대상의 이름을 정확하게 지어주기 !!
+  */
+  return answer;
+}
+//1.
 function ex81(myString, pat) {
   const lastIndex = myString.lastIndexOf(pat);
   const strArr = [...myString];
   strArr.splice(lastIndex, myString.length - lastIndex + 1, pat);
 
   return strArr.join("");
+}
+//2
+function ex81Edit(myString, pat) {
+  const lastIndex = myString.lastIndexOf(pat);
+  return myString.slice(0, lastIndex + pat.length);
+  /*string 인경우 slice쓰는게 더편하다 ..굳이 splice쓰려고 배열로 바꾸고 다시 string으로 바꿀 필요 X */
 }
 
 function ex82(myString, pat) {
@@ -1479,9 +1532,21 @@ function ex88(binomial) {
 }
 
 function ex89(myString, pat) {
+  //1.
   const change = [...myString].map((str) => (str === "A" ? "B" : "A")).join("");
   var answer = change.indexOf(pat);
   return answer !== -1 ? 1 : 0;
+
+  //2.
+  const change = [...myString].map((ch) => (ch === "A" ? "B" : "A")).join("");
+  var answer = change.indexOf(pat);
+  return answer !== -1 ? 1 : 0;
+  /* str는 문자열을 의미. 해석하면 문자열이 "a"라면 문자열(모두를) 대문자로 바꾼다. 라고 해석.
+    근데 str 보다 ch 로 바꾸면 문자가 "a" 라면 해당 문자를 대문자로 바꾼다.로 해석 가능하다.
+
+    map으로 변환하는 대상의 이름을 정확하게 지어주기 !!
+    습관성 str 고치기
+  */
 }
 
 function ex90(rny_string) {
