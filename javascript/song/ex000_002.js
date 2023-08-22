@@ -796,13 +796,14 @@ function ex102GetDiscount(price) {
 
   if (price >= 500000) {
     return Discount20;
-  } else if (price >= 300000) {
-    return Discount10;
-  } else if (price >= 100000) {
-    return Discount5;
-  } else {
-    return price;
   }
+  if (price >= 300000) {
+    return Discount10;
+  }
+  if (price >= 100000) {
+    return Discount5;
+  }
+  return price;
 }
 
 //
