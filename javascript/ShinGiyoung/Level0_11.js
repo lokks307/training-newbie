@@ -2864,3 +2864,221 @@ function ex174(s) {
   });
   return result;
 }
+
+function ex175(n) {
+  let result = [];
+  let divisible = 2;
+
+  while (n > 1) {
+    if (n % divisible === 0) {
+      result.push(divisible);
+      n = n / divisible;
+    } else {
+      divisible++;
+    }
+  }
+
+  return [...new Set(result)];
+}
+
+function onlyNumberSearch(arr) {
+  return arr.filter((char) => /[0-9]/g.test(char)).map(Number);
+}
+
+function ex176(string) {
+  let arr = [...string];
+  let onlyNumber = onlyNumberSearch(arr);
+  return onlyNumber.reduce((acc, value) => acc + value, 0);
+}
+
+function ex177(string) {
+  const arr = [...string];
+  const onlyNumber = onlyNumberSearch(arr);
+  return onlyNumber.sort();
+}
+
+function ex178(string) {
+  const removePartAlphabet = string.replace(/[a|e|i|o|u]/g, "");
+
+  return removePartAlphabet;
+}
+
+function ex179(n) {
+  function createFactorial(number) {
+    const array = Array.from({ length: number }, (_, index) => index + 1).sort(
+      (a, b) => b - a,
+    );
+
+    const factorial = array.reduce((acc, value) => acc * value, 1);
+
+    return factorial;
+  }
+
+  let i = 1;
+  while (true) {
+    const factorial = createFactorial(i);
+
+    if (factorial <= n) {
+      i++;
+    } else {
+      i--;
+      break;
+    }
+  }
+
+  return i;
+}
+
+function ex180(numbers) {
+  var sortingArray = numbers.sort((a, b) => a - b);
+  return sortingArray.at(-1) * sortingArray.at(-2);
+}
+
+function ex181(n) {
+  let i = 1;
+  let count = 0;
+
+  while (i <= n) {
+    let divisorsCount = 0;
+    for (let j = 1; j <= i; j++) {
+      if (i % j === 0) {
+        divisorsCount++;
+      }
+    }
+    divisorsCount > 2 && count++;
+    i++;
+  }
+
+  return count;
+}
+
+function ex182(box, n) {
+  var answer = box.reduce((acc, cur) => acc * Math.floor(cur / n), 1);
+  return answer;
+}
+
+function ex183(numbers, direction) {
+  if (direction === "right") {
+    const lastIndexValue = numbers.pop();
+    numbers.unshift(lastIndexValue);
+    return numbers;
+  }
+
+  const firstIndexValue = numbers.shift();
+  numbers.push(firstIndexValue);
+  return numbers;
+}
+
+function ex184(numbers, k) {
+  const idx = (k - 1) * 2;
+  return numbers[idx % numbers.length];
+}
+
+function ex185(numList, n) {
+  let array = [];
+  while (numList.length !== 0) {
+    const remove = numList.splice(0, n);
+    array.push(remove);
+  }
+
+  return array;
+}
+
+function ex186(dot) {
+  var [x, y] = dot;
+  if (x > 0 && y > 0) {
+    return 1;
+  }
+
+  if (x < 0 && y > 0) {
+    return 2;
+  }
+  if (x < 0 && y < 0) {
+    return 3;
+  }
+
+  return 4;
+}
+
+function ex187(balls, share) {
+  function createFactorial(number) {
+    const array = Array.from({ length: number }, (_, index) => index + 1).sort(
+      (a, b) => b - a,
+    );
+
+    const factorial = array.reduce(
+      (acc, value) => BigInt(acc) * BigInt(value),
+      1,
+    );
+
+    return factorial;
+  }
+  /* 앞에 179 번 문제에서 createFactorial같은 로직을 썼지만 리뷰하실떄 보기 힘드실까봐 따로 공통으로 빼지 않았습니다. */
+  if (balls === share) {
+    return 1;
+  }
+
+  return (
+    createFactorial(balls) /
+    (createFactorial(share) * createFactorial(balls - share))
+  );
+}
+
+function ex188(rsp) {
+  const winCalculator = {
+    //2는 가위 0은바위 5는 보를 뜻하는데 각 이기는 것 설정
+    2: "0",
+    0: "5",
+    5: "2",
+  };
+  var array = [...rsp];
+
+  return array.map((char) => winCalculator[char]).join("");
+}
+
+function ex189(letter) {
+  const morse = {
+    ".-": "a",
+    "-...": "b",
+    "-.-.": "c",
+    "-..": "d",
+    ".": "e",
+    "..-.": "f",
+    "--.": "g",
+    "....": "h",
+    "..": "i",
+    ".---": "j",
+    "-.-": "k",
+    ".-..": "l",
+    "--": "m",
+    "-.": "n",
+    "---": "o",
+    ".--.": "p",
+    "--.-": "q",
+    ".-.": "r",
+    "...": "s",
+    "-": "t",
+    "..-": "u",
+    "...-": "v",
+    ".--": "w",
+    "-..-": "x",
+    "-.--": "y",
+    "--..": "z",
+  };
+
+  var array = letter.split(" ");
+
+  return array.map((mo) => morse[mo]).join("");
+}
+function ex190(hp) {
+  const warlord = 5;
+  const soldier = 3;
+  const common = 1;
+  let countAnt = 0;
+
+  countAnt += Math.floor(hp / warlord);
+  countAnt += Math.floor((hp % warlord) / soldier);
+  countAnt += ((hp % warlord) % soldier) / common;
+
+  return countAnt;
+}
