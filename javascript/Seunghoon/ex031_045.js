@@ -14,6 +14,7 @@ function ex31(arr, queries) {
 }
 
 //배열 만들기 2
+/** 
 function ex32(l, r) {
   let result = [];
 
@@ -27,6 +28,46 @@ function ex32(l, r) {
     }
   }
   if (result.length === 0) return [-1];
+  return result;
+}
+*/
+
+function isAllZeroOrFive(num) {
+  const individualNumbers = String(num).split(""); //매개변수 num를 split 하고
+  return individualNumbers.every((digit) => digit === "0" || digit === "5"); // 각 자리마다 0인지 5인지 확인하여 모두 문제 없다면 true 반환
+}
+
+/** 1. 반복문 안에서 조건 검사할 때는 함수로 만들기 
+function ex32(l,r){
+  let result = [];
+
+  for(let i =l; i <= r; i++){ //l ~ r까지 반복
+    if(i % 5 !== 0){  //5로 나누어 떨어지지 않으면 넘어간다.
+      continue;
+    }
+    if(isAllZeroOrFive(i)) {
+      // 기존 0과 5로만 이루어져있는 지 확인하는 부분을  isAllZeroOrFive 로 뺀다.
+      result.push(i); // isAllZeroOrFive 가 true 라면 result 배열에 i 추가
+    }
+  }
+  if(result.length === 0) return [ -1]; // for문 반복하고 나왔는데도 result에 아무 값도 없다면 [-1] 반환
+  return result;
+}
+*/
+
+// 2. 부정적 개념 긍정 개념으로 바꾸기
+function ex32(l, r) {
+  const NO_RESULT = [-1]; // 상수는 대문자로 표기한다.
+  const MULTIPLE_OF = 5;
+  let result = [];
+
+  for (let i = l; i <= r; i++) {
+    // 처음엔 5로 나누어떨어지지 '않으면' continue를 하는 부정의 개념을 썼으나, i % MULTIPLE_OF === 0 을 통해 긍정의 개념으로 바꾼다.
+    if (i % MULTIPLE_OF === 0 && isAllZeroOrFive(i)) {
+      result.push(i);
+    }
+  }
+  if (result.length === 0) return NO_RESULT;
   return result;
 }
 
@@ -56,6 +97,7 @@ function ex34(n) {
 }
 
 //배열 만들기 4
+/** 
 function ex35(arr) {
   let stk = [];
   let i = 0;
@@ -74,8 +116,28 @@ function ex35(arr) {
   }
   return stk;
 }
+*/
+
+//중복 피하기, 굳이 변수명 줄여쓰기 않기
+function ex35FindLongestIncreasingSubsequence(arr) {
+  //이해하기쉬운 함수명 정해주기, 조금 지나긴 했지만 앞으로 푸는 문제는 함수명도 고민해보자.
+  let stack = []; // stack을 굳이 stk로 쓰는 것을 지양하자.
+  let i = 0;
+
+  while (i < arr.length) {
+    if (stack.length === 0 || stack[stack.length - 1] < arr[i]) {
+      //아예 같은 동작하는 일을 굳이 따로 적을 이유가 있었나? 중복을 피하자.
+      stack.push(arr[i]);
+      i++;
+    } else {
+      stack.pop();
+    }
+  }
+  return stack;
+}
 
 //간단한 논리 연산
+/** 
 function ex36(x1, x2, x3, x4) {
   let first, second, result;
 
@@ -95,6 +157,17 @@ function ex36(x1, x2, x3, x4) {
   first = checkValueDown(x1, x2);
   second = checkValueDown(x3, x4);
   result = checkValueUp(first, second);
+
+  return result;
+}
+*/
+
+// 논리 연산자
+// 처음보는 문자열 ∨ ∧ 에 당황해 생각치도 못하게 이상하게 풀었습니다 😧
+function ex36(x1, x2, x3, x4) {
+  const first = x1 || x2; // x1 = false, x2 = true 라면 first 는 true다. 반대로 x1 = true, x2 = false 여도 true다. 둘 다 true면 true, 둘 다 false면 false 다.
+  const second = x3 || x4; // 위와 같다.
+  const result = first && second; // 하나라도 false라면 false다. 둘 다 true여야 true다.
 
   return result;
 }
@@ -225,6 +298,7 @@ function differentAll(arr) {
 }
 
 //글자 이어 붙여 문자열 만들기
+/** 
 function ex38(my_string, index_list) {
   let result = [];
 
@@ -233,16 +307,40 @@ function ex38(my_string, index_list) {
   }
   return result.join("");
 }
+*/
+
+//ES6 컨벤션 따르기 - 카멜케이스
+function ex38(myString, indexList) {
+  let result = [];
+
+  for (const index of indexList) {
+    result.push(myString[index]);
+  }
+  return result.join("");
+}
 
 //9로 나눈 나머지
+/** 
 function ex39(number) {
   const individualNumber = [...number].map(Number);
   const sumNumbers = individualNumber.reduce((prev, curr) => prev + curr);
 
   return sumNumbers % 9;
 }
+*/
+
+// 단,복수 대신 List로 쓰기, reduce 매개변수 이름
+function ex39(number) {
+  //앞서 내 코드는 individualNumber에서 map(Number)로 모든 값을 숫자로 바꿨지만,
+  // reduce 하나로 작성하면 각 자리에 Number(digit) 할 때 초기값이 필요하다.
+  // 초기값 없이 reduce를 쓰면 문자열로 인식해 숫자가 문자열처럼 더해지기 때문
+  const sum = [...number].reduce((sum, digit) => sum + Number(digit), 0);
+
+  return sum % 9;
+}
 
 //문자열 여러 번 뒤집기
+/** 
 function ex40(my_string, queries) {
   const arr = [...my_string];
 
@@ -253,8 +351,23 @@ function ex40(my_string, queries) {
   }
   return arr.join("");
 }
+*/
+
+function ex40(myString, queries) {
+  const arr = myString.split("");
+
+  for (const query of queries) {
+    const [s, e] = query;
+    //splice(start, deleteCount)는 변경 시작할 인덱스 start에서 제거할 수 deleteCount(option)를 지정한다.
+    //slice(begin, end)는 begin부터 end(미포함) 까지 새로운 배열 객체로 반환한다.
+    const reverseString = arr.slice(s, e + 1).reverse(); // 굳이 splice 써서 deleteCount를 어렵게 정해줄 필요 없다.
+    arr.splice(s, reverseString.length, ...reverseString);
+  }
+  return arr.join("");
+}
 
 //배열 만들기 5
+/** 
 function ex41(intStrs, k, s, l) {
   const result = [];
 
@@ -267,6 +380,20 @@ function ex41(intStrs, k, s, l) {
     }
   }
   return result;
+}
+*/
+
+//map, filter로도 구현 가능하다.
+// + 잘라낸 문자열을 함수로 빼놔서 더 읽기 쉬운 코드가 된 듯
+function extractNumber(str, start, length) {
+  // str = "0123456789", start = 5 length = 5
+  return Number(str.slice(start, start + length)); // 56789 반환
+}
+
+function ex41BuildArray(stringNumbers, k, s, l) {
+  return stringNumbers
+    .map((num) => extractNumber(num, s, l)) //map에서 각각의 값을 extractNumber로 반환해준다.
+    .filter((newNum) => newNum > k); //extractNumber를 거치고 나온 값을 filter 처리 해준다.
 }
 
 //부분 문자열 이어 붙여 문자열 만들기
@@ -284,6 +411,7 @@ function ex42(my_strings, parts) {
 }
 */
 
+/** 
 function ex42(my_strings, parts) {
   let result = "";
 
@@ -293,14 +421,40 @@ function ex42(my_strings, parts) {
   });
   return result;
 }
+*/
+
+//substring과 slice의 차이
+//아주 비슷하나 미묘하게 다른 점이 있는데,
+// 1. start, end에서 end가 더 짧을 경우, 예를들어 start 5, end 2
+//  substring은 알아서 end와 start 자리를 바꿔서 출력한다. start 2, end 5
+//  slice는 빈 문자열을 뱉는다.
+// 2. 음수일 경우 start -5 end -2
+//   substring은 음수를 0으로 친다.
+//   slice는 뒤에서 부터 세서 출력해준다.
+function ex42BuildString(myString, parts) {
+  const getSubstring = (str, start, end) => str.slice(start, end + 1); //getSubstring 함수로 들어온 str을 start, end 길이에 맞춰 slice한다.
+
+  return parts
+    .map(([start, end], i) => getSubstring(myString[i], start, end))
+    .join(""); //map의 첫 번째 매개변수에 배열 형태로 start,end를 넣는 걸 처음 보았다.
+}
 
 //문자열의 뒤의 n글자
+/** 
 function ex43(my_string, n) {
   const start = my_string.length - n;
   return my_string.substring(start);
 }
+*/
+
+//slice로 반환하기
+function ex43(myString, n) {
+  const start = myString.length - n;
+  return myString.slice(start);
+}
 
 //접미사 배열
+/** 
 function ex44(my_string) {
   const result = [];
 
@@ -310,8 +464,20 @@ function ex44(my_string) {
 
   return result.sort();
 }
+*/
+
+//for문 map으로 바꿔보기
+function ex44SuffixArray(myString) {
+  const buildSuffix = (str, start) => str.slice(start); // substring 대신 slice 사용.
+
+  const suffixList = [...myString].map((_, i) => buildSuffix(myString, i)); //map 인덱스로 buildSuffix 함수에 slice 할 수 있게 해준다.
+  const orderedSuffixLst = suffixList.sort(); //리스트 정렬
+
+  return orderedSuffixLst;
+}
 
 //접미사인지 확인하기
+/** 
 function ex45(my_string, is_suffix) {
   const suffix = [];
   for (let i = 0; i < my_string.length; i++) {
@@ -319,4 +485,19 @@ function ex45(my_string, is_suffix) {
   }
   if (suffix.includes(is_suffix)) return 1;
   return 0;
+}
+*/
+
+//Array.from을 통해 배열을 만들어 값을 넣는 방법.
+function ex45IsSuffix(myString, isSuffix) {
+  const suffixes = generateSuffixes(myString);
+  return suffixes.includes(isSuffix) ? 1 : 0;
+}
+
+function generateSuffixes(str) {
+  //array.from을 통해 새로운 배열을 만들고 맵핑 함수로 각 값을 slice 해준다.
+  //{length: str.length} 까지만 하면 [undefined , undefined ...] 로 str.length만큼 생성되는데,
+  // 두번째 맵핑 함수를 통해 들어온 str을 인덱스별로 잘라주게 되니
+  //"banana" 가 들어오게 되면  [ 'banana', 'anana', 'nana', 'ana', 'na', 'a' ] 를 최종적으로 반환하게 된다.
+  return Array.from({ length: str.length }, (_, i) => str.slice(i));
 }
