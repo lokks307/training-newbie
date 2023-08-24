@@ -3082,3 +3082,265 @@ function ex190(hp) {
 
   return countAnt;
 }
+
+function ex191(n) {
+  let divisorCount = 0;
+  for (let i = 1; i <= n; i++) {
+    if (n % i === 0) {
+      divisorCount++;
+    }
+  }
+  return divisorCount;
+}
+
+function ex192(emergency) {
+  const ascending = [...emergency].sort((a, b) => a - b);
+
+  const answer = emergency.map((num) => {
+    let rank = 1;
+    for (const a of ascending) {
+      num < a && rank++;
+    }
+    return rank;
+  });
+
+  return answer;
+}
+
+function ex193(age) {
+  const aCode = 97;
+  const array = [...String(age)];
+  const planetAge = array.map((char) =>
+    String.fromCharCode(Number(char) + aCode),
+  );
+  return planetAge.join("");
+}
+
+function ex194(numberList, num1, num2) {
+  return numberList.slice(num1, num2 + 1);
+}
+
+function ex195(n) {
+  const evenCount = Math.floor(n / 2);
+  const evenArray = Array.from(
+    { length: evenCount },
+    (_, idx) => 2 * (1 + idx),
+  );
+  return evenArray.reduce((sum, evenNum) => BigInt(sum) + BigInt(evenNum), 0);
+}
+
+function ex196(lambSkewers, drink) {
+  const lambPrice = 12000;
+  const drinkPrice = 2000;
+  const serviceDrink = Math.floor(lambSkewers / 10);
+  const total = lambSkewers * lambPrice + (drink - serviceDrink) * drinkPrice;
+  return total;
+}
+
+function ex197(angle) {
+  if (angle == 90) {
+    return 2;
+  }
+
+  if (angle == 180) {
+    return 4;
+  }
+  if (angle < 90) {
+    return 1;
+  }
+
+  return 3;
+}
+
+function ex198(string, letter) {
+  return string.split(letter).join("");
+}
+function ex199(string, n) {
+  return [...string].map((char) => char.repeat(n)).join("");
+}
+
+function ex200(numList) {
+  let evenCount = numList.filter((num) => num % 2 === 0).length;
+  let oddCount = numList.length - evenCount;
+  return [evenCount, oddCount];
+}
+
+function ex201() {
+  ex201Output(Number(input));
+}
+
+function ex201Output(limit) {
+  let star = "*";
+  for (let i = 1; i <= limit; i++) {
+    star += "*";
+    console.log(star);
+  }
+}
+
+function ex202(string) {
+  return [...string].reverse().join("");
+}
+
+function ex203(numList) {
+  return numList.reverse();
+}
+
+function ex204(age) {
+  const currntYear = 2022;
+  return currntYear - age + 1; //한국은 한살 더먹죠 .. 이젠 아니지만 ㅎㅎ
+}
+
+function ex205(money) {
+  const americanoPrice = 5500;
+  const coffeCount = Math.floor(money / americanoPrice);
+  const balanceCash = money % americanoPrice;
+  return [coffeCount, balanceCash];
+}
+
+function ex206(price) {
+  const discount20Per = 0.8;
+  const discount10Per = 0.9;
+  const discount5Per = 0.95;
+
+  if (price >= 500000) {
+    return Math.floor(price * discount20Per);
+  }
+
+  if (price >= 300000) {
+    return Math.floor(price * discount10Per);
+  }
+
+  if (price >= 100000) {
+    return Math.floor(price * discount5Per);
+  }
+
+  return price;
+}
+
+function ex207(numberList) {
+  var numberSum = numberList.reduce(
+    (sum, currentValue) => sum + currentValue,
+    0,
+  );
+  return numberSum / numberList.length;
+}
+
+function ex208(slice, n) {
+  let count = 1;
+  while (true) {
+    if (slice * count >= n) break;
+
+    count++;
+  }
+  return count;
+}
+
+function ex209(person) {
+  let count = 1;
+  let pizzaPiece = 6;
+  while ((pizzaPiece * count) % person !== 0) {
+    count++;
+  }
+  return count;
+}
+function ex210(person) {
+  const pizzaPiece = 7;
+  let count = 1;
+  while (person > pizzaPiece * count) {
+    count++;
+  }
+  return count;
+}
+
+function ex211(n) {
+  const numberList = Array.from({ length: n }, (_, idx) => 1 + idx);
+  return numberList.filter((num) => num % 2 == 1);
+}
+
+function ex212(array) {
+  let frequency = {};
+  for (const number of array) {
+    if (frequency[number] === undefined) {
+      frequency[number] = 0;
+    }
+
+    frequency[number]++;
+  }
+
+  const frequencyKeyList = Object.keys(frequency);
+  const frequencyValueList = Object.values(frequency);
+  const maxFrequency = Math.max(...frequencyValueList);
+
+  return getKeyByValue(maxFrequency).length >= 2
+    ? -1
+    : Number(getKeyByValue(maxFrequency).join(""));
+
+  function getKeyByValue(value) {
+    return frequencyKeyList.filter((key) => frequency[key] === value);
+  }
+}
+
+function ex213(array) {
+  array.sort((a, b) => a - b);
+  const centerIndex = Math.floor(array.length / 2);
+  return array[centerIndex];
+}
+
+function ex214(num1, num2) {
+  return num1 % num2;
+}
+
+function ex215(numberList) {
+  return numberList.map((num) => num * 2);
+}
+
+function ex216(num1, den1, num2, den2) {
+  num1 = num1 * den2;
+  num2 = num2 * den1;
+  const numerator = num1 + num2;
+  const commonDenominator = den1 * den2;
+
+  function greatestCommonDivisor(num, divisible) {
+    if (divisible === 0) {
+      return num;
+    }
+    return greatestCommonDivisor(divisible, num % divisible);
+    /*기약분수를 구하기 위해 최대공약수를 구해야한다
+    최대 공약수는 a를 b로 계속 나누었을때 나누어 떨어진 수가 0 이면 최대공약수를 구할 수 있다(유클리드 호제법 참고)*/
+  }
+  const commonFactor = greatestCommonDivisor(numerator, commonDenominator);
+
+  return [numerator / commonFactor, commonDenominator / commonFactor];
+}
+
+function ex217(num1, num2) {
+  return num1 === num2 ? 1 : -1;
+}
+
+function ex218(num1, num2) {
+  return Math.floor((num1 / num2) * 1000);
+}
+function ex219(num1, num2) {
+  return Math.floor(num1 / num2);
+}
+
+function ex220(num1, num2) {
+  return num1 * num2;
+}
+function ex221(num1, num2) {
+  return num1 - num2;
+}
+
+function ex222(num1, num2) {
+  return num1 + num2;
+}
+function ex223(array, height) {
+  array.sort((a, b) => a - b);
+  return array.filter((num) => num > height).length;
+}
+
+function ex224(array, n) {
+  let count = 0;
+  array.forEach((num) => num === n && count++);
+  return count;
+}
