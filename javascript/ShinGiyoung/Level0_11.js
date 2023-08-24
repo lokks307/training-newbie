@@ -2453,3 +2453,557 @@ function ex134(n) {
 function ex135(str1, str2) {
   return str1.includes(str2) ? 1 : 2;
 }
+
+function ex136(quiz) {
+  let answer = [];
+  let cal;
+
+  const operator = {
+    "-": (a, b) => a - b,
+    "+": (a, b) => a + b,
+  };
+
+  for (const num of quiz) {
+    let x = Number(num.split(" ")[0]);
+    let y = Number(num.split(" ")[2]);
+    let z = Number(num.split(" ")[4]);
+    cal = operator[num.split(" ")[1]](x, y);
+    answer.push(cal === z ? "O" : "X");
+  }
+
+  return answer;
+}
+
+function ex137(n) {
+  let arrayN = [...String(n)];
+  let sum = arrayN.reduce((acc, value) => acc + Number(value), 0);
+
+  return sum;
+}
+
+function ex138(n, numlist) {
+  return numlist.filter((num) => num % n === 0);
+}
+
+function ex139(num, k) {
+  const isIndex = String(num).indexOf(k);
+  return isIndex > -1 ? isIndex + 1 : isIndex;
+}
+
+function ex140(s1, s2) {
+  const duplicateValue = s1.filter((it) => s2.includes(it));
+  return duplicateValue.length;
+}
+
+function ex141(my_string) {
+  const calculator = {
+    "+": (a, b) => a + b,
+    "-": (a, b) => a - b,
+  };
+
+  const emptyRemove = my_string.split(" ");
+  let x = Number(emptyRemove[0]);
+
+  for (let i = 1; i < emptyRemove.length; i += 2) {
+    const operator = emptyRemove[i];
+    const y = Number(emptyRemove[i + 1]);
+    x = calculator[operator](x, y);
+  }
+
+  return x;
+}
+
+function ex142(array) {
+  const maxNum = Math.max(...array);
+  return [maxNum, array.indexOf(maxNum)];
+}
+
+function ex143(message) {
+  return 2 * message.length;
+}
+
+function ex144(n) {
+  var answer = [];
+
+  for (let i = 1; i <= n; i++) {
+    n % i === 0 && answer.push(i);
+  }
+  return answer;
+}
+
+function ex145(s) {
+  let answer = [];
+  let alphabetCount = {};
+  let stringToArr = [...s];
+  for (const str of stringToArr) {
+    if (alphabetCount[str] === undefined) {
+      alphabetCount[str] = 0;
+    }
+    alphabetCount[str]++;
+  }
+
+  for (const alp in alphabetCount) {
+    alphabetCount[alp] === 1 && answer.push(alp);
+  }
+
+  return answer.sort().join("");
+}
+
+function ex146(my_string, num1, num2) {
+  const stringToArr = [...my_string];
+  [stringToArr[num1], stringToArr[num2]] = [
+    stringToArr[num2],
+    stringToArr[num1],
+  ];
+  return stringToArr.join("");
+}
+
+function ex147(numbers) {
+  let alpArray = [...numbers];
+  let word = "";
+  let answer = "";
+  const wordToNumber = {
+    zero: "0",
+    one: "1",
+    two: "2",
+    three: "3",
+    four: "4",
+    five: "5",
+    six: "6",
+    seven: "7",
+    eight: "8",
+    nine: "9",
+  };
+
+  alpArray.forEach((alp) => {
+    word += alp;
+    if (wordToNumber[word]) {
+      answer += wordToNumber[word];
+      word = "";
+    }
+  });
+  return Number(answer);
+}
+
+function ex148(my_string) {
+  let stringToArray = [...my_string];
+  const changeChar = stringToArray.map((str) =>
+    str === str.toLowerCase() ? str.toUpperCase() : str.toLowerCase(),
+  );
+
+  return changeChar.join("");
+}
+
+function ex149(cipher, code) {
+  let stringToArr = [...cipher];
+  const password = stringToArr.filter((str, idx) => {
+    if ((idx + 1) % code === 0) return str;
+  });
+
+  return password.join("");
+}
+
+function ex150(order) {
+  let count = 0;
+  for (const num of String(order)) {
+    /3|6|9/g.test(num) && count++;
+  }
+  return count;
+}
+
+function ex151(array, n) {
+  array.push(n);
+  array.sort((a, b) => a - b);
+  let nIndex = array.indexOf(n);
+  let nNextValue = array[nIndex + 1];
+  let nPrevValue = array[nIndex - 1];
+
+  if (nNextValue === undefined) return nPrevValue;
+
+  if (nPrevValue === undefined) return nNextValue;
+
+  return n - nPrevValue > nNextValue - n ? nNextValue : nPrevValue;
+}
+
+function ex152(sides) {
+  sides.sort((a, b) => a - b);
+  const [a, b, c] = sides;
+  return a + b > c ? 1 : 2;
+}
+
+function ex153(my_string) {
+  let removeDuplication = new Set([...my_string]);
+  return [...removeDuplication].join("");
+}
+
+function ex154(i, j, k) {
+  let count = 0;
+
+  for (let startNum = i; startNum <= j; startNum++) {
+    for (const str of String(startNum)) {
+      if (Number(str) === k) {
+        count++;
+      }
+    }
+  }
+  return count;
+}
+
+function ex155(before, after) {
+  let beforeToArray = [...before].sort((a, b) => a.localeCompare(b));
+  let afterToArray = [...after].sort((a, b) => a.localeCompare(b));
+  if (beforeToArray.join("") === afterToArray.join("")) return 1;
+
+  return 0;
+}
+
+function ex156(bin1, bin2) {
+  const int1 = parseInt(bin1, 2);
+  const int2 = parseInt(bin2, 2);
+
+  const sum = int1 + int2;
+
+  const sumInBinary = sum.toString(2); // 10진수 합을 다시 이진수 문자열로 변환
+
+  return sumInBinary;
+}
+
+function ex157(chicken) {
+  let serviceChicken = 0;
+  for (let coupon = 1; coupon <= chicken; coupon++) {
+    if (coupon % 10 === 0) {
+      chicken++;
+      serviceChicken++;
+    }
+  }
+
+  return serviceChicken;
+}
+
+function ex158(userInfo, db) {
+  var idPasswordInfo = {};
+  const [userId, userPassword] = userInfo;
+
+  for (const data of db) {
+    const [dataId, dataPassword] = data;
+    idPasswordInfo[dataId] = dataPassword;
+  }
+
+  if (idPasswordInfo[userId] === undefined) {
+    return "fail";
+  }
+
+  if (idPasswordInfo[userId] !== userPassword) {
+    return "wrong pw";
+  }
+
+  return "login";
+}
+
+function ex159(score) {
+  const averages = score.map(
+    ([mathScore, enScore]) => (mathScore + enScore) / 2,
+  );
+  const comparisonScore = [...averages];
+
+  const ranking = averages.map((value) => {
+    let rank = 1;
+
+    for (const comparisonVal of comparisonScore) {
+      if (value < comparisonVal) {
+        rank++;
+      }
+    }
+    return rank;
+  });
+
+  return ranking;
+}
+
+function ex160(numlist, n) {
+  numlist.sort((a, b) => {
+    const distanceA = Math.abs(a - n);
+    const distanceB = Math.abs(b - n);
+    if (distanceA === distanceB) {
+      return b - a;
+    }
+
+    return distanceA - distanceB;
+  });
+
+  return numlist;
+}
+
+function ex161(numerator, denominator) {
+  function greatestCommonDivisor(num, divisible) {
+    if (divisible === 0) {
+      return num;
+    }
+    return greatestCommonDivisor(divisible, num % divisible);
+    //기약분수를 구하기 위해 최대공약수를 구해야한다
+    //최대 공약수는 a를 b로 계속 나누었을때 나누어 떨어진 수가 0 이면 최대공약수를 구할 수 있다(유클리드 호제법 참고)
+  }
+  const commonFactor = greatestCommonDivisor(numerator, denominator);
+  let simplifiedDenominator = denominator / commonFactor;
+  //분모와 분자를 그들의 최대공약수로 나누면 기약분수를 구할 수 있음.분모를 최대공약수로 나누면 기약분수를 구할 수 있다.
+
+  //기약분수로 나타냈을때, 분모의 소인수가 2와 5만 존재한다면 유한소수이다
+
+  while (simplifiedDenominator % 2 === 0) {
+    simplifiedDenominator /= 2;
+  }
+  while (simplifiedDenominator % 5 === 0) {
+    simplifiedDenominator /= 5;
+  }
+
+  return simplifiedDenominator === 1 ? 1 : 2;
+}
+
+function ex162(lines) {
+  /*정말정말..아무리 고민해도 모르겠어서 다른사람의 풀이를 참고하였습니다ㅜㅜㅜ */
+  let min = Math.min(...lines.flat());
+  //2차원 배열을 flat()으로 1차원 배열로 만들고  전개연산자로 나열한다음 Math.min 으로 최소값을 구함
+  let max = Math.max(...lines.flat());
+  //2차원 배열을 flat()으로 1차원 배열로 만들고  전개연산자로 나열한다음 Math.max 으로 최소값을 구함
+  let arr = Array(max - min + 1).fill(0);
+  //Array 생성자로 길이가 max-min+1 인 array를 생성하고 fill()로 0 값으로 길이만큼 채운다.
+
+  for (let [start, end] of lines) {
+    //lines 각 요소를 구조분해 할당으로 각 start, end값으로 가져오고
+    if (min < 0) {
+      //min값이 음수라면
+      start += Math.abs(min);
+      //Math.abs으로 절대값을 구한다음 start 와 end 부분에 더해준다.
+      end += Math.abs(min);
+      //절대값으로 더해주는 이유는 만약 min값이 -1 이리면 뒤에 반복문을 쓸떄 arr[i]의 i 가 음수가 되기때문임
+    }
+    for (let i = start; i < end; i++) {
+      arr[i]++;
+      //i 에 start를 할당하고 end -1 까지 반복하면서 arr[i] ++ 해준다
+    }
+  }
+
+  return arr.filter((v) => v > 1).length;
+  //만약 겹치는 부분은 1보다 크기 떄문에 1이상의 값을 리턴한 후 length값을 구하고 리턴한다
+}
+
+function ex163(dots) {
+  function inclinationCalculator(point1, point2) {
+    const [x1, y1] = point1;
+    const [x2, y2] = point2;
+
+    return (y2 - y1) / (x2 - x1);
+  }
+  // 두직선이 평행하려면 기울기가 같아야 한다 기울기 구하는 함수.
+  const [dot1, dot2, dot3, dot4] = dots;
+
+  var inclination1 = inclinationCalculator(dot1, dot2);
+  var inclination2 = inclinationCalculator(dot3, dot4);
+  var inclination3 = inclinationCalculator(dot1, dot3);
+  var inclination4 = inclinationCalculator(dot2, dot4);
+  var inclination5 = inclinationCalculator(dot1, dot4);
+  var inclination6 = inclinationCalculator(dot2, dot3);
+
+  if (
+    inclination1 === inclination2 ||
+    inclination3 === inclination4 ||
+    inclination5 === inclination6
+  ) {
+    return 1;
+  }
+
+  return 0;
+}
+
+function ex164(n) {
+  var count = 0;
+  for (let i = 1; i <= n; i++) {
+    while ((i + count) % 3 === 0 || String(i + count).indexOf("3") > -1) {
+      count++;
+    }
+    var total = i + count;
+  }
+  return total;
+}
+
+function ex165(spell, dic) {
+  const sortedChars = spell.sort().join("");
+  function sortedDictionaryWords(word) {
+    return [...word].sort().join("");
+  }
+
+  for (const word of dic) {
+    if (sortedDictionaryWords(word) === sortedChars) {
+      return 1;
+    }
+  }
+  return 2;
+}
+
+function ex166(sides) {
+  const max = Math.max(...sides);
+  const min = Math.min(...sides);
+  let count = 0;
+
+  for (let i = max - min + 1; i <= max; i++) {
+    count++;
+  }
+
+  for (let i = max + 1; i < max + min; i++) {
+    count++;
+  }
+  return count;
+}
+
+function ex167(board) {
+  /*안전지대 문제인데 .. 도저히 모르겠어서 pass 합니다 ㅠㅜ
+  풀다가 포기.. */
+
+  let rowCount = board.length;
+  let colCount = board[0].length;
+  let landMine;
+  let hasRowLandMine;
+  for (let i = 0; i < board.length; i++) {
+    if (board[i].includes(1)) {
+      landMine = board[i].indexOf(1);
+      hasRowLandMine = i;
+    }
+  }
+
+  for (
+    let row = Math.max(0, hasRowLandMine - 1);
+    row <= Math.min(hasRowLandMine + 1, rowCount - 1);
+    row++
+  ) {
+    for (
+      let col = Math.max(0, landMine - 1);
+      col <= Math.min(landMine + 1, colCount - 1);
+      col++
+    ) {
+      board[row][col] = 1;
+    }
+  }
+
+  return board.flatMap((bd) => bd.filter((num) => num === 0)).length;
+}
+
+function ex168(string) {
+  var arr = string.split(/[a-z]/gi).filter(Boolean);
+  return arr.reduce((acc, value) => acc + Number(value), 0);
+}
+
+function ex169(polynomial) {
+  let variableTerm = 0;
+  let constantTerm = 0;
+
+  const removeOperator = polynomial.split(" + ");
+
+  for (let i = 0; i < removeOperator.length; i++) {
+    if (removeOperator[i].includes("x")) {
+      let removeX = removeOperator[i].replace(/x/g, "");
+      variableTerm += removeX === "" ? 1 : Number(removeX);
+    } else {
+      constantTerm += Number(removeOperator[i]);
+    }
+  }
+
+  if (variableTerm === 1) {
+    variableTerm = "";
+  }
+
+  if (variableTerm === 0) {
+    return `${constantTerm}`;
+  }
+
+  if (constantTerm === 0) {
+    return `${variableTerm}x`;
+  }
+
+  return `${variableTerm}x + ${constantTerm}`;
+}
+
+function ex170(numbers) {
+  numbers.sort((a, b) => a - b);
+  const num1 = numbers.at(-1) * numbers.at(-2);
+  const num2 = numbers[0] * numbers[1];
+
+  return num1 > num2 ? num1 : num2;
+}
+
+function ex171(keyinput, board) {
+  let x = 0;
+  let y = 0;
+
+  function move(direction) {
+    switch (direction) {
+      case "up":
+        if (y == Math.floor(board[1] / 2)) {
+          break;
+        }
+        y++;
+        break;
+      case "down":
+        if (y == -Math.floor(board[1] / 2)) {
+          break;
+        }
+        y--;
+        break;
+      case "left":
+        if (x == -Math.floor(board[0] / 2)) {
+          break;
+        }
+        x--;
+        break;
+      case "right":
+        if (x == Math.floor(board[0] / 2)) {
+          break;
+        }
+        x++;
+        break;
+    }
+  }
+
+  for (const key of keyinput) {
+    move(key);
+  }
+
+  return [x, y];
+}
+
+function ex172(dots) {
+  const [dot1] = dots;
+  const [x1, y1] = dot1;
+  let height;
+  let width;
+
+  for (const dot of dots) {
+    const [x, y] = dot;
+
+    if (x == x1) {
+      height = Math.abs(y - y1);
+    }
+
+    if (y === y1) {
+      width = Math.abs(x - x1);
+    }
+  }
+  return height * width;
+}
+
+function ex173(strlist) {
+  var answer = strlist.map((word) => word.length);
+  return answer;
+}
+
+function ex174(s) {
+  let result = 0;
+  const array = s.split(" ");
+  array.forEach((cha, i) => {
+    if (cha === "Z") {
+      return (result -= Number(array[i - 1]));
+    }
+
+    return (result += Number(cha));
+  });
+  return result;
+}
