@@ -27,7 +27,7 @@ function ex80(my_string, alp) {
 }
 
 function ex80A(my_string, alp) {
-  const upperAlp = alp.toUpperCase(); // 소문자로 바꾼 alp를 upperAlp로 선언
+  const upperAlp = alp.toUpperCase(); // 대문자로 바꾼 alp를 upperAlp로 선언
   const transformedArr = [...my_string].map((ch) =>
     ch === alp ? upperAlp : ch
   );
