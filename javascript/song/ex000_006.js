@@ -1,14 +1,19 @@
 // 7의 개수
 
+// function ex131Count7(array) {
+//   let str = array.join("");
+//   let count = 0;
+//   for (num of str) {
+//     if (num === "7") {
+//       count++;
+//     }
+//   }
+//   return count;
+// }
+
 function ex131Count7(array) {
-  let str = array.join("");
-  let count = 0;
-  for (num of str) {
-    if (num === "7") {
-      count++;
-    }
-  }
-  return count;
+  let strList = [...array.join("")];
+  return strList.filter((n) => n === "7").length;
 }
 
 //
@@ -18,7 +23,7 @@ function ex131Count7(array) {
 function ex132ArrangeString(my_string) {
   let arr = [...my_string];
   return arr
-    .map((el) => el.toLowerCase())
+    .map((ch) => ch.toLowerCase())
     .sort()
     .join("");
 }
