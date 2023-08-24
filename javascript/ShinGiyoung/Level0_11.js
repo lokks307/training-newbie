@@ -2123,31 +2123,42 @@ function ex120(n) {
   }
   return answer;
 }
-
+//1.
 function ex121(n) {
   const arr = new Array(n).fill(null).map(() => new Array(n).fill(0));
+  //length 가 n 인 배열을 생성한 후 , 0으로 모두 채운뒤 새로운 배열을 반환한다. 이 배열을 길이가 n인 배열안에 각각 넣어준다
+  // 예) [3,3,3] => [[3,3,3],[3,3,3],[3,3,3]]
   let num = 1;
   let row = 0;
   let col = 0;
   let direction = "right";
-
+  // 나선형으로 채우기 위해서 나선형 시작 방향인 right 를 초기값으로 설정
+  //n의 2제곱 까지 정수를 인덱스 [0][0]부터 시계방향 나선형으로 배치하기 위해 n*n 보다 작거나 같을경우까지 반복함을 설정.
   while (num <= n * n) {
     arr[row][col] = num;
     num++;
 
     if (direction === "right") {
       if (col + 1 < n && arr[row][col + 1] === 0) {
+        // col + 1 < n && arr[row][col + 1] === 0 일때 col ++
+        /* col+1< n 은 가로의 길이가 n보다 크면 안되기 때문에 설정 예 ) 나선형 배열의이 n*n 형태라서 가로의 길이가 n 
+          n 이 3이라면 열이 3보다 클수 없음
+        */
+        /*arr[row][col + 1] === 0은  초기 arr 배열에 모든 값을 0으로 설정했기때문에 자리에 num 이 들어있는지 체크 두번째 rigth 에서는 마지막 col 값이 들어있기때문*/
         col++;
       } else {
+        //아니라면 방향 바꿔주기
         direction = "down";
         row++;
       }
     } else if (direction === "down") {
       if (row + 1 < n && arr[row + 1][col] === 0) {
         row++;
+        //위와 같은 방식
       } else {
         direction = "left";
         col--;
+        //마지막 col 빼주는 이유는 방향이 right가 아니라 left 쪽으로 가야하기떄문
       }
     } else if (direction === "left") {
       if (col - 1 >= 0 && arr[row][col - 1] === 0) {
@@ -2155,12 +2166,14 @@ function ex121(n) {
       } else {
         direction = "up";
         row--;
+        //마지막 row을 뺴주는 이유는 방향이 up이기 떄문이다
       }
     } else if (direction === "up") {
       if (row - 1 >= 0 && arr[row - 1][col] === 0) {
         row--;
       } else {
         direction = "right";
+        //방향 변경하면서 가로로진행방향 설정 col++
         col++;
       }
     }
@@ -2169,43 +2182,150 @@ function ex121(n) {
   return arr;
   /* 양심삼 이 문제는 아무리 고민해도 어떻게 풀어야할지 모르겠어서 gpt에게 도움을 받았습니다.. */
 }
+//2.
+function ex121GenerateSpiralMatrix(n) {
+  const matrix = Array.from({ length: n }, () =>
+    Array.from({ length: n }, () => 0),
+  );
+  //Array.from 으로 길이가 n인 배열 생성 후 0값으로 채우고 이 배열 값을 길이가 n 인 배열을 다시 채운다
+  // 예) n이3일때      Array.from({ length: n }, () => 0),= [0,0,0]  이배열을 다시 Array.from({ length: n }, () =>[0,0,0])이런식
+  // 결국 [[0,0,0],[0,0,0],[0,0,0]]
 
+  let num = 1;
+  let row = 0;
+  let col = 0;
+  const directions = [
+    [0, 1],
+    [1, 0],
+    [0, -1],
+    [-1, 0],
+  ];
+  let directionIndex = 0;
+  //num 값이 총길이가 n*n 과 같거나 작을떄 반복.
+  while (num <= n * n) {
+    matrix[row][col] = num++;
+    const [dr, dc] = directions[directionIndex];
+    const newRow = row + dr;
+    const newCol = col + dc;
+
+    if (
+      newRow >= 0 &&
+      newRow < n &&
+      newCol >= 0 &&
+      newCol < n &&
+      matrix[newRow][newCol] === 0
+      //row 값과 col 값은 항상 n보다 작아야한다 같아면 방향을 바꿔야한다
+      // 또 0이랑 같거나 커야한다 a[-1] 이라면 안됨.
+      //마지막으로 그 자리에 값이 할당이 안되어야함
+    ) {
+      //위값을 충족하면 할당
+      row = newRow;
+      col = newCol;
+    } else {
+      //할당하지 못한다면 방향을 바꿔줘야함
+      directionIndex = (directionIndex + 1) % 4;
+      //directionIndex이 5이면 총길이가 4라서 나머지값 1을 다시 할당
+      row += directions[directionIndex][0];
+      col += directions[directionIndex][1];
+    }
+  }
+
+  return matrix;
+}
+
+//1.
 function ex122(arr) {
   const n = Math.sqrt(arr.length);
+  //Math.sqrt 를 사용하여 제곱근 반환 만약 length값이 9 라면 n 은 3
   let row = 0;
   let col = 0;
   for (let i = 0; i < n; i++) {
+    //row 의 길이가 n보다 클수없다
     row = i;
     for (let j = i + 1; j < n; j++) {
+      //j도 0이면  arr[0][0] !== arr[0][0] 이기 떄문에 +1 부터검사.
       col = j;
+      //
       if (arr[row][col] !== arr[col][row]) return 0;
     }
   }
   return 1;
 }
+//2.Extract Method,Rename Variables
+function isSymmetricMatrix(matrix) {
+  const n = matrix.length;
+  // n*n크기인 이차원배열이라서 length 값만 가져와도됨..
+  for (let i = 0; i < n; i++) {
+    //배열의 row 의 길이가 n보다 클수없다
+    for (let j = i + 1; j < n; j++) {
+      //j도 0이면  arr[0][0] !== arr[0][0] 이기 떄문에 +1 부터검사.
+      if (matrix[i][j] !== matrix[j][i]) {
+        return false;
+        //matrix[i][j] !== matrix[j][i] 이면 false리턴,,
+      }
+    }
+  }
+  return true;
+  // 모든 반복을 돌았음에도 걸리는게 없으면 true 리턴
+}
+function ex122Edit(matrix) {
+  return isSymmetricMatrix(matrix) ? 1 : 0;
+  //Extract Method ...읽기쉽고 재사용하기 쉽도록 메소드 정리 .. 추출
+  // 또 arr가 아닌 정체성이 있다면 정체성 변수에 드러내기
+}
 
 function ex123(arr) {
   const row = arr.length;
   const col = arr[0].length;
-
+  //2차원 배열 arr row는 각 행 col 은 열을 의미
+  //열의 수가 행의 수와 같아지도록 각 행의 끝에 0을 추가
   function addRow(row, col) {
     for (let i = 0; i < row; i++) {
+      //각 행의 끝에 0을 추가 해야하기떄문에 한 배열씩 가져오기
       for (let j = col; j < row; j++) {
-        arr[i][j] = 0;
+        //각 가져온 요소(배열)의 길이인 col 을 가져오고 행수까지 반복(col <= row-1 )
+        arr[i][j] = 0; //행 끝에 열의 수만큼 0추가
       }
     }
   }
-
+  //행의 수가 열의 수와 같아지도록 각 열의 끝에 0을 추가
   function addCol(row, col) {
     const limit = col - row;
-    const addArr = new Array(col).fill(0);
+    const addArr = new Array(col).fill(0); // 열 길이만큼 0으로채원 arr생성
     for (let i = 1; i <= limit; i++) {
-      arr.push(addArr);
+      arr.push(addArr); //limit 만큼 넣어주기
     }
   }
   row > col ? addRow(row, col) : addCol(row, col);
 
   return arr;
+}
+
+function ex123Edit(arr) {
+  const row = arr.length;
+  const col = arr[0].length;
+  //2차원 배열 arr row는 각 행 col 은 열을 의미
+  row > col ? addRow(row, col) : addCol(row, col);
+  //한 번만 쓸 함수이면 지금처럼 인라인 함수로 만들기 다만 함수를 다 밑으로 빼야 가독성이 좋다 순서변경
+  return arr;
+  //열의 수가 행의 수와 같아지도록 각 행의 끝에 0을 추가
+  function addRow(row, col) {
+    for (let i = 0; i < row; i++) {
+      //각 행의 끝에 0을 추가 해야하기떄문에 한 배열씩 가져오기
+      for (let j = col; j < row; j++) {
+        //각 가져온 요소(배열)의 길이인 col 을 가져오고 행수까지 반복(col <= row-1 )
+        arr[i][j] = 0; //행 끝에 열의 수만큼 0추가
+      }
+    }
+  }
+  //행의 수가 열의 수와 같아지도록 각 열의 끝에 0을 추가
+  function addCol(row, col) {
+    const limit = col - row;
+    const addArr = new Array(col).fill(0); // 열 길이만큼 0으로채원 arr생성
+    for (let i = 1; i <= limit; i++) {
+      arr.push(addArr); //limit 만큼 넣어주기
+    }
+  }
 }
 
 function ex124(board, k) {
@@ -2235,13 +2355,31 @@ function ex125(babbling) {
 
 function ex126(common) {
   const arrLastIdx = common.length - 1;
-  const isArithmeticSequence = common[2] - common[1] === common[1] - common[0];
+  const isArithmeticSequence = common[2] - common[1] === common[1] - common[0]; // 등차수열 판단 common[2] - common[1] 값이 common[1] - common[0] 와 같다면 공차가 같다는 의미 즉, 공차가같은 등차수열
   const commonDifference = isArithmeticSequence
-    ? common[2] - common[1]
-    : common[2] / common[1];
+    ? common[2] - common[1] // 등차수열이면 공차
+    : common[2] / common[1]; // 등비수열이면 공비 구하기
   return isArithmeticSequence
-    ? common[arrLastIdx] + commonDifference
+    ? common[arrLastIdx] + commonDifference // 마지막원소에 공차더해서 or 공비곱해서 다음원소값구하기
     : common[arrLastIdx] * commonDifference;
+}
+
+function ex126Edit(sequence) {
+  // 알 맞는 변수이름 지정하기 순서
+  const isArithmetic = sequence[2] - sequence[1] === sequence[1] - sequence[0]; // 등차수열 판단 common[2] - common[1] 값이 common[1] - common[0] 와 같다면 공차가 같다는 의미 즉, 공차가같은 등차수열
+  const commonDifference = isArithmetic
+    ? sequence[2] - sequence[1] // 순서 2에서 순서 1 빼기
+    : sequence[2] / sequence[1]; //순서 2에서 순서 1 나누기 (공차 공비 구함)
+
+  return getNextValue(sequence, isArithmetic, commonDifference);
+  //Extract Method 의미 있는 로직은 함수로 빼기
+  function getNextValue(sequence, isArithmetic, commonDifference) {
+    // 다음 값 구하기.. 라는 변수명 할당 직관적이다.
+    const lastIndex = sequence.length - 1;
+    return isArithmetic
+      ? sequence[lastIndex] + commonDifference
+      : sequence[lastIndex] * commonDifference;
+  }
 }
 
 function ex127(num, total) {
@@ -2278,7 +2416,12 @@ function ex129(A, B) {
 }
 
 function ex130(my_str, n) {
+  //1.
   let strToArr = [...my_str];
+  //2.
+  let charList = [...my_str];
+  /* strToArr말고 특정의미를 가르키지 않으면 현재 type 적기 Array, 근데 여기서는 charList를 의미하기 때문에 charList 도 좋다
+  또 복수로 표현할 때는 더 명시적인 list를 사용한다. List를 붙이면 배열 형태로 들어가있을 것으로 추측할수있기떄문이다. */
   var answer = [];
   for (let i = 0; i < my_str.length / n; i++) {
     answer.push(strToArr.splice(0, n).join(""));
