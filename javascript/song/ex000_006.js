@@ -96,14 +96,23 @@ function solution(quiz) {
 
 // 자릿수 더하기
 
-function ex137(n) {
-  let count = 0;
-  let arr = String(n).split("");
+// function ex137(n) {
+//   let count = 0;
+//   let arr = String(n).split("");
 
-  for (num of arr) {
-    count += Number(num);
-  }
-  return count;
+//   for (num of arr) {
+//     count += Number(num);
+//   }
+//   return count;
+// }
+
+function sumDigits(n) {
+  const digits = String(n).split("").map(Number);
+  return digits.reduce((sum, digit) => sum + digit, 0);
+}
+
+function ex137A(n) {
+  return sumDigits(n);
 }
 
 //
@@ -118,27 +127,49 @@ function ex138(n, numlist) {
 
 // 숫자 찾기
 
-function ex139FindNumber(num, k) {
-  let arr = String(num).split("");
+// function ex139FindNumber(num, k) {
+//   let arr = String(num).split("");
 
-  if (arr.includes(String(k))) {
-    return arr.indexOf(String(k)) + 1;
-  }
-  return -1;
+//   if (arr.includes(String(k))) {
+//     return arr.indexOf(String(k)) + 1;
+//   }
+//   return -1;
+// }
+// String(k)를 두 번 썼다. 그럴 땐 변수로 지정하자.
+
+function solution(num, k) {
+  var answer = 0;
+  return ex139FindDigitPosition(num, k);
+}
+
+function ex139FindDigitPosition(num, digit) {
+  const digitStr = String(digit);
+  const numStr = String(num);
+
+  return numStr.includes(digitStr) ? numStr.indexOf(digitStr) + 1 : -1;
 }
 
 //
 
 // 배열의 유사도
 
+// function ex140(s1, s2) {
+//   let count = 0;
+//   for (let i = 0; i < s1.length; i++) {
+//     if (s2.includes(s1[i])) {
+//       count++;
+//     }
+//   }
+//   return count;
+// }
+
+function countCommonCharacters(s1, s2) {
+  const charList = Array.from(s1).filter((ch) => s2.includes(ch));
+  return charList.length;
+}
+
 function ex140(s1, s2) {
-  let count = 0;
-  for (let i = 0; i < s1.length; i++) {
-    if (s2.includes(s1[i])) {
-      count++;
-    }
-  }
-  return count;
+  return countCommonCharacters(s1, s2);
 }
 
 //
@@ -174,15 +205,19 @@ function ex142FindMaxNum(array) {
 
 // 약수 구하기
 
-function ex143GetDivision(n) {
-  let arr = [];
+// function ex143GetDivision(n) {
+//   let arr = [];
 
-  for (let i = 1; i <= n; i++) {
-    if (n % i === 0) {
-      arr.push(i);
-    }
-  }
-  return arr;
+//   for (let i = 1; i <= n; i++) {
+//     if (n % i === 0) {
+//       arr.push(i);
+//     }
+//   }
+//   return arr;
+// }
+
+function ex143GetDivision(n) {
+  return Array.from({ length: n }, (_, i) => i + 1).filter((i) => n % i === 0);
 }
 
 //
@@ -244,6 +279,10 @@ function ex146HateEnglish(numbers) {
 
 function ex147UpperAndLower(my_string) {
   let arr = [];
+
+  const ch = my_string[i];
+  const upper = ch.toUpperCase();
+  const lower = ch.toLowerCase();
   for (let i = 0; i < my_string.length; i++) {
     if (my_string[i] === my_string[i].toLowerCase()) {
       arr.push(my_string[i].toUpperCase());
