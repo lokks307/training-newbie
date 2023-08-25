@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 // 문제 순서 바뀌어서 풀었을 때 푼 문제는 건너 뛰고 풀었습니다:)
+=======
+// 문제 순서 바뀌어서 풀었을 때 푼 문제들은 건너 뛰고 풀었습니다 :)
+>>>>>>> feature/day11
 
 // 암호 해독
 
@@ -17,17 +21,30 @@ function ex148CodeBreaking(cipher, code) {
 function ex149Game369(order) {
   let count = 0;
   const orderList = [...String(order)];
+<<<<<<< HEAD
   const filteredList = orderList.filter(
     (num) => num === "3" || num === "6" || num === "9"
   );
   return filteredList.length;
+=======
+  for (let num of orderList) {
+    if (num === "3" || num === "6" || num === "9") {
+      count++;
+    }
+  }
+  return count;
+>>>>>>> feature/day11
 }
 
 //
 
 // 중복된 문자 제거
 
+<<<<<<< HEAD
 function ex152RemoveDupCh(my_string) {
+=======
+function ex152(my_string) {
+>>>>>>> feature/day11
   let answer = "";
   for (let i = 0; i < my_string.length; i++) {
     if (!answer.includes(my_string[i])) {
@@ -37,12 +54,19 @@ function ex152RemoveDupCh(my_string) {
   return answer;
 }
 
+<<<<<<< HEAD
 // Set 이용해서 풀기
 function ex152RemoveDupCh(my_string) {
+=======
+// Set 이용해서
+
+function ex152a(my_string) {
+>>>>>>> feature/day11
   return [...new Set(my_string)].join("");
 }
 
 //
+<<<<<<< HEAD
 
 // k의 개수
 
@@ -154,3 +178,5 @@ function ex160(a, b) {
 // 고민해봐도 모르겠습니다..ㅠㅠ
 
 //
+=======
+>>>>>>> feature/day11
