@@ -21,7 +21,11 @@ function ex131Count7(array) {
 // 문자열 정렬하기 (2)
 
 function ex132ArrangeString(my_string) {
+<<<<<<< HEAD
   let arr = [...my_string];
+=======
+  let strList = [...my_string];
+>>>>>>> feature/day10
   return arr
     .map((ch) => ch.toLowerCase())
     .sort()
@@ -61,6 +65,7 @@ function ex135StringInString(str1, str2) {
 
 // OX퀴즈
 
+<<<<<<< HEAD
 function solution(quiz) {
   let X;
   let Y;
@@ -92,15 +97,23 @@ function solution(quiz) {
   return result;
 }
 
+=======
+>>>>>>> feature/day10
 //
 
 // 자릿수 더하기
 
 // function ex137(n) {
 //   let count = 0;
+<<<<<<< HEAD
 //   let arr = String(n).split("");
 
 //   for (num of arr) {
+=======
+//   let numList = String(n).split("");
+
+//   for (num of numList) {
+>>>>>>> feature/day10
 //     count += Number(num);
 //   }
 //   return count;
@@ -128,10 +141,17 @@ function ex138(n, numlist) {
 // 숫자 찾기
 
 // function ex139FindNumber(num, k) {
+<<<<<<< HEAD
 //   let arr = String(num).split("");
 
 //   if (arr.includes(String(k))) {
 //     return arr.indexOf(String(k)) + 1;
+=======
+//   let numList = String(num).split("");
+
+//   if (numList.includes(String(k))) {
+//     return numList.indexOf(String(k)) + 1;
+>>>>>>> feature/day10
 //   }
 //   return -1;
 // }
@@ -176,6 +196,7 @@ function ex140(s1, s2) {
 
 // 문자열 계산하기
 
+<<<<<<< HEAD
 function ex141(my_string) {
   let arr = my_string.split(" ");
   let answer = Number(arr[0]);
@@ -190,6 +211,8 @@ function ex141(my_string) {
   return answer;
 }
 
+=======
+>>>>>>> feature/day10
 //
 
 // 가장 큰 수 찾기
@@ -224,6 +247,7 @@ function ex143GetDivision(n) {
 
 // 한 번만 등장한 문자
 
+<<<<<<< HEAD
 function ex144FindUniqueStr(s) {
   let arr = [...s];
   let answer = "";
@@ -237,6 +261,8 @@ function ex144FindUniqueStr(s) {
   return answer.split("").sort().join("");
 }
 
+=======
+>>>>>>> feature/day10
 //
 
 // 인덱스 바꾸기
@@ -253,6 +279,7 @@ function ex145SwapIndex(my_string, num1, num2) {
 
 // 영어가 싫어요
 
+<<<<<<< HEAD
 function ex146HateEnglish(numbers) {
   const numList = [
     "zero",
@@ -273,6 +300,8 @@ function ex146HateEnglish(numbers) {
   return Number(numbers);
 }
 
+=======
+>>>>>>> feature/day10
 //
 
 // 대문자와 소문자
@@ -280,6 +309,7 @@ function ex146HateEnglish(numbers) {
 function ex147UpperAndLower(my_string) {
   let arr = [];
 
+<<<<<<< HEAD
   const ch = my_string[i];
   const upper = ch.toUpperCase();
   const lower = ch.toLowerCase();
@@ -288,6 +318,16 @@ function ex147UpperAndLower(my_string) {
       arr.push(my_string[i].toUpperCase());
     } else {
       arr.push(my_string[i].toLowerCase());
+=======
+  for (let i = 0; i < my_string.length; i++) {
+    const ch = my_string[i];
+    const upper = ch.toUpperCase();
+    const lower = ch.toLowerCase();
+    if (ch === lower) {
+      arr.push(upper);
+    } else {
+      arr.push(lower);
+>>>>>>> feature/day10
     }
   }
   return arr.join("");
