@@ -1328,7 +1328,7 @@ function ex71(arr) {
 }
 
 function ex72(arr) {
-  //1.
+
   function createArr() {
     arr = arr.map((num) => {
       if (num >= 50 && num % 2 === 0) {
@@ -1354,129 +1354,28 @@ function ex72(arr) {
   }
 
   return count;
-  //2.
-  function transformArray() {
-    arr = arr.map((num) => {
-      if (num >= 50 && num % 2 === 0) {
-        return num / 2;
-      }
 
-      if (num < 50 && num % 2 !== 0) {
-        return num * 2 + 1;
-      }
-      return num;
-    });
 
-    return arr;
   }
-  /*조금더 적절한 네이밍 고민하기 */
-}
-
-function ex73(num_list) {
-  let count = 0;
-  for (const num of num_list) {
-    var number = num;
-    while (number !== 1) {
-      number = number % 2 == 0 ? number / 2 : (number - 1) / 2;
-      count++;
-    }
-  }
-
-  return count;
-}
-
-function ex74(num_list) {
-  //1.
-  const sum = num_list.reduce(
-    (accumulator, currentValue) => accumulator + currentValue,
-    0,
-  );
-  const multiply = num_list.reduce(
-    (accumulator, currentValue) => accumulator * currentValue,
-    1,
-  );
-
-  return num_list.length >= 11 ? sum : multiply;
-  //2.
-  const lengthThreshold = 11;
-  return num_list.length >= lengthThreshold ? sum : multiply;
-  /* 다른사람이 코드를 봐도 의미를 알수있게 넘버에도 의미있는 변수명 지어주기.. */
-}
-
-function ex75(myString, pat) {
-  myString = myString.toLowerCase();
-  pat = pat.toLowerCase();
-
-  return myString.includes(pat) ? 1 : 0;
-}
-function ex76(myString) {
-  return myString.toUpperCase();
-}
-
-function ex77(myString) {
-  return myString.toLowerCase();
-}
-
-function ex78(strArr) {
-  var answer = strArr.map((str, idx) =>
-    idx % 2 === 0 ? str.toLowerCase() : str.toUpperCase(),
-  );
-  return answer;
-}
-
-function ex79(myString) {
-  //1.
-  let answer = [...myString.toLowerCase()]
-    .map((str) => (str === "a" ? str.toUpperCase() : str))
-    .join("");
-
-  //2.
-  let answer = [...myString.toLowerCase()]
-    .map((ch) => (ch === "a" ? ch.toUpperCase() : ch))
-    .join("");
-  /* str는 문자열을 의미. 해석하면 문자열이 "a"라면 문자열(모두를) 대문자로 바꾼다. 라고 해석.
-    근데 str 보다 ch 로 바꾸면 문자가 "a" 라면 해당 문자를 대문자로 바꾼다.로 해석 가능하다.
-  */
-  return answer;
-}
-
-function ex80(my_string, alp) {
-  //1.
-  let answer = [...my_string]
-    .map((str) => (str === alp ? str.toUpperCase() : str))
-    .join("");
-
-  return answer;
-}
-//2.
-function ex80Edit(string, alp) {
-  //프로그래머스에서 문제를 가져올떄 ES6문법에 맞춰서 가져오기
-
-  let answer = [...string]
-    .map((ch) => (ch === alp ? ch.toUpperCase() : ch))
-    .join("");
-  /* str는 문자열을 의미. 해석하면 문자열이 "a"라면 문자열(모두를) 대문자로 바꾼다. 라고 해석.
-    근데 str 보다 ch 로 바꾸면 문자가 "a" 라면 해당 문자를 대문자로 바꾼다.로 해석 가능하다.
-
-    map으로 변환하는 대상의 이름을 정확하게 지어주기 !!
-  */
   return answer;
 }
 //1.
-function ex81(myString, pat) {
-  const lastIndex = myString.lastIndexOf(pat);
-  const strArr = [...myString];
-  strArr.splice(lastIndex, myString.length - lastIndex + 1, pat);
+function ex121(n) {
+  const arr = new Array(n).fill(null).map(() => new Array(n).fill(0));
+  //length 가 n 인 배열을 생성한 후 , 0으로 모두 채운뒤 새로운 배열을 반환한다. 이 배열을 길이가 n인 배열안에 각각 넣어준다
+  // 예) [3,3,3] => [[3,3,3],[3,3,3],[3,3,3]]
+  let num = 1;
+  let row = 0;
+  let col = 0;
+  let direction = "right";
+  // 나선형으로 채우기 위해서 나선형 시작 방향인 right 를 초기값으로 설정
+  //n의 2제곱 까지 정수를 인덱스 [0][0]부터 시계방향 나선형으로 배치하기 위해 n*n 보다 작거나 같을경우까지 반복함을 설정.
+  while (num <= n * n) {
+    arr[row][col] = num;
+    num++;
 
-  return strArr.join("");
-}
-//2
-function ex81Edit(myString, pat) {
-  const lastIndex = myString.lastIndexOf(pat);
-  return myString.slice(0, lastIndex + pat.length);
-  /*string 인경우 slice쓰는게 더편하다 ..굳이 splice쓰려고 배열로 바꾸고 다시 string으로 바꿀 필요 X */
-}
 
+<<<<<<< HEAD
 function ex82(myString, pat) {
   let count = 0;
   const strLength = myString.length - pat.length;
@@ -2120,6 +2019,7 @@ function ex120(n) {
       }
     }
     answer.push(arr);
+>>>>>>> feature/day8
   }
   return answer;
 }
@@ -2138,6 +2038,68 @@ function ex121(n) {
     arr[row][col] = num;
     num++;
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> feature/day11
+function ex51(my_string) {
+  let upperList = [];
+  let lowList = [];
+
+  for (let i = 65; i <= 90; i++) {
+    //65번부터 90인 이유는 A-Z 까지 아스키코드이기 떄문이다.
+    const upperChar = String.fromCharCode(i); //A-Z
+    const lowChar = String.fromCharCode(i + 32); //a-z
+
+    const upperCount = (my_string.match(new RegExp(upperChar, "g")) || [])
+      .length;
+    // match 메소드로 my_string로부터 A-Z 검색하여 배열로 반환한다.그 배열의 length값을 구하면 특정문자의 개수를
+    //구할 수 있다
+    upperList.push(upperCount);
+
+    const lowCount = (my_string.match(new RegExp(lowChar, "g")) || []).length;
+    // match 메소드로 my_string로부터 a-z 검색하여 배열로 반환한다. 그 배열의 length값을 구하면 특정문자의 개수를
+    //구할 수 있다
+    lowList.push(lowCount);
+  }
+
+  return [...upperList, ...lowList];
+}
+
+function ex52(n, k) {
+  const nArr = Array.from({ length: n }, (v, i) => i + 1);
+  //n까지 길이에 숫자 배열 만들기
+  var answer = nArr.filter((num) => num % k === 0);
+  //nArr의 요소가 k의 배수인것만 배열에 담아서 answer 넣기
+  //filter() 는 참인것만 리턴해 새로운 배열 생성
+  return answer;
+}
+function ex53(my_string, indices) {
+  let answer = "";
+  for (let i = 0; i < my_string.length; i++) {
+    if (!indices.includes(i)) {
+      //indices 배열안에 i가 없다면
+      answer += my_string[i];
+      //my_string[i] 를answer에 붙이기
+    }
+  }
+  return answer;
+}
+
+function ex54(start, end) {
+  const nArr = Array.from({ length: start - end + 1 }, (v, i) => start - i);
+
+  return nArr;
+}
+
+function ex55(arr, idx) {
+  for (let i = idx + 1; i < arr.length; i++) {
+    if (arr[i] === 1) {
+<<<<<<< HEAD
+=======
+=======
+
+>>>>>>> feature/day11
     if (direction === "right") {
       if (col + 1 < n && arr[row][col + 1] === 0) {
         // col + 1 < n && arr[row][col + 1] === 0 일때 col ++
@@ -2408,6 +2370,11 @@ function ex129(A, B) {
     arrA.pop();
 
     if (arrA.join("") === B) {
+<<<<<<< HEAD
+>>>>>>> main
+=======
+
+>>>>>>> feature/day11
       return i;
     }
   }
@@ -2415,6 +2382,66 @@ function ex129(A, B) {
   return -1;
 }
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+>>>>>>> feature/day11
+function ex56(n, slicer, num_list) {
+  const [a, b, c] = slicer; //구조분해 할당으로 a b c 값 가져오기
+  const utils = num_list.slice(a, b + 1);
+  // slice 메서드로 a부터 b인덱스 만큼의 배열 리턴
+  const operation = {
+    1: num_list.slice(0, b + 1), //slice 메서드로 0부터 b인덱스 만큼의 배열 리턴
+    2: num_list.slice(a), //slice 메서드로 a부터 num_list-1인덱스 만큼의 배열 리턴
+    3: utils,
+    4: utils.filter((num, idx) => idx % c === 0),
+    // slice 메서드로 a부터 b인덱스 만큼의 배열 리턴 후 index 값을 c로 나누었을때 0인것만 리턴
+  };
+
+  return operation[n];
+}
+
+function ex57(num_list) {
+  for (let i = 0; i < num_list.length; i++) {
+    if (num_list[i] < 0) {
+      return i; //num_list 요소가 음수면 인덱스값리턴
+    }
+  }
+  return -1; // 위조건에 해당되지 않는다면 -1 리턴
+}
+
+function ex58(arr, intervals) {
+  const [[a1, b1], [a2, b2]] = intervals; //구조분해 할당으로 a1,b1,a2,b2 가져오기
+  return [...arr.slice(a1, b1 + 1), ...arr.slice(a2, b2 + 1)];
+  // slice 메서드로 a1 인덱스 부터 b1인덱스 까지
+  // slice 메서드로 a2 인덱스 부터 b2인덱스 까지 가져온 후 배열 합치고 리턴ㅁ
+}
+
+function ex59(arr) {
+  let toIndex = arr.indexOf(2);
+  let fromIndex = arr.lastIndexOf(2);
+  if (toIndex === -1) return [-1];
+
+  return arr.slice(toIndex, fromIndex + 1);
+}
+function ex60(arr, query) {
+  for (let i = 0; i < query.length; i++) {
+    if (i % 2 === 0) {
+      arr.splice(query[i] + 1);
+    } else {
+      arr.splice(0, query[i]);
+    }
+  }
+  return arr;
+}
+<<<<<<< HEAD
+=======
+>>>>>>> feature/day8
+=======
+=======
+
+>>>>>>> feature/day11
 function ex130(my_str, n) {
   //1.
   let strToArr = [...my_str];
@@ -2453,3 +2480,8 @@ function ex134(n) {
 function ex135(str1, str2) {
   return str1.includes(str2) ? 1 : 2;
 }
+<<<<<<< HEAD
+>>>>>>> main
+=======
+
+>>>>>>> feature/day11

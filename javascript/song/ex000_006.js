@@ -21,7 +21,11 @@ function ex131Count7(array) {
 // 문자열 정렬하기 (2)
 
 function ex132ArrangeString(my_string) {
+<<<<<<< HEAD
+  let arr = [...my_string];
+=======
   let strList = [...my_string];
+>>>>>>> feature/day10
   return arr
     .map((ch) => ch.toLowerCase())
     .sort()
@@ -61,15 +65,55 @@ function ex135StringInString(str1, str2) {
 
 // OX퀴즈
 
+<<<<<<< HEAD
+function solution(quiz) {
+  let X;
+  let Y;
+  let Z;
+  let op;
+  let result = [];
+
+  for (let item of quiz) {
+    let arr = item.split(" ");
+    arr;
+    op = arr[1];
+    X = Number(arr[0]);
+    Y = Number(arr[2]);
+    Z = Number(arr[4]);
+    if (op === "+") {
+      if (X + Y === Z) {
+        result.push("O");
+      } else {
+        result.push("X");
+      }
+    } else {
+      if (X - Y === Z) {
+        result.push("O");
+      } else {
+        result.push("X");
+      }
+    }
+  }
+  return result;
+}
+
+=======
+>>>>>>> feature/day10
 //
 
 // 자릿수 더하기
 
 // function ex137(n) {
 //   let count = 0;
+<<<<<<< HEAD
+//   let arr = String(n).split("");
+
+//   for (num of arr) {
+=======
 //   let numList = String(n).split("");
 
 //   for (num of numList) {
+>>>>>>> feature/day10
 //     count += Number(num);
 //   }
 //   return count;
@@ -97,10 +141,17 @@ function ex138(n, numlist) {
 // 숫자 찾기
 
 // function ex139FindNumber(num, k) {
+<<<<<<< HEAD
+//   let arr = String(num).split("");
+
+//   if (arr.includes(String(k))) {
+//     return arr.indexOf(String(k)) + 1;
+=======
 //   let numList = String(num).split("");
 
 //   if (numList.includes(String(k))) {
 //     return numList.indexOf(String(k)) + 1;
+>>>>>>> feature/day10
 //   }
 //   return -1;
 // }
@@ -145,6 +196,23 @@ function ex140(s1, s2) {
 
 // 문자열 계산하기
 
+<<<<<<< HEAD
+function ex141(my_string) {
+  let arr = my_string.split(" ");
+  let answer = Number(arr[0]);
+
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === "+") {
+      answer += Number(arr[i + 1]);
+    } else if (arr[i] === "-") {
+      answer -= Number(arr[i + 1]);
+    }
+  }
+  return answer;
+}
+
+=======
+>>>>>>> feature/day10
 //
 
 // 가장 큰 수 찾기
@@ -179,6 +247,22 @@ function ex143GetDivision(n) {
 
 // 한 번만 등장한 문자
 
+<<<<<<< HEAD
+function ex144FindUniqueStr(s) {
+  let arr = [...s];
+  let answer = "";
+
+  for (let i = 0; i < arr.length; i++) {
+    let filtered = arr.filter((el) => el !== arr[i]);
+    if (arr.length - filtered.length === 1) {
+      answer += arr[i];
+    }
+  }
+  return answer.split("").sort().join("");
+}
+
+=======
+>>>>>>> feature/day10
 //
 
 // 인덱스 바꾸기
@@ -195,6 +279,29 @@ function ex145SwapIndex(my_string, num1, num2) {
 
 // 영어가 싫어요
 
+<<<<<<< HEAD
+function ex146HateEnglish(numbers) {
+  const numList = [
+    "zero",
+    "one",
+    "two",
+    "three",
+    "four",
+    "five",
+    "six",
+    "seven",
+    "eight",
+    "nine",
+  ];
+
+  for (let i = 0; i < numList.length; i++) {
+    numbers = numbers.replaceAll(numList[i], i);
+  }
+  return Number(numbers);
+}
+
+=======
+>>>>>>> feature/day10
 //
 
 // 대문자와 소문자
@@ -202,6 +309,16 @@ function ex145SwapIndex(my_string, num1, num2) {
 function ex147UpperAndLower(my_string) {
   let arr = [];
 
+<<<<<<< HEAD
+  const ch = my_string[i];
+  const upper = ch.toUpperCase();
+  const lower = ch.toLowerCase();
+  for (let i = 0; i < my_string.length; i++) {
+    if (my_string[i] === my_string[i].toLowerCase()) {
+      arr.push(my_string[i].toUpperCase());
+    } else {
+      arr.push(my_string[i].toLowerCase());
+=======
   for (let i = 0; i < my_string.length; i++) {
     const ch = my_string[i];
     const upper = ch.toUpperCase();
@@ -210,6 +327,7 @@ function ex147UpperAndLower(my_string) {
       arr.push(upper);
     } else {
       arr.push(lower);
+>>>>>>> feature/day10
     }
   }
   return arr.join("");
