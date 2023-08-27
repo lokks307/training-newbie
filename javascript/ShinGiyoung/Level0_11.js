@@ -2109,18 +2109,38 @@ function ex119(myString) {
 }
 
 function ex120(n) {
+  //1.
   var answer = [];
   for (let i = 0; i < n; i++) {
+    //n번 반복
     const arr = [];
     for (let j = 0; j < n; j++) {
+      //j 번 반복
       if (i === j) {
+        //i와 j가 같다면 arr 맨끝에 1추가
         arr.push(1);
       } else {
+        //i와 j가 같지않다면 arr 맨끝에 0추가
+
         arr.push(0);
       }
     }
     answer.push(arr);
   }
+  return answer;
+
+  //2.
+
+  const answer = [];
+  for (let i = 0; i < n; i++) {
+    const arr = Array(n).fill(0); // 0으로 채워진 길이 n인 배열 생성
+    // 대각선에 1을 추가
+    arr[i] = 1;
+
+    answer.push(arr); // 생성된 배열을 answer 배열에 추가
+  }
+  /*2차원 배열에서 i = j라면 대각선을 의미.. */
+
   return answer;
 }
 //1.
@@ -2452,4 +2472,298 @@ function ex134(n) {
 
 function ex135(str1, str2) {
   return str1.includes(str2) ? 1 : 2;
+}
+
+function ex136(quiz) {
+  let answer = [];
+  let cal;
+
+  const operator = {
+    "-": (a, b) => a - b,
+    "+": (a, b) => a + b,
+  };
+  /* operator보다는 operators 가 맞는말.. */
+  //1.
+  for (const num of quiz) {
+    let x = Number(num.split(" ")[0]);
+    let y = Number(num.split(" ")[2]);
+    let z = Number(num.split(" ")[4]);
+
+    cal = operator[num.split(" ")[1]](x, y);
+    answer.push(cal === z ? "O" : "X");
+    /* 배열의 각 요소 num 이라는 이름으로 가져오고 공백을 제거한 num.split(" ")에서 각 요소들을 가져온다
+      가져온 요소들을 operator에 넣어서 연산한다음 그 값을 cal에 할당한다 
+      cal 과 z 값이 같다면 O 를 answer 배열 끝자리에 추가하고 아니라면 X 를 추가한다 */
+  }
+  //2.
+  for (const num of quiz) {
+    const [x, op, y, , z] = num.split(" ");
+    const result = operators[op](Number(x), Number(y));
+    answer.push(result === Number(z) ? "O" : "X");
+    /* 배열의 각 요소 num 이라는 이름으로 가져오고 공백을 제거한 num.split(" ")에서(string => array 변환한값) 구조분해 를 
+      사용하여 x op y ,, z 값으로 가져온다 중간에 ,, 은 건너뛰기
+      각 가져온 x y op 값을 operator에 넣어서 연산한다음 그 값을 result에 할당한다 
+      result에 과 z 값이 같다면 O 를 answer 배열 끝자리에 추가하고 아니라면 X 를 추가한다 */
+  }
+
+  return answer;
+}
+
+function ex137(n) {
+  let arrayN = [...String(n)];
+  let sum = arrayN.reduce((acc, value) => acc + Number(value), 0);
+
+  return sum;
+}
+
+function ex138(n, numlist) {
+  return numlist.filter((num) => num % n === 0);
+}
+
+function ex139(num, k) {
+  const isIndex = String(num).indexOf(k);
+  return isIndex > -1 ? isIndex + 1 : isIndex;
+}
+
+function ex140(s1, s2) {
+  const duplicateValue = s1.filter((it) => s2.includes(it));
+  return duplicateValue.length;
+}
+
+function ex141(my_string) {
+  const calculator = {
+    "+": (a, b) => a + b,
+    "-": (a, b) => a - b,
+  };
+
+  const emptyRemove = my_string.split(" ");
+  let x = Number(emptyRemove[0]);
+
+  for (let i = 1; i < emptyRemove.length; i += 2) {
+    const operator = emptyRemove[i];
+    const y = Number(emptyRemove[i + 1]);
+    x = calculator[operator](x, y);
+  }
+
+  return x;
+}
+
+function ex142(array) {
+  const maxNum = Math.max(...array);
+  return [maxNum, array.indexOf(maxNum)];
+}
+
+function ex143(message) {
+  return 2 * message.length;
+}
+
+function ex144(n) {
+  var answer = [];
+
+  for (let i = 1; i <= n; i++) {
+    //.1
+    n % i === 0 && answer.push(i);
+    /* 1부터 n 까지 반복 n를 i로 나누었을때의 나머지값이 0이라면 answer 배열 맨 끝에 추가하기 */
+    //.2
+    if (n % i === 0) {
+      answer.push(i);
+    }
+  }
+  return answer;
+}
+
+function ex145(s) {
+  let answer = [];
+  let alphabetCount = {};
+  //.1
+  let stringToArr = [...s];
+  //2. valriable
+  let strList = [...s];
+  // stringToArr 의 변수명이 길고, 변수명을 정할때는 특별한 의미를 담지 않으면 type 을 특별한 의미를 담으면 그 뜻을 의미하는 변수명으로 지어준다..
+  // strList string 타입이 담긴 요소들있는 배열이라고 딱 보기쉬움..
+  for (const str of stringToArr) {
+    // string 배열 이라서 str 은 알맞은 변수명이 아니다. str - > ch (charset) 이 맞다
+    //1.
+    if (alphabetCount[str] === undefined) {
+      alphabetCount[str] = 0;
+    }
+    alphabetCount[str]++;
+    /* stringToArr의 각 요소 str 을 가져오고, alphabetCount[str]이 undefined라면   alphabetCount[str] = 0; 설정 후 +1 을 해준다 아니라면 그냥  alphabetCount[str] +1*/
+
+    //2.
+    alphabetCount[ch] = (alphabetCount[ch] || 0) + 1;
+    /* 위에 로직은 간단하게 변경 할 수 있음 alphabetCount[str] === undefined 에서  undefined는 boolen 에서 false 이기 때문에
+      alphabetCount[ch] undefined 라면 즉 false 라면 0으로 설정하고  alphabetCount[ch] +1 
+    */
+  }
+
+  for (const alp in alphabetCount) {
+    alphabetCount[alp] === 1 && answer.push(alp);
+  }
+
+  return answer.sort().join("");
+}
+
+function ex146(my_string, num1, num2) {
+  //1.
+  const stringToArr = [...my_string];
+  [stringToArr[num1], stringToArr[num2]] = [
+    stringToArr[num2],
+    stringToArr[num1],
+  ];
+  return stringToArr.join("");
+  //2.
+  const strList = [...my_string];
+  [strList[num1], strList[num2]] = [strList[num2], strList[num1]];
+  return strList.join("");
+  /*죽고 싶지 않으면 이름 잘 짓기 
+   stringToArr 의 변수명이 길고, 변수명을 정할때는 특별한 의미를 담지 않으면 type 을 특별한 의미를 담으면 그 뜻을 의미하는 변수명으로 지어준다..
+   strList string 타입이 담긴 요소들있는 배열이라고 딱 보기쉬움.. */
+}
+
+function ex147(numbers) {
+  let alpArray = [...numbers];
+  let word = "";
+  let answer = "";
+  const wordToNumber = {
+    zero: "0",
+    one: "1",
+    two: "2",
+    three: "3",
+    four: "4",
+    five: "5",
+    six: "6",
+    seven: "7",
+    eight: "8",
+    nine: "9",
+  };
+
+  alpArray.forEach((alp) => {
+    word += alp;
+    if (wordToNumber[word]) {
+      answer += wordToNumber[word];
+      word = "";
+    }
+  });
+  return Number(answer);
+}
+
+function ex148(my_string) {
+  //1.
+  let stringToArray = [...my_string];
+  const changeChar = stringToArray.map(
+    (str) =>
+      str === str.toLowerCase() ? str.toUpperCase() : str.toLowerCase(),
+    // map 메소드를 사용하여 각 요소 str 이 소문자면 대문자로 변환 대문자라면 소문자로 변환해서 새로운 배열을 changeChar에 넣는다
+  );
+
+  return changeChar.join("");
+  //.2
+  let strList = [...my_string];
+  const changeChar = strList.map((ch) =>
+    ch === ch.toLowerCase() ? ch.toUpperCase() : ch.toLowerCase(),
+  );
+  /*죽고 싶지 않으면 이름 잘 짓기 
+   stringToArr 의 변수명이 길고, 변수명을 정할때는 특별한 의미를 담지 않으면 type 을 특별한 의미를 담으면 그 뜻을 의미하는 변수명으로 지어준다..
+   strList string 타입이 담긴 요소들있는 배열이라고 딱 보기쉬움.. */
+  /*   
+  string 배열 이라서 str 은 알맞은 변수명이 아니다. str - > ch (charset) 이 맞다  
+   map 메소드를 사용하여 각 요소 ch 이 소문자면 대문자로 변환 대문자라면 소문자로 변환해서 새로운 배열을 changeChar에 넣는다 */
+}
+
+function ex149(cipher, code) {
+  //.1
+  let stringToArr = [...cipher];
+  const password = stringToArr.filter((str, idx) => {
+    if ((idx + 1) % code === 0) return str;
+  });
+  // filter 메서드로 true 인것만 리턴 해 배열 생성
+  //(idx + 1) 값을 code 로 나눴을때 나머지가 0 인것만 리턴해 password 배열 생성
+  return password.join("");
+  //password 배열을 join 사용하여 합쳐서 문자열로 나타내기
+  //.2
+  let strList = [...cipher];
+  const password = strList.filter((ch, idx) => {
+    if ((idx + 1) % code === 0) return ch;
+  });
+  return password.join("");
+
+  /*죽고 싶지 않으면 이름 잘 짓기 
+  stringToArr 의 변수명이 길고, 변수명을 정할때는 특별한 의미를 담지 않으면 type 을 특별한 의미를 담으면 그 뜻을 의미하는 변수명으로 지어준다..
+   strList string 타입이 담긴 요소들있는 배열이라고 딱 보기쉬움.. */
+  /*   
+  string 배열 이라서 str 은 알맞은 변수명이 아니다. str - > ch (charset) 이 맞다  */
+}
+
+function ex150(order) {
+  let count = 0;
+  for (const num of String(order)) {
+    //1.
+    /3|6|9/g.test(num) && count++;
+    //order의 각 요소 num 을 가져오고 test메소드로 num안에 3or6or9 가 들어있는지 확인 있으면 true를 없으면 false 를 반환
+    // true 면count++ 아니면 null
+
+    //2.
+    if (/3|6|9/g.test(num)) {
+      count++;
+    }
+  }
+  return count;
+}
+
+function ex151(array, n) {
+  array.push(n);
+  array.sort((a, b) => a - b);
+  let nIndex = array.indexOf(n);
+  let nNextValue = array[nIndex + 1];
+  let nPrevValue = array[nIndex - 1];
+
+  if (nNextValue === undefined) return nPrevValue;
+
+  if (nPrevValue === undefined) return nNextValue;
+
+  return n - nPrevValue > nNextValue - n ? nNextValue : nPrevValue;
+}
+
+function ex152(sides) {
+  sides.sort((a, b) => a - b);
+  const [a, b, c] = sides;
+  return a + b > c ? 1 : 2;
+}
+
+function ex153(my_string) {
+  let removeDuplication = new Set([...my_string]);
+  return [...removeDuplication].join("");
+}
+
+function ex154(i, j, k) {
+  let count = 0;
+
+  for (let startNum = i; startNum <= j; startNum++) {
+    for (const str of String(startNum)) {
+      if (Number(str) === k) {
+        count++;
+      }
+    }
+  }
+  return count;
+}
+
+function ex155(before, after) {
+  let beforeToArray = [...before].sort((a, b) => a.localeCompare(b));
+  let afterToArray = [...after].sort((a, b) => a.localeCompare(b));
+  if (beforeToArray.join("") === afterToArray.join("")) return 1;
+
+  return 0;
+}
+
+function ex156(bin1, bin2) {
+  const int1 = parseInt(bin1, 2);
+  const int2 = parseInt(bin2, 2);
+
+  const sum = int1 + int2;
+
+  const sumInBinary = sum.toString(2); // 10진수 합을 다시 이진수 문자열로 변환
+
+  return sumInBinary;
 }
