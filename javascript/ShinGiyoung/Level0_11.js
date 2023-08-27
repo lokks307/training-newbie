@@ -1603,7 +1603,6 @@ function ex92Edit(inputArray) {
     예를들어 inputArray 가 [3,5] 이라면 Array.from({ length: num }, () => num) 
     [3,3,3] , [5,5,5,5,5] 인 배열이 만들어지고 병합되어 [3,3,3,5,5,5,5,5] 인배열 생성
    */
-
 }
 
 function ex93(arr, flag) {
@@ -1713,7 +1712,6 @@ function ex96(arr) {
     squareNum = 2 ** exponent;
 
     exponent = -1;
-
   }
 
   let newArray = arr.concat(new Array(squareNum - arr.length).fill(0));
@@ -2111,18 +2109,661 @@ function ex119(myString) {
 }
 
 function ex120(n) {
+  //1.
   var answer = [];
   for (let i = 0; i < n; i++) {
+    //n번 반복
     const arr = [];
     for (let j = 0; j < n; j++) {
+      //j 번 반복
       if (i === j) {
+        //i와 j가 같다면 arr 맨끝에 1추가
         arr.push(1);
       } else {
+        //i와 j가 같지않다면 arr 맨끝에 0추가
+
         arr.push(0);
       }
     }
     answer.push(arr);
   }
   return answer;
+
+  //2.
+
+  const answer = [];
+  for (let i = 0; i < n; i++) {
+    const arr = Array(n).fill(0); // 0으로 채워진 길이 n인 배열 생성
+    // 대각선에 1을 추가
+    arr[i] = 1;
+
+    answer.push(arr); // 생성된 배열을 answer 배열에 추가
+  }
+  /*2차원 배열에서 i = j라면 대각선을 의미.. */
+
+  return answer;
+}
+//1.
+function ex121(n) {
+  const arr = new Array(n).fill(null).map(() => new Array(n).fill(0));
+  //length 가 n 인 배열을 생성한 후 , 0으로 모두 채운뒤 새로운 배열을 반환한다. 이 배열을 길이가 n인 배열안에 각각 넣어준다
+  // 예) [3,3,3] => [[3,3,3],[3,3,3],[3,3,3]]
+  let num = 1;
+  let row = 0;
+  let col = 0;
+  let direction = "right";
+  // 나선형으로 채우기 위해서 나선형 시작 방향인 right 를 초기값으로 설정
+  //n의 2제곱 까지 정수를 인덱스 [0][0]부터 시계방향 나선형으로 배치하기 위해 n*n 보다 작거나 같을경우까지 반복함을 설정.
+  while (num <= n * n) {
+    arr[row][col] = num;
+    num++;
+
+    if (direction === "right") {
+      if (col + 1 < n && arr[row][col + 1] === 0) {
+        // col + 1 < n && arr[row][col + 1] === 0 일때 col ++
+        /* col+1< n 은 가로의 길이가 n보다 크면 안되기 때문에 설정 예 ) 나선형 배열의이 n*n 형태라서 가로의 길이가 n 
+          n 이 3이라면 열이 3보다 클수 없음
+        */
+        /*arr[row][col + 1] === 0은  초기 arr 배열에 모든 값을 0으로 설정했기때문에 자리에 num 이 들어있는지 체크 두번째 rigth 에서는 마지막 col 값이 들어있기때문*/
+        col++;
+      } else {
+        //아니라면 방향 바꿔주기
+        direction = "down";
+        row++;
+      }
+    } else if (direction === "down") {
+      if (row + 1 < n && arr[row + 1][col] === 0) {
+        row++;
+        //위와 같은 방식
+      } else {
+        direction = "left";
+        col--;
+        //마지막 col 빼주는 이유는 방향이 right가 아니라 left 쪽으로 가야하기떄문
+      }
+    } else if (direction === "left") {
+      if (col - 1 >= 0 && arr[row][col - 1] === 0) {
+        col--;
+      } else {
+        direction = "up";
+        row--;
+        //마지막 row을 뺴주는 이유는 방향이 up이기 떄문이다
+      }
+    } else if (direction === "up") {
+      if (row - 1 >= 0 && arr[row - 1][col] === 0) {
+        row--;
+      } else {
+        direction = "right";
+        //방향 변경하면서 가로로진행방향 설정 col++
+        col++;
+      }
+    }
+  }
+
+  return arr;
+  /* 양심삼 이 문제는 아무리 고민해도 어떻게 풀어야할지 모르겠어서 gpt에게 도움을 받았습니다.. */
+}
+//2.
+function ex121GenerateSpiralMatrix(n) {
+  const matrix = Array.from({ length: n }, () =>
+    Array.from({ length: n }, () => 0),
+  );
+  //Array.from 으로 길이가 n인 배열 생성 후 0값으로 채우고 이 배열 값을 길이가 n 인 배열을 다시 채운다
+  // 예) n이3일때      Array.from({ length: n }, () => 0),= [0,0,0]  이배열을 다시 Array.from({ length: n }, () =>[0,0,0])이런식
+  // 결국 [[0,0,0],[0,0,0],[0,0,0]]
+
+  let num = 1;
+  let row = 0;
+  let col = 0;
+  const directions = [
+    [0, 1],
+    [1, 0],
+    [0, -1],
+    [-1, 0],
+  ];
+  let directionIndex = 0;
+  //num 값이 총길이가 n*n 과 같거나 작을떄 반복.
+  while (num <= n * n) {
+    matrix[row][col] = num++;
+    const [dr, dc] = directions[directionIndex];
+    const newRow = row + dr;
+    const newCol = col + dc;
+
+    if (
+      newRow >= 0 &&
+      newRow < n &&
+      newCol >= 0 &&
+      newCol < n &&
+      matrix[newRow][newCol] === 0
+      //row 값과 col 값은 항상 n보다 작아야한다 같아면 방향을 바꿔야한다
+      // 또 0이랑 같거나 커야한다 a[-1] 이라면 안됨.
+      //마지막으로 그 자리에 값이 할당이 안되어야함
+    ) {
+      //위값을 충족하면 할당
+      row = newRow;
+      col = newCol;
+    } else {
+      //할당하지 못한다면 방향을 바꿔줘야함
+      directionIndex = (directionIndex + 1) % 4;
+      //directionIndex이 5이면 총길이가 4라서 나머지값 1을 다시 할당
+      row += directions[directionIndex][0];
+      col += directions[directionIndex][1];
+    }
+  }
+
+  return matrix;
 }
 
+//1.
+function ex122(arr) {
+  const n = Math.sqrt(arr.length);
+  //Math.sqrt 를 사용하여 제곱근 반환 만약 length값이 9 라면 n 은 3
+  let row = 0;
+  let col = 0;
+  for (let i = 0; i < n; i++) {
+    //row 의 길이가 n보다 클수없다
+    row = i;
+    for (let j = i + 1; j < n; j++) {
+      //j도 0이면  arr[0][0] !== arr[0][0] 이기 떄문에 +1 부터검사.
+      col = j;
+      //
+      if (arr[row][col] !== arr[col][row]) return 0;
+    }
+  }
+  return 1;
+}
+//2.Extract Method,Rename Variables
+function isSymmetricMatrix(matrix) {
+  const n = matrix.length;
+  // n*n크기인 이차원배열이라서 length 값만 가져와도됨..
+  for (let i = 0; i < n; i++) {
+    //배열의 row 의 길이가 n보다 클수없다
+    for (let j = i + 1; j < n; j++) {
+      //j도 0이면  arr[0][0] !== arr[0][0] 이기 떄문에 +1 부터검사.
+      if (matrix[i][j] !== matrix[j][i]) {
+        return false;
+        //matrix[i][j] !== matrix[j][i] 이면 false리턴,,
+      }
+    }
+  }
+  return true;
+  // 모든 반복을 돌았음에도 걸리는게 없으면 true 리턴
+}
+function ex122Edit(matrix) {
+  return isSymmetricMatrix(matrix) ? 1 : 0;
+  //Extract Method ...읽기쉽고 재사용하기 쉽도록 메소드 정리 .. 추출
+  // 또 arr가 아닌 정체성이 있다면 정체성 변수에 드러내기
+}
+
+function ex123(arr) {
+  const row = arr.length;
+  const col = arr[0].length;
+  //2차원 배열 arr row는 각 행 col 은 열을 의미
+  //열의 수가 행의 수와 같아지도록 각 행의 끝에 0을 추가
+  function addRow(row, col) {
+    for (let i = 0; i < row; i++) {
+      //각 행의 끝에 0을 추가 해야하기떄문에 한 배열씩 가져오기
+      for (let j = col; j < row; j++) {
+        //각 가져온 요소(배열)의 길이인 col 을 가져오고 행수까지 반복(col <= row-1 )
+        arr[i][j] = 0; //행 끝에 열의 수만큼 0추가
+      }
+    }
+  }
+  //행의 수가 열의 수와 같아지도록 각 열의 끝에 0을 추가
+  function addCol(row, col) {
+    const limit = col - row;
+    const addArr = new Array(col).fill(0); // 열 길이만큼 0으로채원 arr생성
+    for (let i = 1; i <= limit; i++) {
+      arr.push(addArr); //limit 만큼 넣어주기
+    }
+  }
+  row > col ? addRow(row, col) : addCol(row, col);
+
+  return arr;
+}
+
+function ex123Edit(arr) {
+  const row = arr.length;
+  const col = arr[0].length;
+  //2차원 배열 arr row는 각 행 col 은 열을 의미
+  row > col ? addRow(row, col) : addCol(row, col);
+  //한 번만 쓸 함수이면 지금처럼 인라인 함수로 만들기 다만 함수를 다 밑으로 빼야 가독성이 좋다 순서변경
+  return arr;
+  //열의 수가 행의 수와 같아지도록 각 행의 끝에 0을 추가
+  function addRow(row, col) {
+    for (let i = 0; i < row; i++) {
+      //각 행의 끝에 0을 추가 해야하기떄문에 한 배열씩 가져오기
+      for (let j = col; j < row; j++) {
+        //각 가져온 요소(배열)의 길이인 col 을 가져오고 행수까지 반복(col <= row-1 )
+        arr[i][j] = 0; //행 끝에 열의 수만큼 0추가
+      }
+    }
+  }
+  //행의 수가 열의 수와 같아지도록 각 열의 끝에 0을 추가
+  function addCol(row, col) {
+    const limit = col - row;
+    const addArr = new Array(col).fill(0); // 열 길이만큼 0으로채원 arr생성
+    for (let i = 1; i <= limit; i++) {
+      arr.push(addArr); //limit 만큼 넣어주기
+    }
+  }
+}
+
+function ex124(board, k) {
+  let indexCondition = board.map((row, rowIdx) =>
+    row.filter((val, colIdx) => rowIdx + colIdx <= k),
+  );
+  let sum = 0;
+  for (const row of indexCondition) {
+    for (const num of row) {
+      sum += num;
+    }
+  }
+
+  return sum;
+}
+
+function ex125(babbling) {
+  var answer = 0;
+  const regex = /^(aya|ye|woo|ma)+$/;
+
+  babbling.forEach((word) => {
+    if (regex.test(word)) answer++;
+  });
+
+  return answer;
+}
+
+function ex126(common) {
+  const arrLastIdx = common.length - 1;
+  const isArithmeticSequence = common[2] - common[1] === common[1] - common[0]; // 등차수열 판단 common[2] - common[1] 값이 common[1] - common[0] 와 같다면 공차가 같다는 의미 즉, 공차가같은 등차수열
+  const commonDifference = isArithmeticSequence
+    ? common[2] - common[1] // 등차수열이면 공차
+    : common[2] / common[1]; // 등비수열이면 공비 구하기
+  return isArithmeticSequence
+    ? common[arrLastIdx] + commonDifference // 마지막원소에 공차더해서 or 공비곱해서 다음원소값구하기
+    : common[arrLastIdx] * commonDifference;
+}
+
+function ex126Edit(sequence) {
+  // 알 맞는 변수이름 지정하기 순서
+  const isArithmetic = sequence[2] - sequence[1] === sequence[1] - sequence[0]; // 등차수열 판단 common[2] - common[1] 값이 common[1] - common[0] 와 같다면 공차가 같다는 의미 즉, 공차가같은 등차수열
+  const commonDifference = isArithmetic
+    ? sequence[2] - sequence[1] // 순서 2에서 순서 1 빼기
+    : sequence[2] / sequence[1]; //순서 2에서 순서 1 나누기 (공차 공비 구함)
+
+  return getNextValue(sequence, isArithmetic, commonDifference);
+  //Extract Method 의미 있는 로직은 함수로 빼기
+  function getNextValue(sequence, isArithmetic, commonDifference) {
+    // 다음 값 구하기.. 라는 변수명 할당 직관적이다.
+    const lastIndex = sequence.length - 1;
+    return isArithmetic
+      ? sequence[lastIndex] + commonDifference
+      : sequence[lastIndex] * commonDifference;
+  }
+}
+
+function ex127(num, total) {
+  let sum = 0;
+  let n = 0;
+  for (let i = 1; i < num; i++) {
+    sum += i;
+  }
+  n = (total - sum) / num;
+  return Array.from({ length: num }, (_, i) => n + i);
+}
+
+function ex128(M, N) {
+  return M * N - 1;
+}
+
+function ex129(A, B) {
+  let arrA = [...A];
+
+  if (A === B) {
+    return 0;
+  }
+
+  for (let i = 1; i < A.length; i++) {
+    arrA.splice(0, 0, arrA[arrA.length - 1]);
+    arrA.pop();
+
+    if (arrA.join("") === B) {
+      return i;
+    }
+  }
+
+  return -1;
+}
+
+function ex130(my_str, n) {
+  //1.
+  let strToArr = [...my_str];
+  //2.
+  let charList = [...my_str];
+  /* strToArr말고 특정의미를 가르키지 않으면 현재 type 적기 Array, 근데 여기서는 charList를 의미하기 때문에 charList 도 좋다
+  또 복수로 표현할 때는 더 명시적인 list를 사용한다. List를 붙이면 배열 형태로 들어가있을 것으로 추측할수있기떄문이다. */
+  var answer = [];
+  for (let i = 0; i < my_str.length / n; i++) {
+    answer.push(strToArr.splice(0, n).join(""));
+  }
+
+  return answer;
+}
+
+function ex131(array) {
+  const result = array.join("").match(/7/g);
+
+  return result ? result.length : 0;
+}
+
+function ex132(my_string) {
+  let changeLower = [...my_string.toLowerCase()].sort();
+  return changeLower.join("");
+}
+
+function ex133(n, t) {
+  return n * 2 ** t;
+}
+
+function ex134(n) {
+  const squareRoot = Math.sqrt(n);
+  return squareRoot === Math.floor(squareRoot) ? 1 : 2;
+}
+
+function ex135(str1, str2) {
+  return str1.includes(str2) ? 1 : 2;
+}
+
+function ex136(quiz) {
+  let answer = [];
+  let cal;
+
+  const operator = {
+    "-": (a, b) => a - b,
+    "+": (a, b) => a + b,
+  };
+  /* operator보다는 operators 가 맞는말.. */
+  //1.
+  for (const num of quiz) {
+    let x = Number(num.split(" ")[0]);
+    let y = Number(num.split(" ")[2]);
+    let z = Number(num.split(" ")[4]);
+
+    cal = operator[num.split(" ")[1]](x, y);
+    answer.push(cal === z ? "O" : "X");
+    /* 배열의 각 요소 num 이라는 이름으로 가져오고 공백을 제거한 num.split(" ")에서 각 요소들을 가져온다
+      가져온 요소들을 operator에 넣어서 연산한다음 그 값을 cal에 할당한다 
+      cal 과 z 값이 같다면 O 를 answer 배열 끝자리에 추가하고 아니라면 X 를 추가한다 */
+  }
+  //2.
+  for (const num of quiz) {
+    const [x, op, y, , z] = num.split(" ");
+    const result = operators[op](Number(x), Number(y));
+    answer.push(result === Number(z) ? "O" : "X");
+    /* 배열의 각 요소 num 이라는 이름으로 가져오고 공백을 제거한 num.split(" ")에서(string => array 변환한값) 구조분해 를 
+      사용하여 x op y ,, z 값으로 가져온다 중간에 ,, 은 건너뛰기
+      각 가져온 x y op 값을 operator에 넣어서 연산한다음 그 값을 result에 할당한다 
+      result에 과 z 값이 같다면 O 를 answer 배열 끝자리에 추가하고 아니라면 X 를 추가한다 */
+  }
+
+  return answer;
+}
+
+function ex137(n) {
+  let arrayN = [...String(n)];
+  let sum = arrayN.reduce((acc, value) => acc + Number(value), 0);
+
+  return sum;
+}
+
+function ex138(n, numlist) {
+  return numlist.filter((num) => num % n === 0);
+}
+
+function ex139(num, k) {
+  const isIndex = String(num).indexOf(k);
+  return isIndex > -1 ? isIndex + 1 : isIndex;
+}
+
+function ex140(s1, s2) {
+  const duplicateValue = s1.filter((it) => s2.includes(it));
+  return duplicateValue.length;
+}
+
+function ex141(my_string) {
+  const calculator = {
+    "+": (a, b) => a + b,
+    "-": (a, b) => a - b,
+  };
+
+  const emptyRemove = my_string.split(" ");
+  let x = Number(emptyRemove[0]);
+
+  for (let i = 1; i < emptyRemove.length; i += 2) {
+    const operator = emptyRemove[i];
+    const y = Number(emptyRemove[i + 1]);
+    x = calculator[operator](x, y);
+  }
+
+  return x;
+}
+
+function ex142(array) {
+  const maxNum = Math.max(...array);
+  return [maxNum, array.indexOf(maxNum)];
+}
+
+function ex143(message) {
+  return 2 * message.length;
+}
+
+function ex144(n) {
+  var answer = [];
+
+  for (let i = 1; i <= n; i++) {
+    //.1
+    n % i === 0 && answer.push(i);
+    /* 1부터 n 까지 반복 n를 i로 나누었을때의 나머지값이 0이라면 answer 배열 맨 끝에 추가하기 */
+    //.2
+    if (n % i === 0) {
+      answer.push(i);
+    }
+  }
+  return answer;
+}
+
+function ex145(s) {
+  let answer = [];
+  let alphabetCount = {};
+  //.1
+  let stringToArr = [...s];
+  //2. valriable
+  let strList = [...s];
+  // stringToArr 의 변수명이 길고, 변수명을 정할때는 특별한 의미를 담지 않으면 type 을 특별한 의미를 담으면 그 뜻을 의미하는 변수명으로 지어준다..
+  // strList string 타입이 담긴 요소들있는 배열이라고 딱 보기쉬움..
+  for (const str of stringToArr) {
+    // string 배열 이라서 str 은 알맞은 변수명이 아니다. str - > ch (charset) 이 맞다
+    //1.
+    if (alphabetCount[str] === undefined) {
+      alphabetCount[str] = 0;
+    }
+    alphabetCount[str]++;
+    /* stringToArr의 각 요소 str 을 가져오고, alphabetCount[str]이 undefined라면   alphabetCount[str] = 0; 설정 후 +1 을 해준다 아니라면 그냥  alphabetCount[str] +1*/
+
+    //2.
+    alphabetCount[ch] = (alphabetCount[ch] || 0) + 1;
+    /* 위에 로직은 간단하게 변경 할 수 있음 alphabetCount[str] === undefined 에서  undefined는 boolen 에서 false 이기 때문에
+      alphabetCount[ch] undefined 라면 즉 false 라면 0으로 설정하고  alphabetCount[ch] +1 
+    */
+  }
+
+  for (const alp in alphabetCount) {
+    alphabetCount[alp] === 1 && answer.push(alp);
+  }
+
+  return answer.sort().join("");
+}
+
+function ex146(my_string, num1, num2) {
+  //1.
+  const stringToArr = [...my_string];
+  [stringToArr[num1], stringToArr[num2]] = [
+    stringToArr[num2],
+    stringToArr[num1],
+  ];
+  return stringToArr.join("");
+  //2.
+  const strList = [...my_string];
+  [strList[num1], strList[num2]] = [strList[num2], strList[num1]];
+  return strList.join("");
+  /*죽고 싶지 않으면 이름 잘 짓기 
+   stringToArr 의 변수명이 길고, 변수명을 정할때는 특별한 의미를 담지 않으면 type 을 특별한 의미를 담으면 그 뜻을 의미하는 변수명으로 지어준다..
+   strList string 타입이 담긴 요소들있는 배열이라고 딱 보기쉬움.. */
+}
+
+function ex147(numbers) {
+  let alpArray = [...numbers];
+  let word = "";
+  let answer = "";
+  const wordToNumber = {
+    zero: "0",
+    one: "1",
+    two: "2",
+    three: "3",
+    four: "4",
+    five: "5",
+    six: "6",
+    seven: "7",
+    eight: "8",
+    nine: "9",
+  };
+
+  alpArray.forEach((alp) => {
+    word += alp;
+    if (wordToNumber[word]) {
+      answer += wordToNumber[word];
+      word = "";
+    }
+  });
+  return Number(answer);
+}
+
+function ex148(my_string) {
+  //1.
+  let stringToArray = [...my_string];
+  const changeChar = stringToArray.map(
+    (str) =>
+      str === str.toLowerCase() ? str.toUpperCase() : str.toLowerCase(),
+    // map 메소드를 사용하여 각 요소 str 이 소문자면 대문자로 변환 대문자라면 소문자로 변환해서 새로운 배열을 changeChar에 넣는다
+  );
+
+  return changeChar.join("");
+  //.2
+  let strList = [...my_string];
+  const changeChar = strList.map((ch) =>
+    ch === ch.toLowerCase() ? ch.toUpperCase() : ch.toLowerCase(),
+  );
+  /*죽고 싶지 않으면 이름 잘 짓기 
+   stringToArr 의 변수명이 길고, 변수명을 정할때는 특별한 의미를 담지 않으면 type 을 특별한 의미를 담으면 그 뜻을 의미하는 변수명으로 지어준다..
+   strList string 타입이 담긴 요소들있는 배열이라고 딱 보기쉬움.. */
+  /*   
+  string 배열 이라서 str 은 알맞은 변수명이 아니다. str - > ch (charset) 이 맞다  
+   map 메소드를 사용하여 각 요소 ch 이 소문자면 대문자로 변환 대문자라면 소문자로 변환해서 새로운 배열을 changeChar에 넣는다 */
+}
+
+function ex149(cipher, code) {
+  //.1
+  let stringToArr = [...cipher];
+  const password = stringToArr.filter((str, idx) => {
+    if ((idx + 1) % code === 0) return str;
+  });
+  // filter 메서드로 true 인것만 리턴 해 배열 생성
+  //(idx + 1) 값을 code 로 나눴을때 나머지가 0 인것만 리턴해 password 배열 생성
+  return password.join("");
+  //password 배열을 join 사용하여 합쳐서 문자열로 나타내기
+  //.2
+  let strList = [...cipher];
+  const password = strList.filter((ch, idx) => {
+    if ((idx + 1) % code === 0) return ch;
+  });
+  return password.join("");
+
+  /*죽고 싶지 않으면 이름 잘 짓기 
+  stringToArr 의 변수명이 길고, 변수명을 정할때는 특별한 의미를 담지 않으면 type 을 특별한 의미를 담으면 그 뜻을 의미하는 변수명으로 지어준다..
+   strList string 타입이 담긴 요소들있는 배열이라고 딱 보기쉬움.. */
+  /*   
+  string 배열 이라서 str 은 알맞은 변수명이 아니다. str - > ch (charset) 이 맞다  */
+}
+
+function ex150(order) {
+  let count = 0;
+  for (const num of String(order)) {
+    //1.
+    /3|6|9/g.test(num) && count++;
+    //order의 각 요소 num 을 가져오고 test메소드로 num안에 3or6or9 가 들어있는지 확인 있으면 true를 없으면 false 를 반환
+    // true 면count++ 아니면 null
+
+    //2.
+    if (/3|6|9/g.test(num)) {
+      count++;
+    }
+  }
+  return count;
+}
+
+function ex151(array, n) {
+  array.push(n);
+  array.sort((a, b) => a - b);
+  let nIndex = array.indexOf(n);
+  let nNextValue = array[nIndex + 1];
+  let nPrevValue = array[nIndex - 1];
+
+  if (nNextValue === undefined) return nPrevValue;
+
+  if (nPrevValue === undefined) return nNextValue;
+
+  return n - nPrevValue > nNextValue - n ? nNextValue : nPrevValue;
+}
+
+function ex152(sides) {
+  sides.sort((a, b) => a - b);
+  const [a, b, c] = sides;
+  return a + b > c ? 1 : 2;
+}
+
+function ex153(my_string) {
+  let removeDuplication = new Set([...my_string]);
+  return [...removeDuplication].join("");
+}
+
+function ex154(i, j, k) {
+  let count = 0;
+
+  for (let startNum = i; startNum <= j; startNum++) {
+    for (const str of String(startNum)) {
+      if (Number(str) === k) {
+        count++;
+      }
+    }
+  }
+  return count;
+}
+
+function ex155(before, after) {
+  let beforeToArray = [...before].sort((a, b) => a.localeCompare(b));
+  let afterToArray = [...after].sort((a, b) => a.localeCompare(b));
+  if (beforeToArray.join("") === afterToArray.join("")) return 1;
+
+  return 0;
+}
+
+function ex156(bin1, bin2) {
+  const int1 = parseInt(bin1, 2);
+  const int2 = parseInt(bin2, 2);
+
+  const sum = int1 + int2;
+
+  const sumInBinary = sum.toString(2); // 10진수 합을 다시 이진수 문자열로 변환
+
+  return sumInBinary;
+}
