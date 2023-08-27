@@ -25,19 +25,21 @@ function ex48(my_string, s, e) {
 
 //세로 읽기
 function ex49(my_string, m, c) {
-  const arr = [...my_string];
-  const splitWithMArr = [];
-  const result = [];
+  const arr = [...my_string]; //arr에 매개변수로 들어온 값을 펼쳐놓는다.
+  const splitWithMArr = []; //나눠놓은 값을 담기 위한 변수
+  const result = []; // 결과를 담을 변수
 
   for (let i = 0; i < my_string.length; i += m) {
-    splitWithMArr.push(arr.splice(0, m));
+    //m만큼 늘어나면서
+    splitWithMArr.push(arr.splice(0, m)); //splice를 통해 arr를 나눈 값을 splitWithArr에 담는다.
   }
 
   splitWithMArr.forEach((word) => {
-    result.push(word[c - 1]);
+    //나눠 담긴 값을 forEach를 통해 하나씩 확인할텐데
+    result.push(word[c - 1]); //걔 중 문제가 원하는 index의 값을 결과에 push한다.
   });
 
-  return result.join("");
+  return result.join(""); //결과 반환
 }
 
 function ex49ExStr(myString, m, c) {
@@ -50,8 +52,8 @@ function ex49ExStr(myString, m, c) {
   }
   //기존에는 for문으로 바로 들어가 처리했는데, extractCharacters 함수를 만들어 해당 함수가 처리하게 한다.
   const extractedCharacters = extractCharacters(myString, m, c);
-  const answer = extractedCharacters.join("");
-  return answer;
+  const answer = extractedCharacters.join(""); //결과를 answer에 담는다.
+  return answer; //결과 반환
 }
 
 //qr code
@@ -142,49 +144,54 @@ function ex52(n, k) {
 
 //글자 지우기
 function ex53(my_string, indices) {
-  let result;
-  const myStringArr = [...my_string];
+  let result; //결과를 나타내는 변수를 생성
+  const myStringArr = [...my_string]; //문자열을 배열로 담고
 
   for (const idx of indices) {
-    myStringArr[idx] = 0;
+    //indices에 하나씩 꺼내어
+    myStringArr[idx] = 0; //idx에 해당하는 arr의 idx를 0으로 바꿔준다.
   }
 
-  result = myStringArr.filter((elem) => elem !== 0).join("");
-  return result;
+  result = myStringArr.filter((elem) => elem !== 0).join(""); //필터를 통해 0이 아닌 string만 남기고 합쳐준다.
+  return result; //결과 반환
 }
 
 //---- 쉽게 읽힐 수 있는, 함수로 빼내기 방법.
 function removeCharacters(arr, indices) {
+  //arr -> charList
   for (const idx of indices) {
+    //indices의 하나씩 꺼낸다.
     arr[idx] = 0; //idx에 해당하는 arr의 idx를 0으로 바꿔준다.
   }
-  return arr;
+  return arr; //수정된 arr반환
 }
 
 function ex53_removeCharacter(myString, indices) {
   const charList = [...myString]; // 글자 리스트, 라는 변수명인 charList --> 난 왜 글자 하면 Character가 안떠올랐을까?
   removeCharacters(charList, indices); // removeCharacters 함수에 펼친 charList를 보내준다.
 
-  const result = charList.filter((elem) => elem !== 0).join("");
-  return result;
+  const result = charList.filter((elem) => elem !== 0).join(""); //result를 굳이 따로 정의하지 않고 여기서 한꺼번에 하며, 식은 위와 같다.
+  return result; //결과 반환
 }
 
 //카운트 다운
 function ex54(start, end) {
-  const result = [];
+  const result = []; //결과를 담을 배열을 만든다.
   for (let i = start; i >= end; i--) {
-    result.push(i);
+    // start부터 end까지 for문을 돈다.
+    result.push(i); // 돌때마다 결과를 담을 배열에 i를 담고
   }
-  return result;
+  return result; //결과를 반환한다.
 }
 
 //-- 읽히기 쉬운 함수명, 함수로 빼내기
 function generateDescendingList(start, end) {
-  const rangeArr = [];
+  const rangeArr = []; // 변수명으로 범위를 나타내는 arr를 나타내는 rangeArr를 사용한다.
   for (let i = start; i >= end; i--) {
-    rangeArr.push(i);
+    //start부터 end까지 for문을 돈다.
+    rangeArr.push(i); //범위 arr에 i를 push하고
   }
-  return rangeArr;
+  return rangeArr; //반환한다.
 }
 
 function ex54_countDown(start, end) {
