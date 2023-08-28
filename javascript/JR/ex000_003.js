@@ -160,3 +160,44 @@ function ex40(num_list, n) {
   const newNumList = num_list.splice(n - 1, num_list.length);
   return newNumList;
 }
+
+// 41.순서 바꾸기
+function ex41(num_list, n) {
+  return [...num_list.slice(n, num_list.length + 1), ...num_list.slice(0, n)];
+}
+
+// 42.왼쪽 오른쪽
+function ex42(str_list) {
+  const lIdx = str_list.findIndex((item) => item === "l");
+  const rIdx = str_list.findIndex((item) => item === "r");
+  if (lIdx + rIdx < 0) return [];
+  if (str_list.length === lIdx + 1 || str_list.length === rIdx + 1) return [];
+  if (lIdx < rIdx) return str_list.splice(0, lIdx);
+  return str_list.splice(rIdx + 1, str_list.length + 1);
+  // 둘 다 없을 경우, str_list이 l 혹은 r 값 하나로 이루어진 1칸짜리 배열일 때를 예외처리 했고
+  // 추가 예외사항이 없다고 판단되어 문제의 요구사항대로 코딩을 했지만 실패케이스가 있음
+}
+
+// 43.n 번째 원소까지
+function ex43(num_list, n) {
+  return num_list.splice(0, n);
+}
+
+// 44.홀수 vs 짝수
+function ex44(num_list) {
+  let even = 0;
+  let odd = 0;
+  num_list.map((item, idx) => {
+    if ((idx + 1) % 2 === 0) {
+      even += item;
+    } else odd += item;
+  });
+
+  if (even > odd) return even;
+  return odd;
+}
+
+// 45.5명씩
+function ex45(names) {
+  return names.filter((name, idx) => idx % 5 === 0);
+}
