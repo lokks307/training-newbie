@@ -89,24 +89,33 @@ function ex12(a, b, flag) {
   return answer;
 }
 
-// 13.코드 처리하기
+// 13.코드 처리하기 (리뷰 반영)
 function ex13(code) {
-  let answer;
-  const charArr = [];
-  for (let i of code) charArr.push(i);
+  // let answer;
+  // const charArr = [];
+  // for (let i of code) charArr.push(i);
+  // let mode = 0;
+
+  // charArr.map((item, idx) => {
+  //   if (mode == 0) {
+  //     item == 1 ? (mode = 1) : idx % 2 == 0 ? answer.push(item) : "";
+  //   } else {
+  //     item == 1 ? (mode = 0) : idx % 2 !== 0 ? answer.push(item) : "";
+  //   }
+  // }
+  let answer = [];
+  const charArr = code.split("");
   let mode = 0;
 
-  charArr.map((item, idx) => {
-    if (mode == 0) {
-      item == 1 ? (mode = 1) : idx % 2 == 0 ? answer.push(item) : "";
-    } else {
-      item == 1 ? (mode = 0) : idx % 2 !== 0 ? answer.push(item) : "";
+  charArr.forEach((char, idx) => {
+    if (char === "1") {
+      mode = mode === 1 ? 0 : 1;
+    } else if (idx % 2 === mode) {
+      answer.push(char);
     }
   });
 
-  answer = answer.join("");
-  if (!answer) answer = "EMPTY";
-  return answer;
+  return answer.length > 0 ? answer.join("") : "EMPTY";
 }
 
 // 14.등차수열의 특정한 항만 더하기
@@ -120,20 +129,17 @@ function ex14(a, d, included) {
   return answer;
 }
 
-// 15.주사위 게임 2
+// 15.주사위 게임 2 (리뷰 반영)
 function ex15(a, b, c) {
-  let answer;
+  const allAdd = a + b + c;
+  const double = a ** 2 + b ** 2 + c ** 2;
+  const triple = a ** 3 + b ** 3 + c ** 3;
+
   if (a === b && b === c) {
-    const allAdd = a + b + c;
-    const double = a ** 2 + b ** 2 + c ** 2;
-    const triple = a ** 3 + b ** 3 + c ** 3;
-    answer = allAdd * double * triple;
+    return allAdd * double * triple;
   } else if (a !== b && b !== c && a !== c) {
-    answer = a + b + c;
+    return a + b + c;
   } else {
-    const allAdd = a + b + c;
-    const double = a ** 2 + b ** 2 + c ** 2;
-    answer = allAdd * double;
+    return allAdd * double;
   }
-  return answer;
 }
