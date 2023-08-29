@@ -2767,3 +2767,823 @@ function ex156(bin1, bin2) {
 
   return sumInBinary;
 }
+
+function ex157(chicken) {
+  let serviceChicken = 0;
+  for (let coupon = 1; coupon <= chicken; coupon++) {
+    if (coupon % 10 === 0) {
+      chicken++;
+      serviceChicken++;
+    }
+  }
+
+  return serviceChicken;
+}
+
+function ex158(userInfo, db) {
+  var idPasswordInfo = {};
+  const [userId, userPassword] = userInfo;
+
+  for (const data of db) {
+    const [dataId, dataPassword] = data;
+    idPasswordInfo[dataId] = dataPassword;
+  }
+
+  if (idPasswordInfo[userId] === undefined) {
+    return "fail";
+  }
+
+  if (idPasswordInfo[userId] !== userPassword) {
+    return "wrong pw";
+  }
+
+  return "login";
+}
+
+function ex159(score) {
+  const averages = score.map(
+    ([mathScore, enScore]) => (mathScore + enScore) / 2,
+  );
+  const comparisonScore = [...averages];
+
+  const ranking = averages.map((value) => {
+    let rank = 1;
+
+    for (const comparisonVal of comparisonScore) {
+      if (value < comparisonVal) {
+        rank++;
+      }
+    }
+    return rank;
+  });
+
+  return ranking;
+}
+
+function ex160(numlist, n) {
+  numlist.sort((a, b) => {
+    const distanceA = Math.abs(a - n);
+    const distanceB = Math.abs(b - n);
+    if (distanceA === distanceB) {
+      return b - a;
+    }
+
+    return distanceA - distanceB;
+  });
+
+  return numlist;
+}
+
+function ex161(numerator, denominator) {
+  function greatestCommonDivisor(num, divisible) {
+    if (divisible === 0) {
+      return num;
+    }
+    return greatestCommonDivisor(divisible, num % divisible);
+    //기약분수를 구하기 위해 최대공약수를 구해야한다
+    //최대 공약수는 a를 b로 계속 나누었을때 나누어 떨어진 수가 0 이면 최대공약수를 구할 수 있다(유클리드 호제법 참고)
+  }
+  const commonFactor = greatestCommonDivisor(numerator, denominator);
+  let simplifiedDenominator = denominator / commonFactor;
+  //분모와 분자를 그들의 최대공약수로 나누면 기약분수를 구할 수 있음.분모를 최대공약수로 나누면 기약분수를 구할 수 있다.
+
+  //기약분수로 나타냈을때, 분모의 소인수가 2와 5만 존재한다면 유한소수이다
+
+  while (simplifiedDenominator % 2 === 0) {
+    simplifiedDenominator /= 2;
+  }
+  while (simplifiedDenominator % 5 === 0) {
+    simplifiedDenominator /= 5;
+  }
+
+  return simplifiedDenominator === 1 ? 1 : 2;
+}
+
+function ex162(lines) {
+  /*정말정말..아무리 고민해도 모르겠어서 다른사람의 풀이를 참고하였습니다ㅜㅜㅜ */
+  let min = Math.min(...lines.flat());
+  //2차원 배열을 flat()으로 1차원 배열로 만들고  전개연산자로 나열한다음 Math.min 으로 최소값을 구함
+  let max = Math.max(...lines.flat());
+  //2차원 배열을 flat()으로 1차원 배열로 만들고  전개연산자로 나열한다음 Math.max 으로 최소값을 구함
+  let arr = Array(max - min + 1).fill(0);
+  //Array 생성자로 길이가 max-min+1 인 array를 생성하고 fill()로 0 값으로 길이만큼 채운다.
+
+  for (let [start, end] of lines) {
+    //lines 각 요소를 구조분해 할당으로 각 start, end값으로 가져오고
+    if (min < 0) {
+      //min값이 음수라면
+      start += Math.abs(min);
+      //Math.abs으로 절대값을 구한다음 start 와 end 부분에 더해준다.
+      end += Math.abs(min);
+      //절대값으로 더해주는 이유는 만약 min값이 -1 이리면 뒤에 반복문을 쓸떄 arr[i]의 i 가 음수가 되기때문임
+    }
+    for (let i = start; i < end; i++) {
+      arr[i]++;
+      //i 에 start를 할당하고 end -1 까지 반복하면서 arr[i] ++ 해준다
+    }
+  }
+
+  return arr.filter((v) => v > 1).length;
+  //만약 겹치는 부분은 1보다 크기 떄문에 1이상의 값을 리턴한 후 length값을 구하고 리턴한다
+}
+
+function ex163(dots) {
+  function inclinationCalculator(point1, point2) {
+    const [x1, y1] = point1;
+    const [x2, y2] = point2;
+
+    return (y2 - y1) / (x2 - x1);
+  }
+  // 두직선이 평행하려면 기울기가 같아야 한다 기울기 구하는 함수.
+  const [dot1, dot2, dot3, dot4] = dots;
+
+  var inclination1 = inclinationCalculator(dot1, dot2);
+  var inclination2 = inclinationCalculator(dot3, dot4);
+  var inclination3 = inclinationCalculator(dot1, dot3);
+  var inclination4 = inclinationCalculator(dot2, dot4);
+  var inclination5 = inclinationCalculator(dot1, dot4);
+  var inclination6 = inclinationCalculator(dot2, dot3);
+
+  if (
+    inclination1 === inclination2 ||
+    inclination3 === inclination4 ||
+    inclination5 === inclination6
+  ) {
+    return 1;
+  }
+
+  return 0;
+}
+
+function ex164(n) {
+  var count = 0;
+  for (let i = 1; i <= n; i++) {
+    while ((i + count) % 3 === 0 || String(i + count).indexOf("3") > -1) {
+      count++;
+    }
+    var total = i + count;
+  }
+  return total;
+}
+
+function ex165(spell, dic) {
+  const sortedChars = spell.sort().join("");
+  function sortedDictionaryWords(word) {
+    return [...word].sort().join("");
+  }
+
+  for (const word of dic) {
+    if (sortedDictionaryWords(word) === sortedChars) {
+      return 1;
+    }
+  }
+  return 2;
+}
+
+function ex166(sides) {
+  const max = Math.max(...sides);
+  const min = Math.min(...sides);
+  let count = 0;
+
+  for (let i = max - min + 1; i <= max; i++) {
+    count++;
+  }
+
+  for (let i = max + 1; i < max + min; i++) {
+    count++;
+  }
+  return count;
+}
+
+function ex167(board) {
+  /*안전지대 문제인데 .. 도저히 모르겠어서 pass 합니다 ㅠㅜ
+  풀다가 포기.. */
+
+  let rowCount = board.length;
+  let colCount = board[0].length;
+  let landMine;
+  let hasRowLandMine;
+  for (let i = 0; i < board.length; i++) {
+    if (board[i].includes(1)) {
+      landMine = board[i].indexOf(1);
+      hasRowLandMine = i;
+    }
+  }
+
+  for (
+    let row = Math.max(0, hasRowLandMine - 1);
+    row <= Math.min(hasRowLandMine + 1, rowCount - 1);
+    row++
+  ) {
+    for (
+      let col = Math.max(0, landMine - 1);
+      col <= Math.min(landMine + 1, colCount - 1);
+      col++
+    ) {
+      board[row][col] = 1;
+    }
+  }
+
+  return board.flatMap((bd) => bd.filter((num) => num === 0)).length;
+}
+
+function ex168(string) {
+  var arr = string.split(/[a-z]/gi).filter(Boolean);
+  return arr.reduce((acc, value) => acc + Number(value), 0);
+}
+
+function ex169(polynomial) {
+  let variableTerm = 0;
+  let constantTerm = 0;
+
+  const removeOperator = polynomial.split(" + ");
+
+  for (let i = 0; i < removeOperator.length; i++) {
+    if (removeOperator[i].includes("x")) {
+      let removeX = removeOperator[i].replace(/x/g, "");
+      variableTerm += removeX === "" ? 1 : Number(removeX);
+    } else {
+      constantTerm += Number(removeOperator[i]);
+    }
+  }
+
+  if (variableTerm === 1) {
+    variableTerm = "";
+  }
+
+  if (variableTerm === 0) {
+    return `${constantTerm}`;
+  }
+
+  if (constantTerm === 0) {
+    return `${variableTerm}x`;
+  }
+
+  return `${variableTerm}x + ${constantTerm}`;
+}
+
+function ex170(numbers) {
+  numbers.sort((a, b) => a - b);
+  const num1 = numbers.at(-1) * numbers.at(-2);
+  const num2 = numbers[0] * numbers[1];
+
+  return num1 > num2 ? num1 : num2;
+}
+
+function ex171(keyinput, board) {
+  let x = 0;
+  let y = 0;
+
+  function move(direction) {
+    switch (direction) {
+      case "up":
+        if (y == Math.floor(board[1] / 2)) {
+          break;
+        }
+        y++;
+        break;
+      case "down":
+        if (y == -Math.floor(board[1] / 2)) {
+          break;
+        }
+        y--;
+        break;
+      case "left":
+        if (x == -Math.floor(board[0] / 2)) {
+          break;
+        }
+        x--;
+        break;
+      case "right":
+        if (x == Math.floor(board[0] / 2)) {
+          break;
+        }
+        x++;
+        break;
+    }
+  }
+
+  for (const key of keyinput) {
+    move(key);
+  }
+
+  return [x, y];
+}
+
+function ex172(dots) {
+  const [dot1] = dots;
+  const [x1, y1] = dot1;
+  let height;
+  let width;
+
+  for (const dot of dots) {
+    const [x, y] = dot;
+
+    if (x == x1) {
+      height = Math.abs(y - y1);
+    }
+
+    if (y === y1) {
+      width = Math.abs(x - x1);
+    }
+  }
+  return height * width;
+}
+
+function ex173(strlist) {
+  var answer = strlist.map((word) => word.length);
+  return answer;
+}
+
+function ex174(s) {
+  let result = 0;
+  const array = s.split(" ");
+  array.forEach((cha, i) => {
+    if (cha === "Z") {
+      return (result -= Number(array[i - 1]));
+    }
+
+    return (result += Number(cha));
+  });
+  return result;
+}
+
+function ex175(n) {
+  let result = [];
+  let divisible = 2;
+
+  while (n > 1) {
+    if (n % divisible === 0) {
+      result.push(divisible);
+      n = n / divisible;
+    } else {
+      divisible++;
+    }
+  }
+
+  return [...new Set(result)];
+}
+
+function onlyNumberSearch(arr) {
+  return arr.filter((char) => /[0-9]/g.test(char)).map(Number);
+}
+
+function ex176(string) {
+  let arr = [...string];
+  let onlyNumber = onlyNumberSearch(arr);
+  return onlyNumber.reduce((acc, value) => acc + value, 0);
+}
+
+function ex177(string) {
+  const arr = [...string];
+  const onlyNumber = onlyNumberSearch(arr);
+  return onlyNumber.sort();
+}
+
+function ex178(string) {
+  const removePartAlphabet = string.replace(/[a|e|i|o|u]/g, "");
+
+  return removePartAlphabet;
+}
+
+function ex179(n) {
+  function createFactorial(number) {
+    const array = Array.from({ length: number }, (_, index) => index + 1).sort(
+      (a, b) => b - a,
+    );
+
+    const factorial = array.reduce((acc, value) => acc * value, 1);
+
+    return factorial;
+  }
+
+  let i = 1;
+  while (true) {
+    const factorial = createFactorial(i);
+
+    if (factorial <= n) {
+      i++;
+    } else {
+      i--;
+      break;
+    }
+  }
+
+  return i;
+}
+
+function ex180(numbers) {
+  var sortingArray = numbers.sort((a, b) => a - b);
+  return sortingArray.at(-1) * sortingArray.at(-2);
+}
+
+function ex181(n) {
+  let i = 1;
+  let count = 0;
+
+  while (i <= n) {
+    let divisorsCount = 0;
+    for (let j = 1; j <= i; j++) {
+      if (i % j === 0) {
+        divisorsCount++;
+      }
+    }
+    divisorsCount > 2 && count++;
+    i++;
+  }
+
+  return count;
+}
+
+function ex182(box, n) {
+  var answer = box.reduce((acc, cur) => acc * Math.floor(cur / n), 1);
+  return answer;
+}
+
+function ex183(numbers, direction) {
+  if (direction === "right") {
+    const lastIndexValue = numbers.pop();
+    numbers.unshift(lastIndexValue);
+    return numbers;
+  }
+
+  const firstIndexValue = numbers.shift();
+  numbers.push(firstIndexValue);
+  return numbers;
+}
+
+function ex184(numbers, k) {
+  const idx = (k - 1) * 2;
+  return numbers[idx % numbers.length];
+}
+
+function ex185(numList, n) {
+  let array = [];
+  while (numList.length !== 0) {
+    const remove = numList.splice(0, n);
+    array.push(remove);
+  }
+
+  return array;
+}
+
+function ex186(dot) {
+  var [x, y] = dot;
+  if (x > 0 && y > 0) {
+    return 1;
+  }
+
+  if (x < 0 && y > 0) {
+    return 2;
+  }
+  if (x < 0 && y < 0) {
+    return 3;
+  }
+
+  return 4;
+}
+
+function ex187(balls, share) {
+  function createFactorial(number) {
+    const array = Array.from({ length: number }, (_, index) => index + 1).sort(
+      (a, b) => b - a,
+    );
+
+    const factorial = array.reduce(
+      (acc, value) => BigInt(acc) * BigInt(value),
+      1,
+    );
+
+    return factorial;
+  }
+  /* 앞에 179 번 문제에서 createFactorial같은 로직을 썼지만 리뷰하실떄 보기 힘드실까봐 따로 공통으로 빼지 않았습니다. */
+  if (balls === share) {
+    return 1;
+  }
+
+  return (
+    createFactorial(balls) /
+    (createFactorial(share) * createFactorial(balls - share))
+  );
+}
+
+function ex188(rsp) {
+  const winCalculator = {
+    //2는 가위 0은바위 5는 보를 뜻하는데 각 이기는 것 설정
+    2: "0",
+    0: "5",
+    5: "2",
+  };
+  var array = [...rsp];
+
+  return array.map((char) => winCalculator[char]).join("");
+}
+
+function ex189(letter) {
+  const morse = {
+    ".-": "a",
+    "-...": "b",
+    "-.-.": "c",
+    "-..": "d",
+    ".": "e",
+    "..-.": "f",
+    "--.": "g",
+    "....": "h",
+    "..": "i",
+    ".---": "j",
+    "-.-": "k",
+    ".-..": "l",
+    "--": "m",
+    "-.": "n",
+    "---": "o",
+    ".--.": "p",
+    "--.-": "q",
+    ".-.": "r",
+    "...": "s",
+    "-": "t",
+    "..-": "u",
+    "...-": "v",
+    ".--": "w",
+    "-..-": "x",
+    "-.--": "y",
+    "--..": "z",
+  };
+
+  var array = letter.split(" ");
+
+  return array.map((mo) => morse[mo]).join("");
+}
+function ex190(hp) {
+  const warlord = 5;
+  const soldier = 3;
+  const common = 1;
+  let countAnt = 0;
+
+  countAnt += Math.floor(hp / warlord);
+  countAnt += Math.floor((hp % warlord) / soldier);
+  countAnt += ((hp % warlord) % soldier) / common;
+
+  return countAnt;
+}
+
+function ex191(n) {
+  let divisorCount = 0;
+  for (let i = 1; i <= n; i++) {
+    if (n % i === 0) {
+      divisorCount++;
+    }
+  }
+  return divisorCount;
+}
+
+function ex192(emergency) {
+  const ascending = [...emergency].sort((a, b) => a - b);
+
+  const answer = emergency.map((num) => {
+    let rank = 1;
+    for (const a of ascending) {
+      num < a && rank++;
+    }
+    return rank;
+  });
+
+  return answer;
+}
+
+function ex193(age) {
+  const aCode = 97;
+  const array = [...String(age)];
+  const planetAge = array.map((char) =>
+    String.fromCharCode(Number(char) + aCode),
+  );
+  return planetAge.join("");
+}
+
+function ex194(numberList, num1, num2) {
+  return numberList.slice(num1, num2 + 1);
+}
+
+function ex195(n) {
+  const evenCount = Math.floor(n / 2);
+  const evenArray = Array.from(
+    { length: evenCount },
+    (_, idx) => 2 * (1 + idx),
+  );
+  return evenArray.reduce((sum, evenNum) => BigInt(sum) + BigInt(evenNum), 0);
+}
+
+function ex196(lambSkewers, drink) {
+  const lambPrice = 12000;
+  const drinkPrice = 2000;
+  const serviceDrink = Math.floor(lambSkewers / 10);
+  const total = lambSkewers * lambPrice + (drink - serviceDrink) * drinkPrice;
+  return total;
+}
+
+function ex197(angle) {
+  if (angle == 90) {
+    return 2;
+  }
+
+  if (angle == 180) {
+    return 4;
+  }
+  if (angle < 90) {
+    return 1;
+  }
+
+  return 3;
+}
+
+function ex198(string, letter) {
+  return string.split(letter).join("");
+}
+function ex199(string, n) {
+  return [...string].map((char) => char.repeat(n)).join("");
+}
+
+function ex200(numList) {
+  let evenCount = numList.filter((num) => num % 2 === 0).length;
+  let oddCount = numList.length - evenCount;
+  return [evenCount, oddCount];
+}
+
+function ex201() {
+  ex201Output(Number(input));
+}
+
+function ex201Output(limit) {
+  let star = "*";
+  for (let i = 1; i <= limit; i++) {
+    star += "*";
+    console.log(star);
+  }
+}
+
+function ex202(string) {
+  return [...string].reverse().join("");
+}
+
+function ex203(numList) {
+  return numList.reverse();
+}
+
+function ex204(age) {
+  const currntYear = 2022;
+  return currntYear - age + 1; //한국은 한살 더먹죠 .. 이젠 아니지만 ㅎㅎ
+}
+
+function ex205(money) {
+  const americanoPrice = 5500;
+  const coffeCount = Math.floor(money / americanoPrice);
+  const balanceCash = money % americanoPrice;
+  return [coffeCount, balanceCash];
+}
+
+function ex206(price) {
+  const discount20Per = 0.8;
+  const discount10Per = 0.9;
+  const discount5Per = 0.95;
+
+  if (price >= 500000) {
+    return Math.floor(price * discount20Per);
+  }
+
+  if (price >= 300000) {
+    return Math.floor(price * discount10Per);
+  }
+
+  if (price >= 100000) {
+    return Math.floor(price * discount5Per);
+  }
+
+  return price;
+}
+
+function ex207(numberList) {
+  var numberSum = numberList.reduce(
+    (sum, currentValue) => sum + currentValue,
+    0,
+  );
+  return numberSum / numberList.length;
+}
+
+function ex208(slice, n) {
+  let count = 1;
+  while (true) {
+    if (slice * count >= n) break;
+
+    count++;
+  }
+  return count;
+}
+
+function ex209(person) {
+  let count = 1;
+  let pizzaPiece = 6;
+  while ((pizzaPiece * count) % person !== 0) {
+    count++;
+  }
+  return count;
+}
+function ex210(person) {
+  const pizzaPiece = 7;
+  let count = 1;
+  while (person > pizzaPiece * count) {
+    count++;
+  }
+  return count;
+}
+
+function ex211(n) {
+  const numberList = Array.from({ length: n }, (_, idx) => 1 + idx);
+  return numberList.filter((num) => num % 2 == 1);
+}
+
+function ex212(array) {
+  let frequency = {};
+  for (const number of array) {
+    if (frequency[number] === undefined) {
+      frequency[number] = 0;
+    }
+
+    frequency[number]++;
+  }
+
+  const frequencyKeyList = Object.keys(frequency);
+  const frequencyValueList = Object.values(frequency);
+  const maxFrequency = Math.max(...frequencyValueList);
+
+  return getKeyByValue(maxFrequency).length >= 2
+    ? -1
+    : Number(getKeyByValue(maxFrequency).join(""));
+
+  function getKeyByValue(value) {
+    return frequencyKeyList.filter((key) => frequency[key] === value);
+  }
+}
+
+function ex213(array) {
+  array.sort((a, b) => a - b);
+  const centerIndex = Math.floor(array.length / 2);
+  return array[centerIndex];
+}
+
+function ex214(num1, num2) {
+  return num1 % num2;
+}
+
+function ex215(numberList) {
+  return numberList.map((num) => num * 2);
+}
+
+function ex216(num1, den1, num2, den2) {
+  num1 = num1 * den2;
+  num2 = num2 * den1;
+  const numerator = num1 + num2;
+  const commonDenominator = den1 * den2;
+
+  function greatestCommonDivisor(num, divisible) {
+    if (divisible === 0) {
+      return num;
+    }
+    return greatestCommonDivisor(divisible, num % divisible);
+    /*기약분수를 구하기 위해 최대공약수를 구해야한다
+    최대 공약수는 a를 b로 계속 나누었을때 나누어 떨어진 수가 0 이면 최대공약수를 구할 수 있다(유클리드 호제법 참고)*/
+  }
+  const commonFactor = greatestCommonDivisor(numerator, commonDenominator);
+
+  return [numerator / commonFactor, commonDenominator / commonFactor];
+}
+
+function ex217(num1, num2) {
+  return num1 === num2 ? 1 : -1;
+}
+
+function ex218(num1, num2) {
+  return Math.floor((num1 / num2) * 1000);
+}
+function ex219(num1, num2) {
+  return Math.floor(num1 / num2);
+}
+
+function ex220(num1, num2) {
+  return num1 * num2;
+}
+function ex221(num1, num2) {
+  return num1 - num2;
+}
+
+function ex222(num1, num2) {
+  return num1 + num2;
+}
+function ex223(array, height) {
+  array.sort((a, b) => a - b);
+  return array.filter((num) => num > height).length;
+}
+
+function ex224(array, n) {
+  let count = 0;
+  array.forEach((num) => num === n && count++);
+  return count;
+}
