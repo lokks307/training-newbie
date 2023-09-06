@@ -98,7 +98,7 @@ function solution(my_string, k) {
     }
     return answer;
 }
-function solution(a, b) {
+function solution14(a, b) {
     a = String(a);
     b = String(b);
     let ab = a + b;
@@ -107,27 +107,9 @@ function solution(a, b) {
     else return Number(ba);
 }
 function solution(a, b) {
-    let ba = 2*a*b;
-    ba = ba.toString();
-    a = a.toString();
-    b = b.toString();
-    let ab = a + b;
-    var answer = ab;
-    if(ab.length > ba.length) return Number(ab);
-    else if (ab.length < ba.length) return Number(ba);
-    
-    for (let i =0 ; i< ab.length; i++){
-        if (ab[i] > ba[i]){
-            answer = ab;
-            break;
-        }
-        else if(ab[i] < ba[i]){
-            answer =  ba;
-            break;
-        }
-        else continue;
-    }
-    return Number(answer);
+    let abmul2 = 2 * a * b;
+    let aplusb = Number(String(a) + String(b));
+    return abmul2 > aplusb ? abmul2 : aplusb;
 }
 
 
