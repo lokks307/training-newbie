@@ -37,35 +37,26 @@ function prob3(){
     console.log(input[0].repeat(Number(input[1])));
 }
 function prob4(){
-    let len = input.length;
-    input = [...input];
-    for(let i = 0; i<len ; i++){
-        if(input[i] == input[i].toUpperCase()){
-            input[i] = input[i].toLowerCase()
-        }
-        else{
-            input[i] = input[i].toUpperCase();
-        }
-    }
-    console.log(input.join(''));
+    const arr = line.split("").map(char => {
+        //check whether char is upper, if true -> lower,else upper.
+        return char === char.toUpperCase() ? char.toLowerCase() : char.toUpperCase();
+      });
+  console.log(arr.join(""));
 }
 function prob5(){
     console.log("!@#$%^&*(\\\'\"<>?:;")
 }
 function prob6(){
-    input = input.split(' ');
-    console.log(input[0] + " + " + input[1] + " = " + (Number(input[0]) + Number(input[1])) );
+    const [num1, num2] = input.map(Number);
+    console.log(`${num1} + ${num2} = ${num1 + num2}`);
 }
 function prob7(){
     /* regex ^,*,+,g recall automata */
     console.log(input.replace(/\s+/g, ""));
 }
 function prob8(){
-    let len = input.length;
     input = [...input];
-    for(let i = 0; i<len ; i++){
-       console.log(input[i]);
-    }
+    input.map(char => console.log(char));
 }
 function prob9(){
     input = Number(input);
@@ -100,11 +91,6 @@ function solution(arr) {
     return answer;
 }
 
-/* 
-how javascript distinguish functions with same name.
-js do not support function overloading with different parameters. (c,c++ supports it.)
-The last function wriiten is used.
-*/
 function solution(my_string, k) {
     var answer = '';
     for (let i = 0 ; i<k ; i++){
@@ -113,23 +99,12 @@ function solution(my_string, k) {
     return answer;
 }
 function solution(a, b) {
-    a = a.toString();
-    b = b.toString();
+    a = String(a);
+    b = String(b);
     let ab = a + b;
     let ba = b + a;
-    var answer = ab;
-    for (let i =0 ; i< ab.length; i++){
-        if (ab[i] > ba[i]){
-            answer = ab;
-            break;
-        }
-        else if(ab[i] < ba[i]){
-            answer =  ba;
-            break;
-        }
-        else continue;
-    }
-    return Number(answer);
+    if( ab > ba ) return Number(ab);
+    else return Number(ba);
 }
 function solution(a, b) {
     let ba = 2*a*b;
@@ -154,5 +129,5 @@ function solution(a, b) {
     }
     return Number(answer);
 }
-//SolveInterface(prob9);
+
 
