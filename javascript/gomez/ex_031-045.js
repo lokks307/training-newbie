@@ -146,7 +146,7 @@ function revertString(string, query){
     }
     return string.join('');
 }
-
+module.exports = {revertString};
 function solution40(my_string, queries) {
     for (elem of queries){
         my_string = revertString(my_string,elem);
